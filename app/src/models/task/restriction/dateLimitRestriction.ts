@@ -4,10 +4,13 @@ import { Encodable } from "@lemonaderoom/lesource";
 /** 期限の制約 */
 export class DateLimitRestriction implements Encodable {
   /**
-   * @param id 期限制約ID
+   * @param id 期限制約UUID
    * @param limit 期限日時
    */
-  constructor(readonly id: number, readonly limit: Date) {}
+  constructor(
+    readonly id: string = crypto.randomUUID(),
+    readonly limit: Date = new Date()
+  ) {}
 
   encode(): unknown {
     return {
@@ -23,6 +26,6 @@ export class DateLimitRestriction implements Encodable {
 }
 
 export const DateLimitRestrictionSchema = z.object({
-  id: z.number(),
+  id: z.string().uuid(),
   limit: z.string().datetime(),
 });

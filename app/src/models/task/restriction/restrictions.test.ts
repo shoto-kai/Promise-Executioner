@@ -4,18 +4,24 @@ import { DateLimitRestriction } from "~/models/task/restriction/dateLimitRestric
 
 describe("Restrictions Tests", () => {
   const restrictions = new Restrictions([
-    new DateLimitRestriction(1, new Date("2021-01-01T00:00:00.000Z")),
-    new DateLimitRestriction(2, new Date("2021-01-02T00:00:00.000Z")),
+    new DateLimitRestriction(
+      "555D8CCE-87BF-4C5D-BBA4-650F7E397513",
+      new Date("2021-01-01T00:00:00.000Z")
+    ),
+    new DateLimitRestriction(
+      "E6F6015F-ABFF-4E83-8D3E-A0782038A694",
+      new Date("2021-01-02T00:00:00.000Z")
+    ),
   ]);
 
   const json = {
     dateLimitRestrictions: [
       {
-        id: 1,
+        id: "555D8CCE-87BF-4C5D-BBA4-650F7E397513",
         limit: "2021-01-01T00:00:00.000Z",
       },
       {
-        id: 2,
+        id: "E6F6015F-ABFF-4E83-8D3E-A0782038A694",
         limit: "2021-01-02T00:00:00.000Z",
       },
     ],

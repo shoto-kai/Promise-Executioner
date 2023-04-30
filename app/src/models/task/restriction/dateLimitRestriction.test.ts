@@ -3,12 +3,12 @@ import { DateLimitRestriction } from "~/models/task/restriction/dateLimitRestric
 
 describe("DateLimitRestriction Tests", () => {
   const restriction = new DateLimitRestriction(
-    1,
+    "47F87916-435C-47A6-8E9C-513AEF7D3A52",
     new Date("2021-01-01T00:00:00.000Z")
   );
 
   const json = {
-    id: 1,
+    id: "47F87916-435C-47A6-8E9C-513AEF7D3A52",
     limit: "2021-01-01T00:00:00.000Z",
   };
 

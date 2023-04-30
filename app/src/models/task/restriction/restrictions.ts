@@ -11,7 +11,7 @@ export class Restrictions implements Encodable {
    * @param dateLimitRestrictions 期限の制約一覧
    */
   constructor(
-    readonly dateLimitRestrictions: readonly DateLimitRestriction[]
+    readonly dateLimitRestrictions: readonly DateLimitRestriction[] = []
   ) {}
 
   encode(): unknown {
