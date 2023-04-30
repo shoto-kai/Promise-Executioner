@@ -28,9 +28,7 @@ describe("Task Tests", () => {
         "PayPay 500円",
         "https://example.com"
       ),
-    ]),
-    new Date("2021-08-01T18:00:00+09:00"),
-    undefined
+    ])
   );
 
   const json = {
@@ -61,7 +59,6 @@ describe("Task Tests", () => {
         },
       ],
     },
-    completionDate: "2021-08-01T09:00:00.000Z",
   };
 
   test("encode Test", () => {

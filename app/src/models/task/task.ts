@@ -15,17 +15,13 @@ export class Task implements Encodable {
    * @param note タスクメモ
    * @param restrictions 制約一覧
    * @param penalties ペナルティ一覧
-   * @param completionDate 完了日時
-   * @param failureDate 失敗日時
    */
   constructor(
     readonly id: string = crypto.randomUUID(),
     readonly title: string = "",
     readonly note: string = "",
     readonly restrictions: Restrictions = new Restrictions(),
-    readonly penalties: Penalties = new Penalties(),
-    readonly completionDate?: Date,
-    readonly failureDate?: Date
+    readonly penalties: Penalties = new Penalties()
   ) {}
 
   encode(): unknown {
@@ -35,8 +31,6 @@ export class Task implements Encodable {
       note: this.note,
       restrictions: this.restrictions.encode(),
       penalties: this.penalties.encode(),
-      completionDate: this.completionDate?.toISOString(),
-      failureDate: this.failureDate?.toISOString(),
     };
   }
 
@@ -47,11 +41,7 @@ export class Task implements Encodable {
       schema.title,
       schema.note,
       Restrictions.decode(schema.restrictions),
-      Penalties.decode(schema.penalties),
-      schema.completionDate == null
-        ? undefined
-        : new Date(schema.completionDate),
-      schema.failureDate == null ? undefined : new Date(schema.failureDate)
+      Penalties.decode(schema.penalties)
     );
   }
 }
@@ -62,6 +52,4 @@ export const TaskSchema = z.object({
   note: z.string(),
   restrictions: RestrictionsSchema,
   penalties: PenaltiesSchema,
-  completionDate: z.string().datetime().optional(),
-  failureDate: z.string().datetime().optional(),
 });
