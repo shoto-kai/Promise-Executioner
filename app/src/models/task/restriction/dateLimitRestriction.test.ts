@@ -1,5 +1,6 @@
 import { describe, test } from "vitest";
 import { DateLimitRestriction } from "~/models/task/restriction/dateLimitRestriction";
+import { none, some } from "~/models/task/restriction/restrictionLimit";
 
 describe("DateLimitRestriction Tests", () => {
   const completedRestriction = new DateLimitRestriction(
@@ -72,5 +73,15 @@ describe("DateLimitRestriction Tests", () => {
       new Date("2021-01-01T00:00:00.000Z")
     );
     expect(restriction.isCompleted).toBeTruthy();
+  });
+
+  test("完了済みの場合, restrictionLimitがnone", () => {
+    expect(completedRestriction.restrictionLimit).toEqual(none);
+  });
+
+  test("未完了の場合, restrictionLimitがsome", () => {
+    expect(uncompletedRestriction.restrictionLimit).toEqual(
+      some(new Date("2021-01-01T00:00:00.000Z"))
+    );
   });
 });

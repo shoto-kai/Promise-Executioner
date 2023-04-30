@@ -1,5 +1,10 @@
 import { z } from "zod";
 import { Encodable } from "@lemonaderoom/lesource";
+import {
+  none,
+  RestrictionLimit,
+  some,
+} from "~/models/task/restriction/restrictionLimit";
 
 /** 期限の制約 */
 export class DateLimitRestriction implements Encodable {
@@ -18,6 +23,11 @@ export class DateLimitRestriction implements Encodable {
   get isCompleted(): boolean {
     if (this.completedAt == null) return false;
     return this.limit.getTime() >= this.completedAt.getTime();
+  }
+
+  get restrictionLimit(): RestrictionLimit {
+    if (this.isCompleted) return none;
+    return some(this.limit);
   }
 
   encode(): unknown {
