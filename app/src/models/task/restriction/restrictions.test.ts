@@ -1,7 +1,7 @@
 import { describe, test } from "vitest";
 import { Restrictions } from "~/models/task/restriction/restrictions";
 import { DateLimitRestriction } from "~/models/task/restriction/dateLimitRestriction";
-import { none, some } from "~/models/task/restriction/restrictionLimit";
+import { some } from "~/models/task/restriction/restrictionLimit";
 
 describe("Restrictions Tests", () => {
   const restrictions = new Restrictions([
