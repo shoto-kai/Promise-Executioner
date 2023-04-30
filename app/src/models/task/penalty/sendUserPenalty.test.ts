@@ -25,14 +25,13 @@ describe("Send User Penalty Tests", () => {
     },
     note: "PayPay 500円",
     content: "https://example.com",
-    executionDate: "2021-10-01T00:00:00.000Z",
+    executedAt: "2021-10-01T00:00:00.000Z",
   };
 
   const unExecutedPenalty = new SendUserPenalty(
     "1FB8708D-EBE0-4577-AFD5-18066C35F6A8",
     new AnotherUser(
       new User("26E069A3-8171-4F34-8895-B00D8EB74CE4", "田中"),
-
       false
     ),
     "PayPay 500円",

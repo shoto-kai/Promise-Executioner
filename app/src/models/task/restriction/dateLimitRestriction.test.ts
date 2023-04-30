@@ -11,7 +11,7 @@ describe("DateLimitRestriction Tests", () => {
   const completedJson = {
     id: "47F87916-435C-47A6-8E9C-513AEF7D3A52",
     limit: "2021-01-01T00:00:00.000Z",
-    completionDate: "2020-12-31T00:00:00.000Z",
+    completedAt: "2020-12-31T00:00:00.000Z",
   };
 
   const uncompletedRestriction = new DateLimitRestriction(
@@ -22,7 +22,7 @@ describe("DateLimitRestriction Tests", () => {
   const uncompletedJson = {
     id: "47F87916-435C-47A6-8E9C-513AEF7D3A52",
     limit: "2021-01-01T00:00:00.000Z",
-    completionDate: undefined,
+    completedAt: undefined,
   };
 
   test("encode Test", () => {

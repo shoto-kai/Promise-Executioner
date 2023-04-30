@@ -6,19 +6,19 @@ export class DateLimitRestriction implements Encodable {
   /**
    * @param id 期限制約UUID
    * @param limit 期限日時
-   * @param completionDate 完了日時
+   * @param completedAt 完了日時
    */
   constructor(
     readonly id: string = crypto.randomUUID(),
     readonly limit: Date = new Date(),
-    readonly completionDate?: Date
+    readonly completedAt?: Date
   ) {}
 
   encode(): unknown {
     return {
       id: this.id,
       limit: this.limit.toISOString(),
-      completionDate: this.completionDate?.toISOString(),
+      completedAt: this.completedAt?.toISOString(),
     };
   }
 
@@ -27,9 +27,7 @@ export class DateLimitRestriction implements Encodable {
     return new DateLimitRestriction(
       schema.id,
       new Date(schema.limit),
-      schema.completionDate == null
-        ? undefined
-        : new Date(schema.completionDate)
+      schema.completedAt == null ? undefined : new Date(schema.completedAt)
     );
   }
 }
@@ -37,5 +35,5 @@ export class DateLimitRestriction implements Encodable {
 export const DateLimitRestrictionSchema = z.object({
   id: z.string().uuid(),
   limit: z.string().datetime(),
-  completionDate: z.string().datetime().optional(),
+  completedAt: z.string().datetime().optional(),
 });
