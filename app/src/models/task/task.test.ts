@@ -25,6 +25,7 @@ describe("Task Tests", () => {
           new User("B45E919E-9CAD-4956-AF61-AFE9F32C47E2", "田中"),
           false
         ),
+        "PayPay 500円",
         "https://example.com"
       ),
     ]),
@@ -55,6 +56,7 @@ describe("Task Tests", () => {
             },
             isMyFriend: false,
           },
+          note: "PayPay 500円",
           content: "https://example.com",
         },
       ],

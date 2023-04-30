@@ -10,6 +10,7 @@ describe("Send User Penalty Tests", () => {
       new User("26E069A3-8171-4F34-8895-B00D8EB74CE4", "田中"),
       false
     ),
+    "PayPay 500円",
     "https://example.com"
   );
   const json = {
@@ -21,6 +22,7 @@ describe("Send User Penalty Tests", () => {
       },
       isMyFriend: false,
     },
+    note: "PayPay 500円",
     content: "https://example.com",
   };
 
