@@ -1,4 +1,4 @@
-import { IonItem, IonLabel, IonList, IonNote } from "@ionic/react";
+import { IonItem, IonLabel, IonList } from "@ionic/react";
 import React, { FC } from "react";
 import { Task } from "~/models/task/task";
 

@@ -13,8 +13,9 @@ import { Penalties } from "~/models/task/penalty/penalties";
 import { SendUserPenalty } from "~/models/task/penalty/sendUserPenalty";
 import { AnotherUser } from "~/models/user/anotherUser";
 import { User } from "~/models/user/user";
+import { FC } from "react";
 
-const TaskPage: React.FC = () => {
+const TaskPage: FC = () => {
   const tasks: readonly Task[] = [
     new Task(
       "4C0A19BA-50D2-486A-BB02-86D0211149B6",
@@ -56,8 +57,7 @@ const TaskPage: React.FC = () => {
           "PayPay 100円",
           "https://example.com"
         ),
-      ]),
-      new Date("2021-09-30T00:00:00.000Z")
+      ])
     ),
     new Task(
       "67D26CD2-4B63-4F59-B8F1-28500DA726C6",
@@ -78,9 +78,7 @@ const TaskPage: React.FC = () => {
           "PayPay 100円",
           "https://example.com"
         ),
-      ]),
-      new Date("2021-10-01T12:00:00.000Z"),
-      new Date("2021-10-01T00:00:00.000Z")
+      ])
     ),
     new Task(
       "FDD556EB-E2D3-49A7-A7C4-2EB825E0AAA5",
@@ -101,9 +99,7 @@ const TaskPage: React.FC = () => {
           "PayPay 100円",
           "https://example.com"
         ),
-      ]),
-      undefined,
-      new Date("2021-10-01T00:00:00.000Z")
+      ])
     ),
   ];
   return (

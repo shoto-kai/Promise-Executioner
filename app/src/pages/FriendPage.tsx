@@ -6,8 +6,9 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import ExploreContainer from "../components/ExploreContainer";
+import { FC } from "react";
 
-const FriendPage: React.FC = () => {
+const FriendPage: FC = () => {
   return (
     <IonPage>
       <IonHeader>
