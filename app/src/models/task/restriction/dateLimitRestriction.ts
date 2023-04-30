@@ -14,6 +14,12 @@ export class DateLimitRestriction implements Encodable {
     readonly completedAt?: Date
   ) {}
 
+  /** 完了したかどうか */
+  get isCompleted(): boolean {
+    if (this.completedAt == null) return false;
+    return this.limit.getTime() >= this.completedAt.getTime();
+  }
+
   encode(): unknown {
     return {
       id: this.id,

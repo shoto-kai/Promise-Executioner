@@ -14,6 +14,11 @@ export class Restrictions implements Encodable {
     readonly dateLimitRestrictions: readonly DateLimitRestriction[] = []
   ) {}
 
+  /** 全ての制約が満たされているか */
+  get isCompleted(): boolean {
+    return this.dateLimitRestrictions.every((r) => r.isCompleted);
+  }
+
   encode(): unknown {
     return {
       dateLimitRestrictions: encodeArray(this.dateLimitRestrictions),
