@@ -10,12 +10,14 @@ export class SendUserPenalty implements Encodable {
    * @param destinationUser 送り先ユーザー
    * @param note メモ
    * @param content 送信する文字列
+   * @param executionDate 執行日時
    */
   constructor(
     readonly id: string = crypto.randomUUID(),
     readonly destinationUser: AnotherUser = new AnotherUser(),
     readonly note: string = "",
-    readonly content: string = ""
+    readonly content: string = "",
+    readonly executionDate?: Date
   ) {}
 
   encode(): unknown {
@@ -24,6 +26,7 @@ export class SendUserPenalty implements Encodable {
       destinationUser: this.destinationUser.encode(),
       note: this.note,
       content: this.content,
+      executionDate: this.executionDate?.toISOString(),
     };
   }
 
@@ -33,7 +36,8 @@ export class SendUserPenalty implements Encodable {
       schema.id,
       AnotherUser.decode(schema.destinationUser),
       schema.note,
-      schema.content
+      schema.content,
+      schema.executionDate == null ? undefined : new Date(schema.executionDate)
     );
   }
 }
@@ -43,4 +47,5 @@ export const SendUserPenaltySchema = z.object({
   destinationUser: AnotherUserSchema,
   note: z.string(),
   content: z.string(),
+  executionDate: z.string().datetime().optional(),
 });
