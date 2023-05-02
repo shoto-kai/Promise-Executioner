@@ -9,7 +9,11 @@ import {
   IonTabs,
   setupIonicReact,
 } from "@ionic/react";
-import { listCircleOutline, peopleOutline } from "ionicons/icons";
+import {
+  listCircleOutline,
+  notificationsOutline,
+  peopleOutline,
+} from "ionicons/icons";
 import { IonReactRouter } from "@ionic/react-router";
 import TaskPage from "./pages/TaskPage";
 import FriendPage from "./pages/FriendPage";
@@ -33,6 +37,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { FC } from "react";
+import NotificationPage from "~/pages/NotificationPage";
 
 setupIonicReact();
 
@@ -47,6 +52,9 @@ const App: FC = () => (
           <Route exact path="/friend">
             <FriendPage />
           </Route>
+          <Route exact path="/notification">
+            <NotificationPage />
+          </Route>
           <Route exact path="/">
             <Redirect to="/task" />
           </Route>
@@ -59,6 +67,10 @@ const App: FC = () => (
           <IonTabButton tab="friend" href="/friend">
             <IonIcon aria-hidden="true" icon={peopleOutline} />
             <IonLabel>Friend</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="notification" href="/notification">
+            <IonIcon aria-hidden="true" icon={notificationsOutline} />
+            <IonLabel>Notification</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
