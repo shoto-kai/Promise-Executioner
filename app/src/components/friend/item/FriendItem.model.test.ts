@@ -10,10 +10,6 @@ describe("FriendItem Model Tests", () => {
     new User("1EEF20F2-6DF4-4A36-A0F4-71B16E2D525C", "田中"),
     true
   );
-  const unFriend = new AnotherUser(
-    new User("0362D0CA-83AA-4F55-9224-F27472377167", "中田"),
-    false
-  );
   let state = new FriendItemState(true);
   function setState(newState: FriendItemState) {
     state = newState;

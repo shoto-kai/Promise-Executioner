@@ -1,14 +1,12 @@
 import React, { FC, useMemo } from "react";
 import {
   IonCol,
-  IonContent,
   IonGrid,
   IonIcon,
   IonItem,
   IonLabel,
   IonRow,
   IonText,
-  IonTitle,
 } from "@ionic/react";
 import Props from "./item/NotificationItem.props";
 import NotificationItemModel from "~/components/notification/item/NotificationItem.model";
