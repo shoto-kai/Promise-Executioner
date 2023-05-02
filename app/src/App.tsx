@@ -3,6 +3,7 @@ import {
   IonApp,
   IonIcon,
   IonLabel,
+  IonNav,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -53,7 +54,7 @@ const App: FC = () => (
             <FriendPage />
           </Route>
           <Route exact path="/notification">
-            <NotificationPage />
+            <IonNav root={() => <NotificationPage />} />
           </Route>
           <Route exact path="/">
             <Redirect to="/task" />
