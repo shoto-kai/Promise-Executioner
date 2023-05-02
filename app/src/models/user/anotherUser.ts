@@ -13,6 +13,14 @@ export class AnotherUser implements Encodable {
     readonly isMyFriend: boolean = false
   ) {}
 
+  get id(): string {
+    return this.user.id;
+  }
+
+  get name(): string {
+    return this.user.name;
+  }
+
   encode(): unknown {
     return {
       user: this.user.encode(),
