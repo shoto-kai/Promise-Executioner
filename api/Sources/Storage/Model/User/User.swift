@@ -26,5 +26,8 @@ final class User: Model {
     
     @Siblings(through: Friend.self, from: \.$user, to: \.$friend)
     var friends: [User]
+    
+    @Children(for: \.$user)
+    var notifications: [AppNotification]
 }
 
