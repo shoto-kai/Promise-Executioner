@@ -34,5 +34,8 @@ final class AppTask: Model {
     
     @Children(for: \.$task)
     var dateLimitRestrictions: [DateLimitRestriction]
+    
+    @Children(for: \.$task)
+    var sendUserPenalties: [SendUserPenalty]
 }
 

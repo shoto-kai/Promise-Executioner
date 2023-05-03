@@ -32,5 +32,8 @@ final class User: Model {
     
     @Children(for: \.$user)
     var tasks: [AppTask]
+    
+    @Children(for: \.$destinationUser)
+    var sendUserPenalties: [SendUserPenalty]
 }
 

@@ -6,4 +6,5 @@ public func registerMigration(_ migrations: Migrations) {
     migrations.add(AppNotification.Migration())
     migrations.add(AppTask.Migration())
     migrations.add(DateLimitRestriction.Migration())
+    migrations.add(SendUserPenalty.Migration())
 }
