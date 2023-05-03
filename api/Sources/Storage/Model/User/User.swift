@@ -23,5 +23,8 @@ final class User: Model {
         self.id = id
         self.name = name
     }
+    
+    @Siblings(through: Friend.self, from: \.$user, to: \.$friend)
+    var friends: [User]
 }
 
