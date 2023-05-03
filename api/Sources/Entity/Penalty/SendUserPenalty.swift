@@ -2,6 +2,8 @@ import Foundation
 
 public struct SendUserPenalty: Hashable, Codable, Identifiable {
     
+    public typealias ID = Identifier<SendUserPenalty>
+    
     public var id: ID
     
     /// 送り先ユーザー
@@ -35,13 +37,4 @@ public struct SendUserPenalty: Hashable, Codable, Identifiable {
         self.executedAt = executedAt
     }
     
-}
-
-extension SendUserPenalty {
-    public struct ID: Hashable, Codable {
-        public let value: UUID
-        public init(_ value: UUID) {
-            self.value = value
-        }
-    }
 }

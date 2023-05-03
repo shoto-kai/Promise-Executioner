@@ -1,6 +1,8 @@
 import Foundation
 
 public struct AppTask: Hashable, Codable {
+
+    public typealias ID = Identifier<AppTask>
     
     public var id: ID
     
@@ -18,14 +20,5 @@ public struct AppTask: Hashable, Codable {
         self.note = note
         self.restrictions = restrictions
         self.penalties = penalties
-    }
-}
-
-extension AppTask {
-    public struct ID: Hashable, Codable {
-        public let value: UUID
-        public init(_ value: UUID) {
-            self.value = value
-        }
     }
 }

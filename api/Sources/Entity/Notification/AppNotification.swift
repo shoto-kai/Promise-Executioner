@@ -2,6 +2,8 @@ import Foundation
 
 public struct AppNotification: Hashable, Codable, Identifiable {
     
+    public typealias ID = Identifier<AppNotification>
+    
     public var id: ID
     
     public var kind: Kind
@@ -24,14 +26,5 @@ public struct AppNotification: Hashable, Codable, Identifiable {
         self.title = title
         self.noticedAt = noticedAt
         self.readAt = readAt
-    }
-}
-
-extension AppNotification {
-    public struct ID: Hashable, Codable {
-        public let value: UUID
-        public init(_ value: UUID) {
-            self.value = value
-        }
     }
 }
