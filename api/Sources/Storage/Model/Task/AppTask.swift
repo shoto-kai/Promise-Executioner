@@ -31,5 +31,8 @@ final class AppTask: Model {
         self.title = title
         self.note = note
     }
+    
+    @Children(for: \.$task)
+    var dateLimitRestrictions: [DateLimitRestriction]
 }
 
