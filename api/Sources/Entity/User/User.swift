@@ -1,6 +1,6 @@
 import Foundation
 
-public struct User: Hashable, Codable {
+public struct User: Hashable, Codable, Identifiable {
     
     public var id: ID
     
