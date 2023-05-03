@@ -1,9 +1,9 @@
 @testable import Entity
 import XCTest
 
-final class UserTests: XCTestCase {
+public final class UserTests: XCTestCase {
     
-    static let values: [User] = [
+    public static let values: [User] = [
         .init(id: .init(UUID()), name: "Alice"),
         .init(id: .init(UUID()), name: "Bell"),
         .init(id: .init(UUID()), name: "Cancy"),
