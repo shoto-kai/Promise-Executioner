@@ -12,6 +12,7 @@ describe("Task Tests", () => {
     "4774DD61-245D-4D7B-B64A-A85107419AA4",
     "BBQ集合時間",
     "BBQ集合時間は18:00です",
+    new Date("2021-08-01T18:00:00+09:00"),
     new Restrictions([
       new DateLimitRestriction(
         "D3B8116F-54FA-4568-8750-D30CFDC72342",
@@ -35,11 +36,13 @@ describe("Task Tests", () => {
     id: "4774DD61-245D-4D7B-B64A-A85107419AA4",
     title: "BBQ集合時間",
     note: "BBQ集合時間は18:00です",
+    limitDate: "2021-08-01T09:00:00Z",
     restrictions: {
       dateLimitRestrictions: [
         {
           id: "D3B8116F-54FA-4568-8750-D30CFDC72342",
-          limit: "2021-08-01T09:00:00.000Z",
+          limit: "2021-08-01T09:00:00Z",
+          completedAt: undefined,
         },
       ],
     },
@@ -56,6 +59,7 @@ describe("Task Tests", () => {
           },
           note: "PayPay 500円",
           content: "https://example.com",
+          executedAt: undefined,
         },
       ],
     },

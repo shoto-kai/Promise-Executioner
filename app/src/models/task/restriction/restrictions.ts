@@ -4,10 +4,6 @@ import {
 } from "~/models/task/restriction/dateLimitRestriction";
 import { decodeArrayAs, Encodable, encodeArray } from "@lemonaderoom/lesource";
 import { z } from "zod";
-import {
-  none,
-  RestrictionLimit,
-} from "~/models/task/restriction/restrictionLimit";
 
 /** 制約一覧 */
 export class Restrictions implements Encodable {
@@ -17,18 +13,6 @@ export class Restrictions implements Encodable {
   constructor(
     readonly dateLimitRestrictions: readonly DateLimitRestriction[] = []
   ) {}
-
-  /** 全ての制約が満たされているか */
-  get isCompleted(): boolean {
-    return this.dateLimitRestrictions.every((r) => r.isCompleted);
-  }
-
-  get earliestLimit(): RestrictionLimit {
-    if (this.dateLimitRestrictions.length === 0) return none;
-    return this.dateLimitRestrictions
-      .map((r) => r.restrictionLimit)
-      .sort((a, b) => (a.isBefore(b) ? -1 : 1))[0];
-  }
 
   encode(): unknown {
     return {

@@ -12,7 +12,7 @@ describe("Send User Penalty Tests", () => {
     ),
     "PayPay 500円",
     "https://example.com",
-    new Date("2021-10-01T00:00:00.000Z")
+    new Date("2021-10-01T00:00:00Z")
   );
   const executedJson = {
     id: "1FB8708D-EBE0-4577-AFD5-18066C35F6A8",
@@ -25,7 +25,7 @@ describe("Send User Penalty Tests", () => {
     },
     note: "PayPay 500円",
     content: "https://example.com",
-    executedAt: "2021-10-01T00:00:00.000Z",
+    executedAt: "2021-10-01T00:00:00Z",
   };
 
   const unExecutedPenalty = new SendUserPenalty(

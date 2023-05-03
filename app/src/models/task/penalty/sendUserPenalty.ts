@@ -2,6 +2,7 @@ import { Encodable } from "@lemonaderoom/lesource";
 import * as crypto from "crypto";
 import { AnotherUser, AnotherUserSchema } from "~/models/user/anotherUser";
 import { z } from "zod";
+import { decodeDate, encodeDate } from "~/models/date";
 
 /** ユーザーに文字列を送信するペナルティ */
 export class SendUserPenalty implements Encodable {
@@ -26,7 +27,7 @@ export class SendUserPenalty implements Encodable {
       destinationUser: this.destinationUser.encode(),
       note: this.note,
       content: this.content,
-      executedAt: this.executedAt?.toISOString(),
+      executedAt: encodeDate(this.executedAt),
     };
   }
 
@@ -37,7 +38,7 @@ export class SendUserPenalty implements Encodable {
       AnotherUser.decode(schema.destinationUser),
       schema.note,
       schema.content,
-      schema.executedAt == null ? undefined : new Date(schema.executedAt)
+      decodeDate(schema.executedAt)
     );
   }
 }

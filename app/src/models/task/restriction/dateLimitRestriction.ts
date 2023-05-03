@@ -1,10 +1,6 @@
 import { z } from "zod";
 import { Encodable } from "@lemonaderoom/lesource";
-import {
-  none,
-  RestrictionLimit,
-  some,
-} from "~/models/task/restriction/restrictionLimit";
+import { decodeDate, encodeDate } from "~/models/date";
 
 /** 期限の制約 */
 export class DateLimitRestriction implements Encodable {
@@ -25,16 +21,11 @@ export class DateLimitRestriction implements Encodable {
     return this.limit.getTime() >= this.completedAt.getTime();
   }
 
-  get restrictionLimit(): RestrictionLimit {
-    if (this.isCompleted) return none;
-    return some(this.limit);
-  }
-
   encode(): unknown {
     return {
       id: this.id,
-      limit: this.limit.toISOString(),
-      completedAt: this.completedAt?.toISOString(),
+      limit: encodeDate(this.limit),
+      completedAt: encodeDate(this.completedAt),
     };
   }
 
@@ -42,8 +33,8 @@ export class DateLimitRestriction implements Encodable {
     const schema = DateLimitRestrictionSchema.parse(data);
     return new DateLimitRestriction(
       schema.id,
-      new Date(schema.limit),
-      schema.completedAt == null ? undefined : new Date(schema.completedAt)
+      decodeDate(schema.limit),
+      decodeDate(schema.completedAt)
     );
   }
 }
