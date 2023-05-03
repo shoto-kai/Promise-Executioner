@@ -30,6 +30,7 @@ describe("Task Tests", () => {
           false
         ),
         "PayPay 500円",
+        "",
         "https://example.com"
       ),
     ])
@@ -62,7 +63,8 @@ describe("Task Tests", () => {
             },
             isMyFriend: false,
           },
-          note: "PayPay 500円",
+          overview: "PayPay 500円",
+          note: "",
           content: "https://example.com",
           executedAt: undefined,
         },

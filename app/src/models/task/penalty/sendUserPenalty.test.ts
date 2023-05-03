@@ -11,6 +11,7 @@ describe("Send User Penalty Tests", () => {
       false
     ),
     "PayPay 500円",
+    "あれよう",
     "https://example.com",
     new Date("2021-10-01T00:00:00Z")
   );
@@ -23,7 +24,8 @@ describe("Send User Penalty Tests", () => {
       },
       isMyFriend: false,
     },
-    note: "PayPay 500円",
+    overview: "PayPay 500円",
+    note: "あれよう",
     content: "https://example.com",
     executedAt: "2021-10-01T00:00:00Z",
   };
@@ -35,6 +37,7 @@ describe("Send User Penalty Tests", () => {
       false
     ),
     "PayPay 500円",
+    "",
     "https://example.com"
   );
   const unExecutedJson = {
@@ -46,7 +49,8 @@ describe("Send User Penalty Tests", () => {
       },
       isMyFriend: false,
     },
-    note: "PayPay 500円",
+    overview: "PayPay 500円",
+    note: "",
     content: "https://example.com",
   };
 

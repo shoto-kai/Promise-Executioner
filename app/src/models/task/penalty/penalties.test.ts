@@ -13,6 +13,7 @@ describe("Penalties Tests", () => {
         false
       ),
       "PayPay 100円",
+      "",
       "https://example.com"
     ),
     new SendUserPenalty(
@@ -22,6 +23,7 @@ describe("Penalties Tests", () => {
         true
       ),
       "PayPay 200円",
+      "",
       "https://hello.world.com"
     ),
   ]);
@@ -36,7 +38,8 @@ describe("Penalties Tests", () => {
           },
           isMyFriend: false,
         },
-        note: "PayPay 100円",
+        overview: "PayPay 100円",
+        note: "",
         content: "https://example.com",
       },
       {
@@ -48,7 +51,8 @@ describe("Penalties Tests", () => {
           },
           isMyFriend: true,
         },
-        note: "PayPay 200円",
+        overview: "PayPay 200円",
+        note: "",
         content: "https://hello.world.com",
       },
     ],
