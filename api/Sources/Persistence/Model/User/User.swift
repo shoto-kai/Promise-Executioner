@@ -1,5 +1,6 @@
 import Foundation
 import Fluent
+import Entity
 
 final class User: Model {
     
@@ -37,3 +38,19 @@ final class User: Model {
     var sendUserPenalties: [SendUserPenalty]
 }
 
+extension User {
+    convenience init(_ entity: Entity.User) {
+        self.init(
+            id: entity.id.value,
+            name: entity.name
+        )
+    }
+}
+
+extension User {
+    var toEntity: Entity.User {
+        get throws {
+            try .init(id: .init(requireID()), name: name)
+        }
+    }
+}
