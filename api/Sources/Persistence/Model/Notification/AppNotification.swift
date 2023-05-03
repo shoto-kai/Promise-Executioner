@@ -38,7 +38,7 @@ final class AppNotification: Model {
         kind: Entity.AppNotification.Kind,
         title: String,
         noticedAt: Date,
-        readAt: Date
+        readAt: Date? = nil
     ) {
         self.id = id
         self.$user.id = userID
@@ -49,3 +49,29 @@ final class AppNotification: Model {
     }
 }
 
+extension AppNotification {
+    convenience init(_ entity: Entity.AppNotification, of userID: Entity.User.ID) {
+        self.init(
+            id: entity.id.value,
+            userID: userID.value,
+            kind: entity.kind,
+            title: entity.title,
+            noticedAt: entity.noticedAt,
+            readAt: entity.readAt
+        )
+    }
+}
+
+extension AppNotification {
+    var toEntity: Entity.AppNotification {
+        get throws {
+            try .init(
+                id: .init(requireID()),
+                kind: kind,
+                title: title,
+                noticedAt: noticedAt,
+                readAt: readAt
+            )
+        }
+    }
+}
