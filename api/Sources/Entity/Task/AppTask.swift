@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Task: Hashable, Codable {
+public struct AppTask: Hashable, Codable {
     
     public var id: ID
     
@@ -11,9 +11,17 @@ public struct Task: Hashable, Codable {
     public var restrictions: Restrictions
     
     public var penalties: Penalties
+    
+    public init(id: ID, title: String, note: String, restrictions: Restrictions, penalties: Penalties) {
+        self.id = id
+        self.title = title
+        self.note = note
+        self.restrictions = restrictions
+        self.penalties = penalties
+    }
 }
 
-extension Task {
+extension AppTask {
     public struct ID: Hashable, Codable {
         public let value: UUID
         public init(_ value: UUID) {

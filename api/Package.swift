@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "api",
     platforms: [
-       .macOS(.v12)
+        .macOS(.v12)
     ],
     dependencies: [
         // 💧 A server-side Swift web framework.
@@ -31,8 +31,24 @@ let package = Package(
             .target(name: "App"),
             .product(name: "XCTVapor", package: "vapor"),
         ]),
+    
+        .target(name: "Usecase", dependencies: [
+            .target(name: "Entity"),
+        ]),
+        .testTarget(name: "UsecaseTests", dependencies: [
+            .target(name: "Usecase"),
+            .target(name: "Testing"),
+        ]),
         
         .target(name: "Entity"),
-        .testTarget(name: "EntityTests", dependencies: [.target(name: "Entity")]),
+        .testTarget(name: "EntityTests", dependencies: [
+            .target(name: "Entity"),
+            .target(name: "Testing"),
+        ]),
+        
+        .target(name: "Testing", dependencies: [
+            .target(name: "Entity"),
+            .target(name: "Usecase"),
+        ]),
     ]
 )

@@ -15,7 +15,7 @@ export class Notification implements Encodable {
    * @param title タイトル
    * @param noticedAt 通知生成日時
    * @param isAlreadyRead 既読
-   * @param from 通知元ユーザー
+   * @param from 通知元ユーザー // TODO: 消す
    */
   constructor(
     readonly id: string = crypto.randomUUID(),
