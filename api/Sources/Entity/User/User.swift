@@ -20,3 +20,9 @@ extension User {
         }
     }
 }
+
+extension User: Comparable {
+    public static func < (lhs: User, rhs: User) -> Bool {
+        lhs.name < rhs.name
+    }
+}
