@@ -15,6 +15,8 @@ export class Task implements Encodable {
    * @param title タスクタイトル
    * @param note タスクメモ
    * @param limitDate 期限の日時
+   * @param completedAt 完了日時
+   * @param failedAt 失敗日時
    * @param restrictions 制約一覧
    * @param penalties ペナルティ一覧
    */
@@ -23,6 +25,8 @@ export class Task implements Encodable {
     readonly title: string = "",
     readonly note: string = "",
     readonly limitDate?: Date,
+    readonly completedAt?: Date,
+    readonly failedAt?: Date,
     readonly restrictions: Restrictions = new Restrictions(),
     readonly penalties: Penalties = new Penalties()
   ) {}
@@ -33,6 +37,8 @@ export class Task implements Encodable {
       title: this.title,
       note: this.note,
       limitDate: encodeDate(this.limitDate),
+      completedAt: encodeDate(this.completedAt),
+      failedAt: encodeDate(this.failedAt),
       restrictions: this.restrictions.encode(),
       penalties: this.penalties.encode(),
     };
@@ -45,6 +51,8 @@ export class Task implements Encodable {
       schema.title,
       schema.note,
       decodeDate(schema.limitDate),
+      decodeDate(schema.completedAt),
+      decodeDate(schema.failedAt),
       Restrictions.decode(schema.restrictions),
       Penalties.decode(schema.penalties)
     );
@@ -56,6 +64,8 @@ export const TaskSchema = z.object({
   title: z.string(),
   note: z.string(),
   limitDate: z.string().datetime().optional(),
+  completedAt: z.string().datetime().optional(),
+  failedAt: z.string().datetime().optional(),
   restrictions: RestrictionsSchema,
   penalties: PenaltiesSchema,
 });
