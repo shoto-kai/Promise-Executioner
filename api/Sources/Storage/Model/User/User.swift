@@ -29,5 +29,8 @@ final class User: Model {
     
     @Children(for: \.$user)
     var notifications: [AppNotification]
+    
+    @Children(for: \.$user)
+    var tasks: [AppTask]
 }
 
