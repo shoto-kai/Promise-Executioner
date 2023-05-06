@@ -54,3 +54,16 @@ final class SendUserPenalty: Model {
     }
 }
 
+extension SendUserPenalty {
+    convenience init(_ entity: Entity.SendUserPenalty, of taskID: Entity.AppTask.ID) {
+        self.init(
+            id: entity.id.value,
+            taskID: taskID.value,
+            destinationUserID: entity.destination.id.value,
+            overview: entity.overview,
+            note: entity.note,
+            content: entity.content,
+            executedAt: entity.executedAt
+        )
+    }
+}
