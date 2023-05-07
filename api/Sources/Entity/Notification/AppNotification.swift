@@ -28,3 +28,9 @@ public struct AppNotification: Hashable, Codable, Identifiable {
         self.readAt = readAt
     }
 }
+
+extension AppNotification: Comparable {
+    public static func < (lhs: AppNotification, rhs: AppNotification) -> Bool {
+        lhs.noticedAt > rhs.noticedAt
+    }
+}

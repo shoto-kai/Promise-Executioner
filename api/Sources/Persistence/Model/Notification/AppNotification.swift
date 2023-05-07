@@ -12,7 +12,7 @@ final class AppNotification: Model {
     @Parent(key: "user_id")
     var user: User
     
-    @Field(key: "kind")
+    @Enum(key: "kind")
     var kind: Entity.AppNotification.Kind
     
     @Field(key: "title")

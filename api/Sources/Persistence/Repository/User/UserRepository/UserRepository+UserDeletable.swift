@@ -14,6 +14,9 @@ extension UserRepository: UserDeletable {
                     .filter(\.$friend.$id == id.value)
                 }
                 .delete()
+            try await AppNotification.query(on: transaction)
+                .filter(\.$user.$id == id.value)
+                .delete()
             try await user.delete(on: transaction)
         }
     }

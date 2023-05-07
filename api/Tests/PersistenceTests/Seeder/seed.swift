@@ -4,6 +4,7 @@ import Fluent
 let seeders: [Seedable] = [
     User.Seeder(),
     Friend.Seeder(),
+    AppNotification.Seeder(),
 ]
 
 func seed(on db: Database) async throws {
