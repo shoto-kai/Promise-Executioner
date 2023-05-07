@@ -67,3 +67,21 @@ extension SendUserPenalty {
         )
     }
 }
+
+extension SendUserPenalty {
+    /// 要: with destinationUser
+    var toEntity: Entity.SendUserPenalty {
+        get throws {
+            guard let destination = $destinationUser.value else {
+                fatalError("宛先ユーザーを取得済みである必要がある")
+            }
+            return try .init(
+                id: .init(requireID()),
+                destination: destination.toEntity,
+                overview: overview,
+                note: note,
+                content: content
+            )
+        }
+    }
+}

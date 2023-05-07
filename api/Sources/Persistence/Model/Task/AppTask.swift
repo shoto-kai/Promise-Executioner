@@ -1,5 +1,6 @@
 import Foundation
 import Fluent
+import Entity
 
 final class AppTask: Model {
     
@@ -39,3 +40,35 @@ final class AppTask: Model {
     var sendUserPenalties: [SendUserPenalty]
 }
 
+extension AppTask {
+    convenience init(_ entity: Entity.AppTask, of userID: Entity.User.ID) {
+        self.init(
+            id: entity.id.value,
+            userID: userID.value,
+            title: entity.title,
+            note: entity.note
+        )
+    }
+}
+
+extension AppTask {
+    
+    /// with
+    /// - dateLimitRestrictions
+    /// - sendUserPenalties
+    var toEntity: Entity.AppTask {
+        get throws {
+            try .init(
+                id: .init(requireID()),
+                title: title,
+                note: note,
+                restrictions: .init(
+                    dateLimitRestrictions: dateLimitRestrictions.map { try $0.toEntity }
+                ),
+                penalties: .init(
+                    sendUserPenalties: sendUserPenalties.map { try $0.toEntity }
+                )
+            )
+        }
+    }
+}

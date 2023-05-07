@@ -29,21 +29,23 @@ final class SendUserPenaltyTests: XCTestCase {
     
     func testモデルをエンティティに変換() throws {
         let uuid = UUID()
-        let model = Persistence.AppNotification(
+        let user = Entity.User(id: .init(.init()), name: "田中")
+        let model = Persistence.SendUserPenalty(
             id: uuid,
-            userID: UUID(),
-            kind: .sign,
-            title: "あなたに対する制約が発行されました",
-            noticedAt: Date(timeIntervalSince1970: 24 * 60 * 60),
-            readAt: Date(timeIntervalSince1970: 2 * 24 * 60 * 60)
+            taskID: .init(),
+            destinationUserID: user.id.value,
+            overview: "概要",
+            note: "メモ",
+            content: "内容"
         )
+        model.$destinationUser.value = .init(user)
         
-        let expected = Entity.AppNotification(
+        let expected = Entity.SendUserPenalty(
             id: .init(uuid),
-            kind: .sign,
-            title: "あなたに対する制約が発行されました",
-            noticedAt: Date(timeIntervalSince1970: 24 * 60 * 60),
-            readAt: Date(timeIntervalSince1970: 2 * 24 * 60 * 60)
+            destination: user,
+            overview: "概要",
+            note: "メモ",
+            content: "内容"
         )
         let actual = try model.toEntity
         XCTAssertEqual(actual, expected)

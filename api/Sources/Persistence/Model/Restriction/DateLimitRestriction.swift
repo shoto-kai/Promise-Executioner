@@ -39,3 +39,29 @@ final class DateLimitRestriction: Model {
     }
 }
 
+extension DateLimitRestriction {
+    convenience init(
+        _ entity: Entity.DateLimitRestriction,
+        of taskID: Entity.AppTask.ID
+    ) {
+        self.init(
+            id: entity.id.value,
+            taskID: taskID.value,
+            limit: entity.limit,
+            completedAt: entity.completedAt
+        )
+    }
+}
+
+extension DateLimitRestriction {
+    var toEntity: Entity.DateLimitRestriction {
+        get throws {
+            try .init(
+                id: .init(requireID()),
+                limit: limit,
+                completedAt: completedAt
+            )
+        }
+    }
+}
+
