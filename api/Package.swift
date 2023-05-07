@@ -18,7 +18,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
-                .product(name: "Vapor", package: "vapor")
+                .product(name: "Vapor", package: "vapor"),
+                .target(name: "Persistence")
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of
@@ -40,6 +41,8 @@ let package = Package(
         ]),
         .testTarget(name: "PersistenceTests", dependencies: [
             .target(name: "Persistence"),
+            .target(name: "App"),
+            .product(name: "Vapor", package: "vapor"),
             .target(name: "Testing"),
         ]),
         

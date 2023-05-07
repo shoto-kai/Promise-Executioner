@@ -1,6 +1,7 @@
 import Fluent
 import FluentPostgresDriver
 import Vapor
+import Persistence
 
 // configures your application
 public func configure(_ app: Application) async throws {
@@ -15,7 +16,7 @@ public func configure(_ app: Application) async throws {
         database: Environment.get("DATABASE_NAME") ?? "vapor_database"
     ), as: .psql)
 
-    app.migrations.add(CreateTodo())
+    registerMigration(app.migrations)
 
     // register routes
     try routes(app)
