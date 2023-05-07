@@ -1,0 +1,41 @@
+name: Swift API Integration
+on: pull_request
+
+jobs:
+  api-test:
+    name: API Swift Test
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: api
+    services:
+      db:
+        image: postgres:14
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: db_user
+          POSTGRES_PASSWORD: db_password
+          POSTGRES_DB: db_name
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    container:
+      image: swift:5.8-jammy
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: environment
+        run: |
+          echo DATABASE_HOST=db >> .env
+          echo DATABASE_PORT=5432 >> .env
+          echo DATABASE_USERNAME=db_user >> .env
+          echo DATABASE_PASSWORD=db_password >> .env
+          echo DATABASE_NAME=db_name >> .env
+      - run: swift package resolve
+
+      - run: swift build
+
+      - name: migrate
+        run: ./.build/debug/App migrate -y
+
+      - run: swift test

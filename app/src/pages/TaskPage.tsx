@@ -21,6 +21,9 @@ const TaskPage: FC = () => {
       "4C0A19BA-50D2-486A-BB02-86D0211149B6",
       "数学の課題",
       "複素関数",
+      new Date(),
+      new Date(),
+      new Date(),
       new Restrictions([
         new DateLimitRestriction(
           "0E65991B-926D-46EB-A14A-57AD98F16ED2",
@@ -42,6 +45,9 @@ const TaskPage: FC = () => {
       "39B3E18F-EA12-43FF-9483-BDC44635BE47",
       "数学の課題",
       "複素関数",
+      new Date(),
+      new Date(),
+      new Date(),
       new Restrictions([
         new DateLimitRestriction(
           "A108B4E3-3627-420F-94C9-9BAAB93029B3",
@@ -63,6 +69,9 @@ const TaskPage: FC = () => {
       "67D26CD2-4B63-4F59-B8F1-28500DA726C6",
       "数学の課題",
       "複素関数",
+      new Date(),
+      new Date(),
+      new Date(),
       new Restrictions([
         new DateLimitRestriction(
           "A5893564-5FF4-4D63-8307-73E33306A072",
@@ -84,6 +93,9 @@ const TaskPage: FC = () => {
       "FDD556EB-E2D3-49A7-A7C4-2EB825E0AAA5",
       "数学の課題",
       "複素関数",
+      new Date(),
+      new Date(),
+      new Date(),
       new Restrictions([
         new DateLimitRestriction(
           "55A81A2D-C9EB-4980-81A9-DA84BD924C21",
