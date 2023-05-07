@@ -1,3 +1,4 @@
+import Fluent
 import Entity
 import Repository
 
