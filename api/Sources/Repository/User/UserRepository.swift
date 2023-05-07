@@ -19,3 +19,8 @@ public protocol UserCreatable {
 public protocol UserUpdatable {
     func update(_ user: User) async throws
 }
+
+/// ユーザーを削除する
+public protocol UserDeletable {
+    func delete(_ userID: User.ID) async throws
+}
