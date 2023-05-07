@@ -19,7 +19,7 @@ jobs:
           POSTGRES_DB: db_name
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     container:
-      image: swift:5.7.3
+      image: swift:5.8-jammy
     steps:
       - name: checkout
         uses: actions/checkout@v3
