@@ -17,10 +17,5 @@ public protocol NotificationCreatable {
 
 /// 通知を更新する
 public protocol NotificationUpdatable {
-    func update(_ notification: AppNotification) async throws
-}
-
-/// 通知を削除する
-public protocol NotificationDeletable {
-    func delete(_ id: AppNotification.ID) async throws
+    func update(_ notification: AppNotification, of: User.ID) async throws
 }
