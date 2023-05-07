@@ -36,6 +36,6 @@ jobs:
       - run: swift build
 
       - name: migrate
-        run: ./.build/debug/Run migrate -y
+        run: ./.build/debug/App migrate -y
 
       - run: swift test
