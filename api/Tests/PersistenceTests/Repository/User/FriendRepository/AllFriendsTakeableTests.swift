@@ -17,11 +17,11 @@ final class AllFriendsTakeableTests: XCTestCase {
         let expected = Dictionary(
             grouping: Friend.Seeder.entities,
             by: { $0.owner }
-        )[Friend.Seeder.entities[0].owner]!
+        )[User.Seeder.entities[0]]!
             .map { $0.friend }
         
         let actual = try await repository
-            .takeAll(of: Friend.Seeder.entities[0].owner.id)
+            .takeAll(of: User.Seeder.entities[0].id)
             .sorted()
         
         XCTAssertEqual(actual, expected)
