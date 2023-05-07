@@ -2,7 +2,7 @@ name: Swift API Integration
 on: pull_request
 
 jobs:
-  build:
+  api-test:
     name: API Swift Test
     runs-on: ubuntu-22.04
     defaults:
