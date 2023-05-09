@@ -22,7 +22,7 @@ const TaskPage: FC = () => {
             <IonTitle size="large">Task</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <TaskView />
+        <TaskView props={{}} />
       </IonContent>
     </IonPage>
   );
