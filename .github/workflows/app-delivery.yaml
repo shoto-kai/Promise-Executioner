@@ -1,0 +1,36 @@
+name: App Delivery
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: App Delivery
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - run: npm run build
+
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@5.2.1
+        with:
+          switches: -avzr --delete --exclude '.htaccess'
+          path: dist/
+          remote_path: ${{ secrets.APP_DEPLOY_PATH }}
+          remote_host: ${{ secrets.APP_DEPLOY_HOST }}
+          remote_port: ${{ secrets.APP_DEPLOY_PORT }}
+          remote_user: ${{ secrets.APP_DEPLOY_USER }}
+          remote_key: ${{ secrets.APP_DEPLOY_KEY }}
