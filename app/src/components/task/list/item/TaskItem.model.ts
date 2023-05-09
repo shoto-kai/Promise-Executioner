@@ -3,18 +3,24 @@ import { TaskItemState } from "~/components/task/list/item/TaskItem.state";
 
 export class TaskItemModel {
   constructor(
-    props: TaskItemProps,
-    state: TaskItemState,
-    setState: (s: TaskItemState) => void
+    private readonly props: TaskItemProps,
+    private readonly state: TaskItemState,
+    private readonly setState: (s: TaskItemState) => void
   ) {}
 
   readonly title = "タスク名";
 
   readonly price = 500;
 
-  readonly restTime = "3時間20分";
+  get restTime(): string {
+    return `${this.now.getMinutes()}分${this.now.getSeconds()}秒`;
+  }
 
   readonly onClick = () => {
     console.log("TaskItemModel.onClick");
   };
+
+  private get now(): Date {
+    return this.props.now;
+  }
 }

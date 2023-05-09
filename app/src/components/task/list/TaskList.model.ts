@@ -4,21 +4,27 @@ import { TaskItemProps } from "~/components/task/list/item/TaskItem.props";
 
 export class TaskListModel {
   constructor(
-    props: TaskListProps,
-    state: TaskListState,
-    setState: (s: TaskListState) => void
+    private readonly props: TaskListProps,
+    private readonly state: TaskListState,
+    private readonly setState: (s: TaskListState) => void
   ) {}
 
   readonly onClick = () => {
     console.log("TaskListModel.onClick");
   };
 
-  readonly items: readonly TaskItemProps[] = [
-    { id: "1" },
-    { id: "2" },
-    { id: "3" },
-    { id: "4" },
-    { id: "5" },
-    { id: "6" },
-  ];
+  readonly setNow = (now: Date = new Date()) => {
+    this.setState(this.state.setNow(now));
+  };
+
+  get items(): readonly TaskItemProps[] {
+    return [
+      { id: "1", now: this.state.now },
+      { id: "2", now: this.state.now },
+      { id: "3", now: this.state.now },
+      { id: "4", now: this.state.now },
+      { id: "5", now: this.state.now },
+      { id: "6", now: this.state.now },
+    ];
+  }
 }
