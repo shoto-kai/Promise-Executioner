@@ -13,6 +13,8 @@ import {
 } from "@ionic/react";
 import CreateSendUserMessagePenaltyModal from "~/components/penalty/create/modal/send/user/message/CreateSendUserMessagePenaltyModal";
 import PenaltyCreateButton from "~/components/penalty/create/button/PenaltyCreateButton";
+import CreateLocationRestrictionModal from "~/components/restriction/create/modal/location/CreateLocationRestrictionModal";
+import RestrictionCreateButton from "~/components/restriction/create/button/RestrictionCreateButton";
 
 export default function TaskCreateModal({ props }: { props: Props }) {
   const [state, setState] = useState(State.init);
@@ -46,11 +48,22 @@ export default function TaskCreateModal({ props }: { props: Props }) {
         <p>
           <input type="text" onChange={m.onChangeNote} placeholder="備考" />
         </p>
-        <PenaltyCreateButton
-          onClick={m.onOpenCreateSendUserMessagePenaltyModal}
-        ></PenaltyCreateButton>
+        <p>
+          <PenaltyCreateButton
+            onClick={m.onOpenCreateSendUserMessagePenaltyModal}
+          />
+        </p>
+        <p>
+          <RestrictionCreateButton
+            onClick={m.onOpenCreateLocationRestrictionModal}
+          />
+        </p>
+
         <CreateSendUserMessagePenaltyModal
           props={m.createSendUserMessagePenaltyModalProps}
+        />
+        <CreateLocationRestrictionModal
+          props={m.createLocationRestrictionModalProps}
         />
       </IonContent>
     </IonModal>
