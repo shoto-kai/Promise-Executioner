@@ -11,6 +11,8 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import CreateSendUserMessagePenaltyModal from "~/components/penalty/create/modal/send/user/message/CreateSendUserMessagePenaltyModal";
+import PenaltyCreateButton from "~/components/penalty/create/button/PenaltyCreateButton";
 
 export default function TaskCreateModal({ props }: { props: Props }) {
   const [state, setState] = useState(State.init);
@@ -32,10 +34,24 @@ export default function TaskCreateModal({ props }: { props: Props }) {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <>
-          <h1>{m.title}</h1>
-          <p>{m.note}</p>
-        </>
+        <h1>{m.title}</h1>
+        <p>{m.note}</p>
+        <p>
+          <input
+            type="text"
+            onChange={m.onChangeTitle}
+            placeholder="タスク名"
+          />
+        </p>
+        <p>
+          <input type="text" onChange={m.onChangeNote} placeholder="備考" />
+        </p>
+        <PenaltyCreateButton
+          onClick={m.onOpenCreateSendUserMessagePenaltyModal}
+        ></PenaltyCreateButton>
+        <CreateSendUserMessagePenaltyModal
+          props={m.createSendUserMessagePenaltyModalProps}
+        />
       </IonContent>
     </IonModal>
   );

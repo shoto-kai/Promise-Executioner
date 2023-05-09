@@ -1,5 +1,7 @@
 import { TaskCreateModalProps } from "~/components/task/create/modal/TaskCreateModal.props";
 import { TaskCreateModalState } from "~/components/task/create/modal/TaskCreateModal.state";
+import { ChangeEvent } from "react";
+import { CreateSendUserMessagePenaltyModalProps } from "~/components/penalty/create/modal/send/user/message/CreateSendUserMessagePenaltyModal.props";
 
 export class TaskCreateModalModel {
   constructor(
@@ -15,7 +17,6 @@ export class TaskCreateModalModel {
   readonly note = "備考";
 
   get isOpen(): boolean {
-    console.log("TaskCreateModalModel.isOpen", this.props.isOpen);
     return this.props.isOpen;
   }
 
@@ -24,6 +25,30 @@ export class TaskCreateModalModel {
 
   /** キャルセル処理 */
   readonly onCancel = () => this.props.onCancel();
+
+  readonly onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    this.setState(this.state.patch({ title: event.target.value }));
+  };
+
+  readonly onChangeNote = (event: ChangeEvent<HTMLInputElement>) => {
+    this.setState(this.state.patch({ note: event.target.value }));
+  };
+
+  get createSendUserMessagePenaltyModalProps(): CreateSendUserMessagePenaltyModalProps {
+    return {
+      isOpen: this.state.isOpenCreateSendUserMessagePenaltyModal,
+      onCreate: this.onCloseCreateSendUserMessagePenaltyModal,
+      onCancel: this.onCloseCreateSendUserMessagePenaltyModal,
+    };
+  }
+
+  readonly onOpenCreateSendUserMessagePenaltyModal = (): void => {
+    this.setState(this.state.createSendUserMessagePenaltyModalOpened);
+  };
+
+  readonly onCloseCreateSendUserMessagePenaltyModal = (): void => {
+    this.setState(this.state.createSendUserMessagePenaltyModalClosed);
+  };
 
   readonly onCreatePenalty = () => {
     console.log("TaskCreateModalModel.onCreatePenalty");
