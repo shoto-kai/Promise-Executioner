@@ -1,17 +1,11 @@
-import TaskList from "~/components/task/TaskList";
-import { FC } from "react";
-import { Task } from "~/models/task/task";
+import TaskList from "~/components/task/list/TaskList";
+import TaskCreateButton from "~/components/task/create/button/TaskCreateButton";
 
-interface Props {
-  tasks: readonly Task[];
-}
-
-const TaskView: FC<Props> = ({ tasks }) => {
+export default function TaskView() {
   return (
-    <div>
-      <TaskList tasks={tasks} />
-    </div>
+    <>
+      <TaskList props={{}} />
+      <TaskCreateButton props={{}} />
+    </>
   );
-};
-
-export default TaskView;
+}
