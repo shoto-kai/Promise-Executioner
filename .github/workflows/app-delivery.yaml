@@ -28,7 +28,7 @@ jobs:
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -avzr --delete --exclude '.htaccess'
-          path: dist/
+          path: app/dist/
           remote_path: ${{ secrets.APP_DEPLOY_PATH }}
           remote_host: ${{ secrets.APP_DEPLOY_HOST }}
           remote_port: ${{ secrets.APP_DEPLOY_PORT }}
