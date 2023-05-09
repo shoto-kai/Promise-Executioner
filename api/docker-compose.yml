@@ -17,7 +17,7 @@
 version: '3.7'
 
 volumes:
-  db_data:
+  promise_executioner_db_data:
 
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
@@ -64,7 +64,7 @@ services:
   db:
     image: postgres:15-alpine
     volumes:
-      - db_data:/var/lib/postgresql/data/pgdata
+      - promise_executioner_db_data:/var/lib/postgresql/data/pgdata
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: vapor_username
