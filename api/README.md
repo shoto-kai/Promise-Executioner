@@ -83,5 +83,5 @@ erDiagram
         uuid push_button_restriction_id FK
     }
 
-    push_button_restrictions ||--o{ push_button_sub_limit_date_restriction: "所有"
+    push_button_restrictions ||--o|push_button_sub_limit_date_restriction: "所有"
 ```
