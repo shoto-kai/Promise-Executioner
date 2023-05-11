@@ -73,6 +73,8 @@ erDiagram
     push_button_restrictions {
         uuid id PK
         uuid task_id FK
+        datetime completed_at
+        datetime failed_at
     }
     tasks ||--o{ push_button_restrictions: "所有"
 
