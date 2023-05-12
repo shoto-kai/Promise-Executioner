@@ -47,7 +47,7 @@ erDiagram
     users {
         uuid id PK
         string name
-        string display
+        string display_name
     }
 
     tasks {
@@ -62,7 +62,7 @@ erDiagram
         uuid id PK
         uuid task_id FK
         uuid destin_user_id FK
-        int price
+        int amount
         string note
         string message
         datetime executed_at
@@ -70,18 +70,19 @@ erDiagram
     tasks ||--o{ send_message_to_user_penalties: "所有"
     users ||--o{ send_message_to_user_penalties: "宛先"
 
-    push_button_restrictions {
+    push_button_conditions {
         uuid id PK
         uuid task_id FK
         datetime completed_at
         datetime failed_at
     }
-    tasks ||--o{ push_button_restrictions: "所有"
+    tasks ||--o{ push_button_conditions: "所有"
 
-    push_button_sub_limit_date_restriction {
+    push_button_condition_deadline_restrictions {
         uuid id PK
-        uuid push_button_restriction_id FK
+        uuid push_button_condition_id FK
+        datetime deadline
     }
 
-    push_button_restrictions ||--o|push_button_sub_limit_date_restriction: "所有"
+    push_button_conditions ||--o| push_button_condition_deadline_restrictions: "所有"
 ```
