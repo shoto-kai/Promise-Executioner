@@ -18,6 +18,12 @@ final class AppTask: Model {
     @Field(key: "note")
     var note: String
     
+    @Field(key: "completed_at")
+    var completedAt: Date?
+    
+    @Field(key: "failed_at")
+    var failedAt: Date?
+    
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
     
@@ -26,48 +32,61 @@ final class AppTask: Model {
     
     init() { }
     
-    init(id: UUID? = nil, userID: User.IDValue, title: String, note: String) {
+    init(
+        id: UUID? = nil,
+        userID: User.IDValue,
+        title: String,
+        note: String,
+        completedAt: Date?,
+        failedAt: Date?
+    ) {
         self.id = id
         self.$user.id = userID
         self.title = title
         self.note = note
+        self.completedAt = completedAt
+        self.failedAt = failedAt
     }
     
     @Children(for: \.$task)
-    var dateLimitRestrictions: [DateLimitRestriction]
+    var sendMessageToUserPenalties: [SendMessageToUserPenalty]
     
     @Children(for: \.$task)
-    var sendUserPenalties: [SendUserPenalty]
+    var pushConditions: [PushCondition]
 }
 
-extension AppTask {
-    convenience init(_ entity: Entity.AppTask, of userID: Entity.User.ID) {
-        self.init(
-            id: entity.id.value,
+extension Entity.AppTask {
+    func toModel(of userID: Entity.User.ID) -> Persistence.AppTask {
+        .init(
+            id: id.value,
             userID: userID.value,
-            title: entity.title,
-            note: entity.note
+            title: title,
+            note: note,
+            completedAt: state.completedAt,
+            failedAt: state.failedAt
         )
     }
 }
 
 extension AppTask {
-    
-    /// with
-    /// - dateLimitRestrictions
-    /// - sendUserPenalties
+    /// - with sendMessageToUserPenalties
+    /// - with pushConditions
     var toEntity: Entity.AppTask {
         get throws {
-            try .init(
+            guard
+                let pushes = $pushConditions.value,
+                let sends = $sendMessageToUserPenalties.value
+            else {
+                fatalError("ロード不足")
+            }
+                    
+            return try .init(
                 id: .init(requireID()),
                 title: title,
                 note: note,
-                restrictions: .init(
-                    dateLimitRestrictions: dateLimitRestrictions.map { try $0.toEntity }
-                ),
-                penalties: .init(
-                    sendUserPenalties: sendUserPenalties.map { try $0.toEntity }
-                )
+                state: .init(completedAt, failedAt),
+                conditions: .init(pushes: pushes.map { try $0.toEntity }),
+                penalties: .init(sendMessageToUser: sends.map { try $0.toEntity })
             )
         }
     }

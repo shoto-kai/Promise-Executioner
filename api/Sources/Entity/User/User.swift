@@ -6,11 +6,14 @@ public struct User: Hashable, Codable, Identifiable {
     
     public var id: ID
     
-    public var name: String
+    public var name: Name
     
-    public init(id: ID, name: String) {
+    public var displayName: String
+    
+    public init(id: ID, name: Name, displayName: String) {
         self.id = id
         self.name = name
+        self.displayName = displayName
     }
 }
 

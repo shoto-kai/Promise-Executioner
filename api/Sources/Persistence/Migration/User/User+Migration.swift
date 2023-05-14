@@ -9,6 +9,7 @@ extension User {
             try await database.schema(schema)
                 .id()
                 .field("name", .string, .required)
+                .field("display_name", .string, .required)
                 .field("created_at", .datetime, .required)
                 .field("updated_at", .datetime, .required)
                 .unique(on: "name")

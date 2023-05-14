@@ -1,8 +1,8 @@
 public struct Penalties: Hashable, Codable {
     
-    public var sendUserPenalties: [SendUserPenalty]
+    public var sendMessageToUser: [SendMessageToUserPenalty]
     
-    public init(sendUserPenalties: [SendUserPenalty]) {
-        self.sendUserPenalties = sendUserPenalties
+    public init(sendMessageToUser: [SendMessageToUserPenalty]) {
+        self.sendMessageToUser = sendMessageToUser
     }
 }
