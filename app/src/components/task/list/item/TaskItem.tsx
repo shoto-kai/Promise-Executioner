@@ -9,9 +9,11 @@ export default function TaskItem({ props }: { props: Props }) {
   const m = useMemo(() => new Model(props, state, setState), [props, state]);
   return (
     <IonItem detail={true} onClick={m.onClick}>
-      <IonLabel>{m.title}</IonLabel>
-      <p>代償 {m.amount}円</p>
-      <span>残り時間 {m.restTime}</span>
+      <IonLabel>
+        <IonLabel>{m.title}</IonLabel>
+        <h2>代償 {m.amount}円</h2>
+        <span>残り時間 {m.restTime}</span>
+      </IonLabel>
     </IonItem>
   );
 }
