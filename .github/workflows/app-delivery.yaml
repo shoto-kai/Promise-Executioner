@@ -22,6 +22,9 @@ jobs:
 
       - run: npm install
 
+      - name: Set Environment
+        run: echo ${{ secrets.APP_ENV }} > .env
+
       - run: npm run build
 
       - name: rsync deployments
