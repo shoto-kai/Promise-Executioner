@@ -11,10 +11,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import CreateSendUserMessagePenaltyModal from "~/components/penalty/create/modal/send/user/message/CreateSendUserMessagePenaltyModal";
-import PenaltyCreateButton from "~/components/penalty/create/button/PenaltyCreateButton";
-import CreateLocationRestrictionModal from "~/components/restriction/create/modal/location/CreateLocationRestrictionModal";
-import RestrictionCreateButton from "~/components/restriction/create/button/RestrictionCreateButton";
+import TaskForm from "~/components/task/create/form/TaskForm";
 
 export default function TaskCreateModal({ props }: { props: Props }) {
   const [state, setState] = useState(State.init);
@@ -35,37 +32,7 @@ export default function TaskCreateModal({ props }: { props: Props }) {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
-        <h1>{m.title}</h1>
-        <p>{m.note}</p>
-        <p>
-          <input
-            type="text"
-            onChange={m.onChangeTitle}
-            placeholder="タスク名"
-          />
-        </p>
-        <p>
-          <input type="text" onChange={m.onChangeNote} placeholder="備考" />
-        </p>
-        <p>
-          <PenaltyCreateButton
-            onClick={m.onOpenCreateSendUserMessagePenaltyModal}
-          />
-        </p>
-        <p>
-          <RestrictionCreateButton
-            onClick={m.onOpenCreateLocationRestrictionModal}
-          />
-        </p>
-
-        <CreateSendUserMessagePenaltyModal
-          props={m.createSendUserMessagePenaltyModalProps}
-        />
-        <CreateLocationRestrictionModal
-          props={m.createLocationRestrictionModalProps}
-        />
-      </IonContent>
+      <TaskForm props={m.content} />
     </IonModal>
   );
 }
