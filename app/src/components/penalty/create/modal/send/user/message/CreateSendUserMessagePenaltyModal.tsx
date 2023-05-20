@@ -29,7 +29,7 @@ export default function CreateSendUserMessagePenaltyModal({
     <IonModal isOpen={m.isOpen}>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Modal</IonTitle>
+          <IonTitle>ペナルティー新規作成</IonTitle>
           <IonButtons slot="start">
             <IonButton onClick={m.onCancel}>キャンセル</IonButton>
           </IonButtons>
@@ -68,7 +68,6 @@ export default function CreateSendUserMessagePenaltyModal({
             <IonInput type="text" placeholder="備考" />
           </IonItem>
         </p>
-        <p>You will be prompted when closing this modal.</p>
       </IonContent>
     </IonModal>
   );
