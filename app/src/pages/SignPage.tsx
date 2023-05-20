@@ -1,7 +1,4 @@
-import {
-  IonContent,
-  IonPage,
-} from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
 import React, { FC } from "react";
 import SignView from "~/components/sign/SignView";
 

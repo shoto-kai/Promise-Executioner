@@ -6,9 +6,9 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
-  IonIcon
+  IonIcon,
 } from "@ionic/react";
-import { logoGithub, logoGoogle } from 'ionicons/icons';
+import { logoGithub, logoGoogle } from "ionicons/icons";
 import { SignViewState as State } from "~/components/sign/SignView.state";
 import { SignViewProps as Props } from "~/components/sign/SignView.props";
 import { SignViewModel as Model } from "~/components/sign/SignView.model";
@@ -19,18 +19,32 @@ export default function SignView({ props }: { props: Props }) {
   return (
     <IonCard class="ion-align-items-center">
       <IonCard>
-        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+        <img
+          alt="Silhouette of mountains"
+          src="https://ionicframework.com/docs/img/demos/card-media.png"
+        />
         <IonCardHeader>
           <IonCardTitle>アカウント登録/ログイン</IonCardTitle>
         </IonCardHeader>
         <IonCardContent class="sign-button">
-          <IonButton color="dark" fill="outline" expand="block" onClick={m.logInByGitHub}>
+          <IonButton
+            color="dark"
+            fill="outline"
+            expand="block"
+            onClick={m.logInByGitHub}
+          >
             <IonIcon slot="start" icon={logoGoogle}></IonIcon>
             Googleでログイン
           </IonButton>
         </IonCardContent>
         <IonCardContent class="sign-button">
-          <IonButton class="sign-button" color="dark" fill="outline" expand="block" onClick={m.logInByGoogle}>
+          <IonButton
+            class="sign-button"
+            color="dark"
+            fill="outline"
+            expand="block"
+            onClick={m.logInByGoogle}
+          >
             <IonIcon slot="start" icon={logoGithub}></IonIcon>
             GitHubでログイン
           </IonButton>
