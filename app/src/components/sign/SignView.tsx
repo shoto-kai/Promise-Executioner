@@ -7,6 +7,7 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonIcon,
+  useIonRouter,
 } from "@ionic/react";
 import { logoGithub, logoGoogle } from "ionicons/icons";
 import { SignViewState as State } from "~/components/sign/SignView.state";
@@ -14,8 +15,12 @@ import { SignViewProps as Props } from "~/components/sign/SignView.props";
 import { SignViewModel as Model } from "~/components/sign/SignView.model";
 
 export default function SignView({ props }: { props: Props }) {
+  const router = useIonRouter();
   const [state, setState] = useState(State.init);
-  const m = useMemo(() => new Model(props, state, setState), [props, state]);
+  const m = useMemo(
+    () => new Model(props, state, setState, router),
+    [props, state]
+  );
   return (
     <IonCard class="ion-align-items-center">
       <IonCard>
