@@ -1,6 +1,8 @@
 import { TaskFormProps as Props } from "~/components/task/create/form/TaskForm.props";
 import { TaskFormState as State } from "~/components/task/create/form/TaskForm.state";
 import { SelectButtonOption } from "~/components/common/button/select/SelectButton";
+import { CreateSendUserMessagePenaltyModalProps } from "~/components/penalty/create/modal/send/user/message/CreateSendUserMessagePenaltyModal.props";
+import { CreateLocationRestrictionModalProps } from "~/components/restriction/create/modal/location/CreateLocationRestrictionModal.props";
 
 export class TaskFormModel {
   constructor(
@@ -36,4 +38,28 @@ export class TaskFormModel {
       handler: () => console.log("期限が選択された"),
     },
   ];
+
+  get sendUserPenaltyProps(): CreateSendUserMessagePenaltyModalProps {
+    return {
+      isOpen: this.state.isOpenCreateSendUserMessagePenaltyModal,
+      onCreate: () => {
+        this.setState(this.state.modalClosed);
+      },
+      onCancel: () => {
+        this.setState(this.state.modalClosed);
+      },
+    };
+  }
+
+  get locationRestrictionProps(): CreateLocationRestrictionModalProps {
+    return {
+      isOpen: this.state.isOpenCreateLocationRestrictionModal,
+      onCreate: () => {
+        this.setState(this.state.modalClosed);
+      },
+      onCancel: () => {
+        this.setState(this.state.modalClosed);
+      },
+    };
+  }
 }

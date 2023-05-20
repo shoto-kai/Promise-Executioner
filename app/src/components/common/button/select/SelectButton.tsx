@@ -18,14 +18,24 @@ interface Props {
 }
 
 const SelectButton: FC<Props> = ({ label, options }) => {
+  const id = crypto.randomUUID();
   return (
     <>
-      <IonButton id="popover-button">{label}</IonButton>
-      <IonPopover trigger="popover-button" dismissOnSelect={true}>
+      <IonButton id={id}>{label}</IonButton>
+      <IonPopover
+        trigger={id}
+        dismissOnSelect={true}
+        onWillDismiss={console.log}
+      >
         <IonContent>
           <IonList>
             {options.map((option) => (
-              <IonItem button={true} detail={false} onClick={option.handler}>
+              <IonItem
+                button={true}
+                detail={false}
+                onClick={option.handler}
+                key={option.label}
+              >
                 {option.label}
               </IonItem>
             ))}

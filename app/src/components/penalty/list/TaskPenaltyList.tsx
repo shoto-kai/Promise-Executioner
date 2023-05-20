@@ -1,15 +1,11 @@
-import { useMemo, useState } from "react";
-import { TaskCreateModalState as State } from "~/components/task/create/modal/TaskCreateModal.state";
-import { TaskCreateModalProps as Props } from "~/components/task/create/modal/TaskCreateModal.props";
-import { TaskCreateModalModel as Model } from "~/components/task/create/modal/TaskCreateModal.model";
+import React, { useMemo, useState } from "react";
+import { IonItem, IonList } from "@ionic/react";
 
-export default function TaskCreateModal({ props }: { props: Props }) {
-  const [state, setState] = useState(State.init);
-  const m = useMemo(() => new Model(props, state, setState), [state, setState]);
+export default function TaskPenaltyList() {
   return (
-    <>
-      <h1>{m.title}</h1>
-      <p>{m.note}</p>
-    </>
+    <IonList>
+      <IonItem>ペナルティ1</IonItem>
+      <IonItem>ペナルティ2</IonItem>
+    </IonList>
   );
 }
