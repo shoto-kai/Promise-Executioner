@@ -1,0 +1,11 @@
+.ion-align-items-center {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
+
+.sign-button {
+  padding: 0;
+  margin: 10px 0;
+}
