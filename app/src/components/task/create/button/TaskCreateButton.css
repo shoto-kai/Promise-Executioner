@@ -1,4 +1,4 @@
-ion-button[slot='fixed'] {
-    top: 80%;
-    right: 20px;
+ion-button[slot="fixed"] {
+  top: 80%;
+  right: 20px;
 }
