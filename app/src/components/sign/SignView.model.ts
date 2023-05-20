@@ -1,5 +1,6 @@
 import { SignViewProps } from "~/components/sign/SignView.props";
 import { SignViewState } from "~/components/sign/SignView.state";
+import { AuthService } from "~/services/auth/firebaseAuthService";
 
 export class SignViewModel {
   constructor(
@@ -8,11 +9,15 @@ export class SignViewModel {
     private readonly setState: (s: SignViewState) => void
   ) {}
 
-  readonly logInByGoogle = () => {
-    console.log("sign in by google");
+  readonly logInByGoogle = async () => {
+    await this.authService.signInWithGoogle();
   };
 
-  readonly logInByGitHub = () => {
-    console.log("sign in by github");
+  readonly logInByGitHub = async () => {
+    await this.authService.signInWithGitHub();
   };
+
+  private get authService(): AuthService {
+    return this.props.authService;
+  }
 }
