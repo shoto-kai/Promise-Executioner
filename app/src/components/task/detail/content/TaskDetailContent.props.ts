@@ -1,6 +1,5 @@
 import { AppTask } from "~/models/task/task";
 
-export interface TaskItemProps {
+export interface TaskDetailContentProps {
   task: AppTask;
-  now: Date;
 }

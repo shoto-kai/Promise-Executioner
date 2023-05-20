@@ -1,6 +1,7 @@
 import { TaskListProps } from "~/components/task/list/TaskList.props";
 import { TaskListState } from "~/components/task/list/TaskList.state";
 import { TaskItemProps } from "~/components/task/list/item/TaskItem.props";
+import { TaskDetailViewProps } from "~/components/task/detail/view/TaskDetailView.props";
 
 export class TaskListModel {
   constructor(
@@ -17,14 +18,10 @@ export class TaskListModel {
     this.setState(this.state.setNow(now));
   };
 
-  get items(): readonly TaskItemProps[] {
-    return [
-      { id: "1", now: this.state.now },
-      { id: "2", now: this.state.now },
-      { id: "3", now: this.state.now },
-      { id: "4", now: this.state.now },
-      { id: "5", now: this.state.now },
-      { id: "6", now: this.state.now },
-    ];
+  get items(): readonly (TaskItemProps & TaskDetailViewProps)[] {
+    return this.props.tasks.map((task) => ({
+      task,
+      now: this.state.now,
+    }));
   }
 }

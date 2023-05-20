@@ -4,7 +4,7 @@ import { TaskListProps as Props } from "~/components/task/list/TaskList.props";
 import { TaskListState as State } from "~/components/task/list/TaskList.state";
 import { TaskListModel } from "~/components/task/list/TaskList.model";
 import TaskItem from "~/components/task/list/item/TaskItem";
-import TaskDetail from "~/components/task/detail/TaskDetail";
+import TaskDetailView from "~/components/task/detail/view/TaskDetailView";
 
 export default function TaskList({ props }: { props: Props }) {
   const [state, setState] = useState(State.init);
@@ -21,8 +21,8 @@ export default function TaskList({ props }: { props: Props }) {
       {m.items.map((item) => (
         <IonNavLink
           routerDirection="forward"
-          component={() => <TaskDetail />}
-          key={item.id}
+          component={() => <TaskDetailView props={item} />}
+          key={item.task.id}
         >
           <TaskItem props={item} />
         </IonNavLink>

@@ -1,3 +1,5 @@
+import { TaskLimitDate } from "~/models/task/limit/TaskLimitDate";
+
 export class AppTaskState {
   private constructor(readonly state: "incomplete" | "completed" | "failed") {}
 
@@ -22,10 +24,18 @@ export class AppTask {
     readonly note: string,
     readonly amount: number,
     readonly state: AppTaskState,
-    readonly limitDate?: Date
+    readonly limitDate?: TaskLimitDate
   ) {}
 
   static init(id: string = crypto.randomUUID()): AppTask {
     return new AppTask(id, "", "", 0, AppTaskState.incomplete, undefined);
+  }
+
+  hasLimit() {
+    return this.limitDate != null;
+  }
+
+  restTime(now: Date): string {
+    return this.limitDate?.restTime(now) ?? "";
   }
 }
