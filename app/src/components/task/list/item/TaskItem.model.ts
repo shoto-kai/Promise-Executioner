@@ -8,12 +8,16 @@ export class TaskItemModel {
     private readonly setState: (s: TaskItemState) => void
   ) {}
 
-  readonly title = "タスク名";
+  get title(): string {
+    return this.props.task.title;
+  }
 
-  readonly price = 500;
+  get amount(): number {
+    return this.props.task.amount;
+  }
 
   get restTime(): string {
-    return `${this.now.getMinutes()}分${this.now.getSeconds()}秒`;
+    return this.props.task.restTime(this.now);
   }
 
   readonly onClick = () => {

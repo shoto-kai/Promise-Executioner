@@ -49,7 +49,7 @@ const App: FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/task">
-            <TaskPage />
+            <IonNav root={() => <TaskPage />} />
           </Route>
           <Route exact path="/friend">
             <FriendPage />

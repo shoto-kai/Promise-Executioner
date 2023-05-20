@@ -1,71 +1,41 @@
-import {
-  Restrictions,
-  RestrictionsSchema,
-} from "~/models/task/restriction/restrictions";
-import * as crypto from "crypto";
-import { Encodable } from "@lemonaderoom/lesource";
-import { Penalties, PenaltiesSchema } from "~/models/task/penalty/penalties";
-import { z } from "zod";
-import { decodeDate, encodeDate } from "~/models/date";
+import { TaskLimitDate } from "~/models/task/limit/TaskLimitDate";
 
-/** タスク */
-export class Task implements Encodable {
-  /**
-   * @param id タスクUUID
-   * @param title タスクタイトル
-   * @param note タスクメモ
-   * @param limitDate 期限の日時
-   * @param completedAt 完了日時
-   * @param failedAt 失敗日時
-   * @param restrictions 制約一覧
-   * @param penalties ペナルティ一覧
-   */
-  constructor(
-    readonly id: string = crypto.randomUUID(),
-    readonly title: string = "",
-    readonly note: string = "",
-    readonly limitDate?: Date,
-    readonly completedAt?: Date,
-    readonly failedAt?: Date,
-    readonly restrictions: Restrictions = new Restrictions(),
-    readonly penalties: Penalties = new Penalties()
-  ) {}
+export class AppTaskState {
+  private constructor(readonly state: "incomplete" | "completed" | "failed") {}
 
-  encode(): unknown {
-    return {
-      id: this.id,
-      title: this.title,
-      note: this.note,
-      limitDate: encodeDate(this.limitDate),
-      completedAt: encodeDate(this.completedAt),
-      failedAt: encodeDate(this.failedAt),
-      restrictions: this.restrictions.encode(),
-      penalties: this.penalties.encode(),
-    };
-  }
-
-  static decode(data: unknown): Task {
-    const schema = TaskSchema.parse(data);
-    return new Task(
-      schema.id,
-      schema.title,
-      schema.note,
-      decodeDate(schema.limitDate),
-      decodeDate(schema.completedAt),
-      decodeDate(schema.failedAt),
-      Restrictions.decode(schema.restrictions),
-      Penalties.decode(schema.penalties)
-    );
-  }
+  static readonly incomplete = new AppTaskState("incomplete");
+  static readonly completed = new AppTaskState("completed");
+  static readonly failed = new AppTaskState("failed");
 }
 
-export const TaskSchema = z.object({
-  id: z.string().uuid(),
-  title: z.string(),
-  note: z.string(),
-  limitDate: z.string().datetime().optional(),
-  completedAt: z.string().datetime().optional(),
-  failedAt: z.string().datetime().optional(),
-  restrictions: RestrictionsSchema,
-  penalties: PenaltiesSchema,
-});
+/** タスク */
+export class AppTask {
+  /**
+   * @param id タスクUUID
+   * @param title タイトル
+   * @param note 備考
+   * @param amount 代償金額
+   * @param state タスク状態
+   * @param limitDate 期限の日時
+   */
+  constructor(
+    readonly id: string,
+    readonly title: string,
+    readonly note: string,
+    readonly amount: number,
+    readonly state: AppTaskState,
+    readonly limitDate?: TaskLimitDate
+  ) {}
+
+  static init(id: string = crypto.randomUUID()): AppTask {
+    return new AppTask(id, "", "", 0, AppTaskState.incomplete, undefined);
+  }
+
+  hasLimit() {
+    return this.limitDate != null;
+  }
+
+  restTime(now: Date): string {
+    return this.limitDate?.restTime(now) ?? "";
+  }
+}
