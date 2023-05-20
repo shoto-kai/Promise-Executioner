@@ -31,7 +31,7 @@ export default function SignView({ props }: { props: Props }) {
             color="dark"
             fill="outline"
             expand="block"
-            onClick={m.logInByGitHub}
+            onClick={m.logInByGoogle}
           >
             <IonIcon slot="start" icon={logoGoogle}></IonIcon>
             Googleでログイン
@@ -43,7 +43,7 @@ export default function SignView({ props }: { props: Props }) {
             color="dark"
             fill="outline"
             expand="block"
-            onClick={m.logInByGoogle}
+            onClick={m.logInByGitHub}
           >
             <IonIcon slot="start" icon={logoGithub}></IonIcon>
             GitHubでログイン
