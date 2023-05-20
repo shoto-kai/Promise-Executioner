@@ -39,7 +39,7 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import { FC } from "react";
 import NotificationPage from "~/pages/NotificationPage";
-import SignPage from "~/pages/SignPage";
+import SignPage from "~/pages/sign/SignPage";
 
 setupIonicReact();
 
