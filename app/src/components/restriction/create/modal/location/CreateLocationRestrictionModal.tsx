@@ -28,7 +28,7 @@ export default function CreateLocationRestrictionModal({
   const [input, setInput] = useState("");
   // キーワードから座標を取得
   const { coordinates, error: geocodeError } = useGeocode(
-    "AIzaSyDAhn16MDH7Iyq-DdwMDRGuQu5wTHOAlS8",
+    "GOOGLE_API_KEY",
     input
   );
   // 現在地の座標を取得
@@ -52,7 +52,7 @@ export default function CreateLocationRestrictionModal({
         style={{ width: "100%", height: "35rem" }}
       >
         <GoogleMap
-          apiKey="AIzaSyDAhn16MDH7Iyq-DdwMDRGuQu5wTHOAlS8"
+          apiKey="GOOGLE_API_KEY"
           center={
             coordinates
               ? { lat: coordinates.lat, lng: coordinates.lng }
