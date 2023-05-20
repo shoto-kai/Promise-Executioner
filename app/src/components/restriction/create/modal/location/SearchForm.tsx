@@ -22,7 +22,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
           type="text"
           placeholder="渋谷ソラスタ"
           value={preInput}
-          onChange={(e) => setPreInput('')}
+          onChange={(e) => setPreInput("")}
         ></IonInput>
       </IonItem>
     </form>
