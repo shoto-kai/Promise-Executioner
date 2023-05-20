@@ -4,6 +4,8 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonInput,
+  IonItem,
   IonModal,
   IonTitle,
   IonToolbar,
@@ -38,17 +40,33 @@ export default function CreateSendUserMessagePenaltyModal({
       </IonHeader>
       <IonContent className="ion-padding">
         <p>
-          <input
-            type="text"
-            onChange={m.onChangeTitle}
-            placeholder="タイトル"
-          />
-          <input type="number" onChange={m.onChangePrice} placeholder="金額" />
-          <input
-            type="text"
-            onChange={m.onChangeDestinedUsername}
-            placeholder="宛先ユーザー名"
-          />
+          <IonItem>
+            <IonInput
+              type="text"
+              // onChange={m.onChangeTitle}
+              placeholder="タイトル"
+            />
+          </IonItem>
+          <IonItem>
+            <IonInput
+              type="number"
+              // onChange={m.onChangePrice}
+              placeholder="金額"
+            />
+          </IonItem>
+          <IonItem>
+            <IonInput
+              type="text"
+              // onChange={m.onChangeDestinedUsername}
+              placeholder="宛先ユーザー名"
+            />
+          </IonItem>
+          <IonItem>
+            <IonInput type="text" placeholder="送信内容（リンク等）" />
+          </IonItem>
+          <IonItem>
+            <IonInput type="text" placeholder="備考" />
+          </IonItem>
         </p>
         <p>You will be prompted when closing this modal.</p>
       </IonContent>
