@@ -21,7 +21,9 @@ const SelectButton: FC<Props> = ({ label, options }) => {
   const id = crypto.randomUUID();
   return (
     <>
-      <IonButton id={id}>{label}</IonButton>
+      <IonButton id={id} expand="full" color="medium">
+        {label}
+      </IonButton>
       <IonPopover
         trigger={id}
         dismissOnSelect={true}
@@ -35,6 +37,7 @@ const SelectButton: FC<Props> = ({ label, options }) => {
                 detail={false}
                 onClick={option.handler}
                 key={option.label}
+                color="medium"
               >
                 {option.label}
               </IonItem>
