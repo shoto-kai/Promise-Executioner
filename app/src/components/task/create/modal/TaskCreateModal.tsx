@@ -22,7 +22,7 @@ export default function TaskCreateModal({ props }: { props: Props }) {
     <IonModal isOpen={m.isOpen}>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Modal</IonTitle>
+          <IonTitle>タスク作成</IonTitle>
           <IonButtons slot="start">
             <IonButton onClick={m.onCancel}>キャンセル</IonButton>
           </IonButtons>
