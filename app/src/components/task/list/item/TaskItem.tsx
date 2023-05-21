@@ -10,8 +10,10 @@ export default function TaskItem({ props }: { props: Props }) {
   return (
     <IonItem detail={true} onClick={m.onClick}>
       <IonLabel>
-        <IonLabel>{m.title}</IonLabel>
-        <h2>代償 {m.amount}円</h2>
+        <IonLabel>
+          <h1>{m.title}</h1>
+        </IonLabel>
+        <h2 style={{ color: "red" }}>代償 {m.amount}円</h2>
         <span>残り時間 {m.restTime}</span>
       </IonLabel>
     </IonItem>

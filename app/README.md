@@ -13,7 +13,7 @@
 
 ## コミット時の注意点
 
-- npx prettier --write ./src   (npm run format)
+- npx prettier --write ./src (npm run format)
 - npm run lint
 - npm run test.unit
 - npm run build
