@@ -20,4 +20,16 @@ public final class PairNotificationTests: XCTestCase {
         
         XCTAssertEqual(actual, expected)
     }
+    
+    func test既読判定() {
+        var notification = PairNotification()
+        notification.readAt = .init(at: 4)
+        XCTAssertTrue(notification.isRead)
+    }
+    
+    func test未読判定() {
+        var notification = PairNotification()
+        notification.readAt = nil
+        XCTAssertFalse(notification.isRead)
+    }
 }

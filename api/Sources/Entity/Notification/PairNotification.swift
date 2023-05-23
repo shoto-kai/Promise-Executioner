@@ -42,3 +42,9 @@ extension PairNotification: Comparable {
         lhs.noticedAt < rhs.noticedAt
     }
 }
+
+extension PairNotification {
+    public var isRead: Bool {
+        readAt != nil
+    }
+}
