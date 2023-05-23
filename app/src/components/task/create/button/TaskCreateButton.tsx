@@ -1,3 +1,11 @@
+import { IonButton } from "@ionic/react";
+
+import "./TaskCreateButton.css";
+
 export default function TaskCreateButton({ onClick }: { onClick: () => void }) {
-  return <button onClick={onClick}>タスク作成ボタン</button>;
+  return (
+    <IonButton slot="fixed" shape="round" color="primary" onClick={onClick}>
+      作成
+    </IonButton>
+  );
 }

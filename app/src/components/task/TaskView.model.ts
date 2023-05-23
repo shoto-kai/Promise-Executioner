@@ -10,7 +10,11 @@ export class TaskViewModel {
     private readonly setState: (s: TaskViewState) => void
   ) {}
 
-  readonly taskListProps: TaskListProps = {};
+  get taskListProps(): TaskListProps {
+    return {
+      tasks: this.props.tasks,
+    };
+  }
 
   get taskCreateModalProps(): TaskCreateModalProps {
     return {

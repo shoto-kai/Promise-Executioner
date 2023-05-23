@@ -5,12 +5,18 @@ import { CreateLocationRestrictionModalProps as Props } from "~/components/restr
 import {
   IonButton,
   IonButtons,
-  IonContent,
   IonHeader,
   IonModal,
   IonTitle,
   IonToolbar,
+  IonItem,
+  IonRange,
 } from "@ionic/react";
+
+import GoogleMap from "./GoogleMap";
+import { useGeocode } from "./useGeocode";
+import SearchForm from "./SearchForm";
+import useCurrentLocation from "./useCurrentLocation";
 
 export default function CreateLocationRestrictionModal({
   props,
@@ -19,11 +25,19 @@ export default function CreateLocationRestrictionModal({
 }) {
   const [state, setState] = useState(State.init);
   const m = useMemo(() => new Model(props, state, setState), [props, state]);
+  const [input, setInput] = useState("");
+  // キーワードから座標を取得
+  const { coordinates, error: geocodeError } = useGeocode(
+    "GOOGLE_API_KEY",
+    input
+  );
+  // 現在地の座標を取得
+  const { location, error: locationError } = useCurrentLocation();
   return (
     <IonModal isOpen={m.isOpen}>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Modal</IonTitle>
+          <IonTitle>空間制約の追加</IonTitle>
           <IonButtons slot="start">
             <IonButton onClick={m.onCancel}>キャンセル</IonButton>
           </IonButtons>
@@ -32,15 +46,34 @@ export default function CreateLocationRestrictionModal({
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
-        <p>
-          <input
-            type="number"
-            onChange={m.onChangeRadius}
-            placeholder="許容誤差半径km"
-          />
-        </p>
-      </IonContent>
+      <div
+        className="ion-padding"
+        slot="content"
+        style={{ width: "100%", height: "35rem" }}
+      >
+        <GoogleMap
+          apiKey="GOOGLE_API_KEY"
+          center={
+            coordinates
+              ? { lat: coordinates.lat, lng: coordinates.lng }
+              : location
+              ? { lat: location.latitude, lng: location.longitude }
+              : { lat: 35.6895, lng: 139.6917 }
+          }
+          zoom={12}
+        />
+        <SearchForm onSearch={setInput} />
+        <IonItem style={{ marginTop: "2rem" }}>制約の範囲を指定</IonItem>
+        <IonItem>
+          <IonRange
+            ticks={true}
+            snaps={true}
+            min={0}
+            max={10}
+            value={1}
+          ></IonRange>
+        </IonItem>
+      </div>
     </IonModal>
   );
 }

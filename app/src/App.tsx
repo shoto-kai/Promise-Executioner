@@ -39,6 +39,7 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import { FC } from "react";
 import NotificationPage from "~/pages/NotificationPage";
+import SignPage from "~/pages/sign/SignPage";
 
 setupIonicReact();
 
@@ -48,13 +49,16 @@ const App: FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/task">
-            <TaskPage />
+            <IonNav root={() => <TaskPage />} />
           </Route>
           <Route exact path="/friend">
             <FriendPage />
           </Route>
           <Route exact path="/notification">
             <IonNav root={() => <NotificationPage />} />
+          </Route>
+          <Route exact path="/sign">
+            <IonNav root={() => <SignPage />} />
           </Route>
           <Route exact path="/">
             <Redirect to="/task" />

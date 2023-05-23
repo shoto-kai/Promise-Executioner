@@ -1,5 +1,7 @@
+import { AppTask } from "~/models/task/task";
+
 export interface TaskCreateModalProps {
   isOpen: boolean;
-  onCreate: () => void;
+  onCreate: (task: AppTask) => void;
   onCancel: () => void;
 }
