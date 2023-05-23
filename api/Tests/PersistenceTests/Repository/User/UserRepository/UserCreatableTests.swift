@@ -14,7 +14,7 @@ final class UserCreatableTests: XCTestCase {
         
         let repository = UserRepository(on: app.db)
         
-        let newUser = Entity.User(id: .init(.init()), name: .init("shine")!, displayName: "Shine")
+        let newUser = try Entity.User(id: .init(.init()), name: .init("shine"), displayName: "Shine")
         
         try await repository.create(newUser)
         

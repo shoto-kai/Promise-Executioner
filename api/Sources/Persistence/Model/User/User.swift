@@ -43,9 +43,7 @@ extension Entity.User {
 extension User {
     var toEntity: Entity.User {
         get throws {
-            guard let name = Entity.User.Name(name) else {
-                throw DBError.illegalValue
-            }
+            let name = try Entity.User.Name(name)
             return try .init(
                 id: .init(requireID()),
                 name: name,

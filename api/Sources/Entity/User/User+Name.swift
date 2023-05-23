@@ -5,14 +5,20 @@ extension User {
         
         public let value: String
         
-        public init?(_ value: String) {
-            guard Self.isValid(value) else {
-                return nil
-            }
+        public init(_ value: String) throws {
+            try Self.validate(value)
             self.value = value
         }
         
-        public static func isValid(_ value: String) -> Bool {
+        public static func validate(_ value: String) throws {
+            guard isValid(value) else {
+                throw ApiError.validation(
+                    reason: "\(value)にハイフン小文字数字以外が含まれています。"
+                )
+            }
+        }
+        
+        private static func isValid(_ value: String) -> Bool {
             value.wholeMatch(of: Regex {
                 Anchor.startOfLine
                 OneOrMore {

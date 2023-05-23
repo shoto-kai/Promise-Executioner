@@ -7,13 +7,13 @@ extension Persistence.User {
     struct Seeder: Seedable {
 
         static let entities: [Entity.User] = [
-            .init(id: .init(UUID()), name: .init("alice")!, displayName: "Alice"),
-            .init(id: .init(UUID()), name: .init("bob")!, displayName: "Bob"),
-            .init(id: .init(UUID()), name: .init("cancy")!, displayName: "Cancy"),
-            .init(id: .init(UUID()), name: .init("dragon")!, displayName: "Dragon"),
-            .init(id: .init(UUID()), name: .init("europe")!, displayName: "Europe"),
-            .init(id: .init(UUID()), name: .init("fanc")!, displayName: "Fanc"),
-            .init(id: .init(UUID()), name: .init("geograph")!, displayName: "Geograph"),
+            try! .init(id: .init(UUID()), name: .init("alice"), displayName: "Alice"),
+            try! .init(id: .init(UUID()), name: .init("bob"), displayName: "Bob"),
+            try! .init(id: .init(UUID()), name: .init("cancy"), displayName: "Cancy"),
+            try! .init(id: .init(UUID()), name: .init("dragon"), displayName: "Dragon"),
+            try! .init(id: .init(UUID()), name: .init("europe"), displayName: "Europe"),
+            try! .init(id: .init(UUID()), name: .init("fanc"), displayName: "Fanc"),
+            try! .init(id: .init(UUID()), name: .init("geograph"), displayName: "Geograph"),
         ]
 
         static var models: [Persistence.User] {

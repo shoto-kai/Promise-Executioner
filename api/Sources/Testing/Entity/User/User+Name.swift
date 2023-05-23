@@ -2,6 +2,6 @@ import Entity
 
 extension User.Name {
     public init() {
-        self.init("alice")!
+        try! self.init("alice")
     }
 }
