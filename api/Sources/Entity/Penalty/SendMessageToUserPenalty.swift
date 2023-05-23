@@ -31,5 +31,10 @@ public struct SendMessageToUserPenalty: Hashable, Codable, Identifiable {
         self.message = message
         self.executedAt = executedAt
     }
-    
+}
+
+extension SendMessageToUserPenalty {
+    public var isExecuted: Bool {
+        executedAt != nil
+    }
 }
