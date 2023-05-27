@@ -33,16 +33,23 @@ let package = Package(
             .product(name: "XCTVapor", package: "vapor"),
         ]),
         
-        .target(name: "Service", dependencies: [
+        
+        .target(name: "ServiceImpl", dependencies: [
+            .target(name: "Service"),
             .target(name: "Repository"),
             .target(name: "Usecase"),
             .target(name: "Entity"),
         ]),
-        .testTarget(name: "ServiceTests", dependencies: [
-            .target(name: "Service"),
+        .testTarget(name: "ServiceImplTests", dependencies: [
+            .target(name: "ServiceImpl"),
             .target(name: "Testing"),
         ]),
         
+        .target(name: "Service", dependencies: [
+            .target(name: "Usecase"),
+            .target(name: "Entity"),
+        ]),
+    
         .target(name: "Persistence", dependencies: [
             .target(name: "Repository"),
             .target(name: "Usecase"),

@@ -1,5 +1,6 @@
 import Foundation
 
+/// 押下条件
 public struct PushCondition: Hashable, Codable, Identifiable {
     
     public typealias ID = Identifier<Self>
