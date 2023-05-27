@@ -38,8 +38,8 @@ final class PushCondition: Model {
         self.failedAt = failedAt
     }
     
-    @Children(for: \.$condition)
-    var deadlineRestrictions: [DeadlineRestriction]
+//    @Children(for: \.$condition)
+//    var deadlineRestrictions: [DeadlineRestriction]
 }
 
 extension Entity.PushCondition {
@@ -60,12 +60,12 @@ extension PushCondition {
     /// - with deadlineRestrictions
     var toEntity: Entity.PushCondition {
         get throws {
-            guard let deadlines = $deadlineRestrictions.value else {
-                fatalError("期日制約がロードされていない")
-            }
+//            guard let deadlines = $deadlineRestrictions.value else {
+//                fatalError("期日制約がロードされていない")
+//            }
             return try .init(
                 id: .init(requireID()),
-                restrictions: deadlines.map { $0.toEntity },
+//                restrictions: deadlines.map { $0.toEntity },
                 state: .init(completedAt, failedAt)
             )
         }

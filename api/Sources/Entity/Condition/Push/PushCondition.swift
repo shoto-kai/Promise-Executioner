@@ -6,17 +6,17 @@ public struct PushCondition: Hashable, Codable, Identifiable {
     
     public var id: ID
     
-    public var restrictions: [Restriction]
-    
     public var state: ConditionState
+    
+    public var deadlineRestriction: DeadlineRestriction?
     
     public init(
         id: ID,
-        restrictions: [Restriction],
-        state: ConditionState
+        state: ConditionState,
+        deadlineRestriction: DeadlineRestriction? = nil
     ) {
         self.id = id
-        self.restrictions = restrictions
         self.state = state
+        self.deadlineRestriction = deadlineRestriction
     }
 }
