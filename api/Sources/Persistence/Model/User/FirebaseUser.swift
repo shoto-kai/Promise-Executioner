@@ -46,6 +46,12 @@ final class FirebaseUser: Model {
     @Field(key: "tenant")
     var tenant: String?
     
+    @Timestamp(key: "created_at", on: .create)
+    var createdAt: Date?
+    
+    @Timestamp(key: "updated_at", on: .update)
+    var updatedAt: Date?
+    
     init() { }
     
     init(
@@ -127,3 +133,4 @@ extension Firebase.User {
         )
     }
 }
+
