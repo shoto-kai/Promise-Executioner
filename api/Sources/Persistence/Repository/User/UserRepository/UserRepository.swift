@@ -7,4 +7,8 @@ public struct UserRepository {
     public init(on db: Database) {
         self.db = db
     }
+    
+    var firebaseUserRepository: FirebaseUserRepository {
+        .init(on: db)
+    }
 }

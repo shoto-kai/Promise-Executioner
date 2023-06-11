@@ -8,3 +8,9 @@ public struct FirebaseUserRepository {
         self.db = db
     }
 }
+
+extension FirebaseUserRepository {
+    var userRepository: UserRepository {
+        .init(on: db)
+    }
+}

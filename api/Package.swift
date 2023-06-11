@@ -33,39 +33,42 @@ let package = Package(
             .product(name: "XCTVapor", package: "vapor"),
         ]),
         
-        
-        .target(name: "ServiceImpl", dependencies: [
-            .target(name: "Service"),
+        .target(name: "ServiceAuth", dependencies: [
+            .target(name: "Usecase"),
+            .target(name: "Entity"),
             .target(name: "Repository"),
-            .target(name: "Usecase"),
-            .target(name: "Entity"),
-        ]),
-        .testTarget(name: "ServiceImplTests", dependencies: [
-            .target(name: "ServiceImpl"),
-            .target(name: "Testing"),
-        ]),
+            .target(name: "ServiceProtocol"),
+        ], path: "Sources/Service/Auth"),
         
-        .target(name: "Service", dependencies: [
+        .target(name: "ServiceApp", dependencies: [
             .target(name: "Usecase"),
             .target(name: "Entity"),
-        ]),
+            .target(name: "Repository"),
+            .target(name: "ServiceProtocol"),
+        ], path: "Sources/Service/App"),
+        
+        .target(name: "ServiceProtocol", dependencies: [
+            .target(name: "Entity"),
+            .target(name: "Usecase"),
+            .target(name: "Repository"),
+        ], path: "Sources/Service/Protocol"),
     
         .target(name: "Persistence", dependencies: [
-            .target(name: "Repository"),
-            .target(name: "Usecase"),
             .target(name: "Entity"),
+            .target(name: "Usecase"),
+            .target(name: "Repository"),
             .product(name: "Fluent", package: "fluent"),
         ]),
         .testTarget(name: "PersistenceTests", dependencies: [
             .target(name: "Persistence"),
-            .target(name: "App"),
             .product(name: "Vapor", package: "vapor"),
+            .target(name: "App"),
             .target(name: "Testing"),
         ]),
         
         .target(name: "Repository", dependencies: [
-            .target(name: "Usecase"),
             .target(name: "Entity"),
+            .target(name: "Usecase"),
         ]),
     
         .target(name: "Usecase", dependencies: [
@@ -83,7 +86,6 @@ let package = Package(
         ]),
         
         .target(name: "Testing", dependencies: [
-            .target(name: "Service"),
             .target(name: "Entity"),
             .target(name: "Usecase"),
             .target(name: "Repository"),

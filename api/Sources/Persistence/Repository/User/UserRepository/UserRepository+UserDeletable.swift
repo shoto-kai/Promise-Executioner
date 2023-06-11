@@ -4,9 +4,12 @@ import Repository
 
 extension UserRepository: UserDeletable {
     public func delete(_ id: Entity.User.ID) async throws {
-        guard let user = try await User.find(id.value, on: db) else {
-            throw DBError.notFound
+        try await db.transaction { transaction in
+            try await firebaseUserRepository.delete(id, on: transaction)
+            guard let user = try await User.find(id.value, on: transaction) else {
+                throw DBError.notFound
+            }
+            try await user.delete(on: transaction)
         }
-        try await user.delete(on: db)
     }
 }
