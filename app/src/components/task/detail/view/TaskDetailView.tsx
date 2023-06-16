@@ -24,7 +24,7 @@ export default function TaskDetailView({ props }: { props: Props }) {
           </IonButtons>
           <IonTitle>{m.title}</IonTitle>
           <IonButtons slot="end">
-            <IonButton>編集</IonButton>
+            <IonButton onClick={m.edit}>編集</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

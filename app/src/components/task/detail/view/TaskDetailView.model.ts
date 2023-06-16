@@ -16,4 +16,8 @@ export class TaskDetailViewModel {
   get title(): string {
     return this.props.task.title;
   }
+
+  readonly edit = () => {
+    console.log("編集")
+  };
 }
