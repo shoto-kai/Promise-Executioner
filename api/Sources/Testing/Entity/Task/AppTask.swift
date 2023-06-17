@@ -1,7 +1,7 @@
 import Entity
 
-public extension AppTask {
-    init() {
+extension AppTask {
+    public init() {
         self.init(
             id: .init(.init()),
             title: "",

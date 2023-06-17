@@ -2,9 +2,9 @@
 //
 //extension PushCondition.DeadlineRestriction {
 //    struct Migration: AsyncMigration {
-//        
+//
 //        private let schema = "push_button_condition_deadline_restriction"
-//        
+//
 //        func prepare(on database: Database) async throws {
 //            try await database.schema(schema)
 //                .id()
@@ -14,7 +14,7 @@
 //                .field("updated_at", .datetime, .required)
 //                .create()
 //        }
-//        
+//
 //        func revert(on database: Database) async throws {
 //            try await database.schema(schema).delete()
 //        }

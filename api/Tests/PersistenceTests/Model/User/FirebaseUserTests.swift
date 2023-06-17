@@ -1,11 +1,12 @@
-@testable import Persistence
-import XCTest
 import Entity
-import Usecase
 import Testing
+import Usecase
+import XCTest
+
+@testable import Persistence
 
 final class FirebaseUserTests: XCTestCase {
-    
+
     func testモデルとエンティティ間の変換() throws {
         let user = Entity.User()
         let expected = Firebase.User(

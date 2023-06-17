@@ -1,9 +1,10 @@
-@testable import Persistence
 import Fluent
+
+@testable import Persistence
 
 let seeders: [Seedable] = [
     User.Seeder(),
-    FirebaseUser.Seeder()
+    FirebaseUser.Seeder(),
 ]
 
 func seed(on db: Database) async throws {

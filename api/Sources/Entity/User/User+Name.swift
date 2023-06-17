@@ -2,14 +2,14 @@ import RegexBuilder
 
 extension User {
     public struct Name: Hashable, Codable {
-        
+
         public let value: String
-        
+
         public init(_ value: String) throws {
             try Self.validate(value)
             self.value = value
         }
-        
+
         public static func validate(_ value: String) throws {
             guard isValid(value) else {
                 throw ApiError.validation(
@@ -17,19 +17,20 @@ extension User {
                 )
             }
         }
-        
+
         private static func isValid(_ value: String) -> Bool {
-            value.wholeMatch(of: Regex {
-                Anchor.startOfLine
-                OneOrMore {
-                    CharacterClass(
-                        .anyOf("-"),
-                        ("a"..."z"),
-                        ("0"..."9")
-                    )
-                }
-                Anchor.endOfLine
-            }) != nil
+            value.wholeMatch(
+                of: Regex {
+                    Anchor.startOfLine
+                    OneOrMore {
+                        CharacterClass(
+                            .anyOf("-"),
+                            ("a"..."z"),
+                            ("0"..."9")
+                        )
+                    }
+                    Anchor.endOfLine
+                }) != nil
         }
     }
 }

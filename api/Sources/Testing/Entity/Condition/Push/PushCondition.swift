@@ -1,7 +1,7 @@
 import Entity
 
-public extension PushCondition {
-    init() {
+extension PushCondition {
+    public init() {
         self.init(
             id: .init(.init()),
             state: .incomplete

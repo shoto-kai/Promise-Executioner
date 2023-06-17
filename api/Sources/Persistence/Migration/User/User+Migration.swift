@@ -2,9 +2,9 @@ import Fluent
 
 extension User {
     struct Migration: AsyncMigration {
-        
+
         private let schema = "users"
-        
+
         func prepare(on database: Database) async throws {
             try await database.schema(schema)
                 .id()
@@ -15,7 +15,7 @@ extension User {
                 .unique(on: "name")
                 .create()
         }
-        
+
         func revert(on database: Database) async throws {
             try await database.schema(schema).delete()
         }

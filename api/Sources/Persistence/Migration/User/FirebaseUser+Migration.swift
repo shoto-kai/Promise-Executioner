@@ -2,9 +2,9 @@ import Fluent
 
 extension FirebaseUser {
     struct Migration: AsyncMigration {
-        
+
         private let schema = "firebase_users"
-        
+
         func prepare(on database: Database) async throws {
             try await database.schema(schema)
                 .id()
@@ -20,7 +20,7 @@ extension FirebaseUser {
                 .unique(on: "uid")
                 .create()
         }
-        
+
         func revert(on database: Database) async throws {
             try await database.schema(schema).delete()
         }

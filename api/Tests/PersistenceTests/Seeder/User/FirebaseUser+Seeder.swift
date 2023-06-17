@@ -1,8 +1,9 @@
-@testable import Persistence
-import Foundation
-import Fluent
 import Entity
+import Fluent
+import Foundation
 import Usecase
+
+@testable import Persistence
 
 extension Persistence.FirebaseUser {
     struct Seeder: Seedable {

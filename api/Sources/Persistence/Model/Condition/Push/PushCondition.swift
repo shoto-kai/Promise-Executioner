@@ -1,31 +1,31 @@
-import Foundation
-import Fluent
 import Entity
+import Fluent
+import Foundation
 
 final class PushCondition: Model {
-    
+
     static let schema = "push_button_conditions"
-    
+
     @ID(key: .id)
     var id: UUID?
-    
+
     @Parent(key: "task_id")
     var task: AppTask
-    
+
     @Field(key: "completed_at")
     var completedAt: Date?
-    
+
     @Field(key: "completed_at")
     var failedAt: Date?
-    
+
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
-    
+
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
-    
-    init() { }
-    
+
+    init() {}
+
     init(
         id: UUID? = nil,
         taskID: AppTask.IDValue,
@@ -37,9 +37,9 @@ final class PushCondition: Model {
         self.completedAt = completedAt
         self.failedAt = failedAt
     }
-    
-//    @Children(for: \.$condition)
-//    var deadlineRestrictions: [DeadlineRestriction]
+
+    //    @Children(for: \.$condition)
+    //    var deadlineRestrictions: [DeadlineRestriction]
 }
 
 extension Entity.PushCondition {
@@ -60,15 +60,14 @@ extension PushCondition {
     /// - with deadlineRestrictions
     var toEntity: Entity.PushCondition {
         get throws {
-//            guard let deadlines = $deadlineRestrictions.value else {
-//                fatalError("期日制約がロードされていない")
-//            }
+            //            guard let deadlines = $deadlineRestrictions.value else {
+            //                fatalError("期日制約がロードされていない")
+            //            }
             return try .init(
                 id: .init(requireID()),
-//                restrictions: deadlines.map { $0.toEntity },
+                //                restrictions: deadlines.map { $0.toEntity },
                 state: .init(completedAt, failedAt)
             )
         }
     }
 }
-

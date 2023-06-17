@@ -1,5 +1,5 @@
-import Usecase
 import Entity
+import Usecase
 
 /// uidでFirebaseユーザーを取得する
 public protocol FirebaseUserFindable {

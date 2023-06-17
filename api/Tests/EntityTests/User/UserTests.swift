@@ -1,6 +1,7 @@
-@testable import Entity
 import Testing
 import XCTest
+
+@testable import Entity
 
 public final class UserTests: XCTestCase {
     func test比較すると名前で比較される() throws {

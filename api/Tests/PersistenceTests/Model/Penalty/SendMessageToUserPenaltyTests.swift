@@ -1,10 +1,11 @@
-@testable import Persistence
-import XCTest
 import Entity
 import Testing
+import XCTest
+
+@testable import Persistence
 
 final class SendMessageToUserPenaltyTests: XCTestCase {
-    
+
     func testモデルとエンティティ間の変換() throws {
         let taskID = Entity.AppTask.ID(.init())
         let expected = Entity.SendMessageToUserPenalty(

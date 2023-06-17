@@ -1,5 +1,5 @@
-import Foundation
 import Entity
+import Foundation
 
 /// ユーザーの全てのユーザー間通知を取得する
 public protocol AllPairNotificationTakeable {

@@ -2,9 +2,9 @@ import Fluent
 
 extension BearerAuth {
     struct Migration: AsyncMigration {
-        
+
         private let schema = "bearer_authes"
-        
+
         func prepare(on database: Database) async throws {
             try await database.schema(schema)
                 .id()
@@ -15,10 +15,10 @@ extension BearerAuth {
                 .unique(on: "user_id")
                 .create()
         }
-        
+
         func revert(on database: Database) async throws {
             try await database.schema(schema).delete()
         }
-        
+
     }
 }

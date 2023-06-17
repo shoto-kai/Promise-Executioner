@@ -1,37 +1,37 @@
-import Foundation
-import Fluent
 import Entity
+import Fluent
+import Foundation
 
 final class AppTask: Model {
-    
+
     static let schema = "tasks"
-    
+
     @ID(key: .id)
     var id: UUID?
-    
+
     @Parent(key: "user_id")
     var user: User
-    
+
     @Field(key: "title")
     var title: String
-    
+
     @Field(key: "note")
     var note: String
-    
+
     @Field(key: "completed_at")
     var completedAt: Date?
-    
+
     @Field(key: "failed_at")
     var failedAt: Date?
-    
+
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
-    
+
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
-    
-    init() { }
-    
+
+    init() {}
+
     init(
         id: UUID? = nil,
         userID: User.IDValue,
@@ -47,10 +47,10 @@ final class AppTask: Model {
         self.completedAt = completedAt
         self.failedAt = failedAt
     }
-    
+
     @Children(for: \.$task)
     var sendMessageToUserPenalties: [SendMessageToUserPenalty]
-    
+
     @Children(for: \.$task)
     var pushConditions: [PushCondition]
 }
@@ -79,7 +79,7 @@ extension AppTask {
             else {
                 fatalError("ロード不足")
             }
-                    
+
             return try .init(
                 id: .init(requireID()),
                 title: title,

@@ -1,5 +1,5 @@
-import Fluent
 import Entity
+import Fluent
 import Repository
 
 extension UserRepository: UserDeletable {

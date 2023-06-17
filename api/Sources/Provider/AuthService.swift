@@ -1,14 +1,14 @@
-import Vapor
-import ServiceProtocol
 import ServiceAuth
+import ServiceProtocol
+import Vapor
 
-public extension Request {
-    
-    var bearerTokenPublisher: some BearerTokenPublishable {
+extension Request {
+
+    public var bearerTokenPublisher: some BearerTokenPublishable {
         BearerTokenPublisher(bearerUserSaver)
     }
-    
-    var bearerTokenAuthenticator: some BearerTokenAuthenticable {
+
+    public var bearerTokenAuthenticator: some BearerTokenAuthenticable {
         BearerTokenAuthenticator(userFinderByBearerToken)
     }
 }

@@ -2,9 +2,9 @@ import Fluent
 
 extension SendMessageToUserPenalty {
     struct Migration: AsyncMigration {
-        
+
         private let schema = "send_message_to_user_penalties"
-        
+
         func prepare(on database: Database) async throws {
             try await database.schema(schema)
                 .id()
@@ -18,7 +18,7 @@ extension SendMessageToUserPenalty {
                 .field("updated_at", .datetime, .required)
                 .create()
         }
-        
+
         func revert(on database: Database) async throws {
             try await database.schema(schema).delete()
         }

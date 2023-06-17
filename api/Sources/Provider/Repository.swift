@@ -1,19 +1,19 @@
-import Vapor
 import Fluent
-import Repository
 import Persistence
+import Repository
+import Vapor
 
-public extension Request {
-    
-    var userFinder: some UserFindable {
+extension Request {
+
+    public var userFinder: some UserFindable {
         UserRepository(on: db)
     }
-    
-    var userFinderByBearerToken: some UserFindableByBearerToken {
+
+    public var userFinderByBearerToken: some UserFindableByBearerToken {
         BearerAuthRepository(on: db)
     }
-    
-    var bearerUserSaver: some BearerUserSavible {
+
+    public var bearerUserSaver: some BearerUserSavible {
         BearerAuthRepository(on: db)
     }
 }

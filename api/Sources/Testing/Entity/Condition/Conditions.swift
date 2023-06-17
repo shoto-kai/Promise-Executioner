@@ -1,7 +1,7 @@
 import Entity
 
-public extension Conditions {
-    init() {
+extension Conditions {
+    public init() {
         self.init(pushes: [])
     }
 }

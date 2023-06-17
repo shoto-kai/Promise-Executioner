@@ -1,13 +1,14 @@
-@testable import Persistence
-import XCTest
 import Entity
 import Testing
+import XCTest
+
+@testable import Persistence
 
 final class PenaltiesTests: XCTestCase {
-    
+
     func testエンティティからモデルへの変換() throws {
         let taskID = Entity.AppTask.ID(.init())
-        
+
         let user = Entity.User()
         var send1 = Entity.SendMessageToUserPenalty()
         send1.amount = 100
@@ -18,7 +19,7 @@ final class PenaltiesTests: XCTestCase {
         var send3 = Entity.SendMessageToUserPenalty()
         send3.amount = 300
         send3.destine = user
-        
+
         let expected = Entity.Penalties(
             sendMessageToUser: [send1, send2, send3]
         )

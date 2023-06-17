@@ -1,7 +1,8 @@
-@testable import Persistence
-import Foundation
-import Fluent
 import Entity
+import Fluent
+import Foundation
+
+@testable import Persistence
 
 extension Persistence.User {
     struct Seeder: Seedable {
@@ -29,4 +30,3 @@ extension Persistence.User {
         }
     }
 }
-

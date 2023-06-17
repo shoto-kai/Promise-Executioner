@@ -1,14 +1,15 @@
-@testable import Persistence
-import XCTest
 import Entity
+import XCTest
+
+@testable import Persistence
 
 final class PairNotificationTests: XCTestCase {
-    
+
     func testモデルとエンティティ間の変換() throws {
         let from = Entity.User()
         var to = Entity.User()
         to.displayName = "Bob"
-        
+
         let expected = Entity.PairNotification(
             id: .init(.init()),
             from: from,
@@ -21,9 +22,9 @@ final class PairNotificationTests: XCTestCase {
         let model = expected.toModel
         model.$from.value = from.toModel
         model.$to.value = to.toModel
-        
+
         let actual = try model.toEntity
-        
+
         XCTAssertEqual(actual, expected)
     }
 }

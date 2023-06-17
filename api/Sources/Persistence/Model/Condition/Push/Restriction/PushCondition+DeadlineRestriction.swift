@@ -4,26 +4,26 @@
 //
 //extension PushCondition {
 //    final class DeadlineRestriction: Model {
-//        
+//
 //        static let schema = "push_button_condition_deadline_restriction"
-//        
+//
 //        @ID(key: .id)
 //        var id: UUID?
-//        
+//
 //        @Parent(key: "push_condition_id")
 //        var condition: PushCondition
-//        
+//
 //        @Field(key: "deadline")
 //        var deadline: Date
-//        
+//
 //        @Timestamp(key: "created_at", on: .create)
 //        var createdAt: Date?
-//        
+//
 //        @Timestamp(key: "updated_at", on: .update)
 //        var updatedAt: Date?
-//        
+//
 //        init() { }
-//        
+//
 //        init(
 //            id: UUID? = nil,
 //            conditionID: PushCondition.IDValue,

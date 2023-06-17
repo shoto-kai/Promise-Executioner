@@ -1,7 +1,7 @@
 import Entity
 
-public extension SendMessageToUserPenalty {
-    init() {
+extension SendMessageToUserPenalty {
+    public init() {
         self.init(
             id: .init(.init()),
             destine: .init(),

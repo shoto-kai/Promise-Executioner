@@ -1,7 +1,7 @@
-import Fluent
 import Entity
-import Usecase
+import Fluent
 import Repository
+import Usecase
 
 extension BearerAuthRepository: UserFindableByBearerToken {
     public func find(_ token: Usecase.BearerAuth.Token) async throws -> Entity.User? {

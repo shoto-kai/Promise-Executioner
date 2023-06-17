@@ -1,10 +1,10 @@
-import Fluent
 import Entity
-import Usecase
+import Fluent
 import Repository
+import Usecase
 
 extension BearerAuthRepository: BearerUserSavible {
-    
+
     public func save(
         userID: Entity.User.ID,
         token: Usecase.BearerAuth.Token
@@ -15,13 +15,13 @@ extension BearerAuthRepository: BearerUserSavible {
             try await create(userID: userID, token: token, on: db)
         }
     }
-    
+
     private func findAuth(_ userID: Entity.User.ID, on db: Database) async throws -> BearerAuth? {
         try await BearerAuth.query(on: db)
             .filter(\.$user.$id == userID.value)
             .first()
     }
-    
+
     private func create(
         userID: Entity.User.ID,
         token: Usecase.BearerAuth.Token,
@@ -29,7 +29,7 @@ extension BearerAuthRepository: BearerUserSavible {
     ) async throws {
         try await BearerAuth(userID: userID.value, token: token.value).create(on: db)
     }
-    
+
     private func update(
         auth: BearerAuth,
         userID: Entity.User.ID,

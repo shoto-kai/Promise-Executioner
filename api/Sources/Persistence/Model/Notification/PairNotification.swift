@@ -1,40 +1,40 @@
-import Foundation
-import Fluent
 import Entity
+import Fluent
+import Foundation
 
 final class PairNotification: Model {
-    
+
     static let schema = "pair_notifications"
-    
+
     @ID(key: .id)
     var id: UUID?
-    
+
     @Parent(key: "from_user_id")
     var from: User
-    
+
     @Parent(key: "to_user_id")
     var to: User
-    
+
     @Enum(key: "kind")
     var kind: NotificationKind
-    
+
     @Field(key: "title")
     var title: String
-    
+
     @Field(key: "noticed_at")
     var noticedAt: Date
-    
+
     @Field(key: "read_at")
     var readAt: Date?
-    
+
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
-    
+
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
-    
-    init() { }
-    
+
+    init() {}
+
     init(
         id: UUID? = nil,
         fromUserID: User.IDValue,

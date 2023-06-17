@@ -1,13 +1,13 @@
 import Entity
 
 public struct PairRoom: Hashable, Codable, Identifiable {
-    
+
     public var id: ID
-    
+
     public var members: [User]
-    
+
     public var notifications: [PairNotification]
-    
+
     public init(
         id: ID,
         members: [User],
@@ -18,4 +18,3 @@ public struct PairRoom: Hashable, Codable, Identifiable {
         self.notifications = notifications
     }
 }
-

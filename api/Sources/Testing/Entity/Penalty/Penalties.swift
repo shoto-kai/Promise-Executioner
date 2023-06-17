@@ -1,7 +1,7 @@
 import Entity
 
-public extension Penalties {
-    init() {
+extension Penalties {
+    public init() {
         self.init(sendMessageToUser: [])
     }
 }

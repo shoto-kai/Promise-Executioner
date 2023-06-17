@@ -1,9 +1,10 @@
-@testable import Persistence
-import XCTest
 import Entity
+import XCTest
+
+@testable import Persistence
 
 final class AppTaskTests: XCTestCase {
-    
+
     func testエンティティとモデルの変換() throws {
         let expected = Entity.AppTask(
             id: .init(.init()),
@@ -13,11 +14,11 @@ final class AppTaskTests: XCTestCase {
             conditions: .init(),
             penalties: .init()
         )
-        
+
         let model = expected.toModel(of: .init(.init()))
         model.$pushConditions.value = []
         model.$sendMessageToUserPenalties.value = []
-        
+
         let actual = try model.toEntity
         XCTAssertEqual(actual, expected)
     }

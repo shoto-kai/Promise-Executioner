@@ -1,8 +1,8 @@
-import Foundation
 import Entity
+import Foundation
 
-public extension PairNotification {
-    init() {
+extension PairNotification {
+    public init() {
         self.init(
             id: .init(.init()),
             from: .init(),

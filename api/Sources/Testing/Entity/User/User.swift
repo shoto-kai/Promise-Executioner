@@ -1,5 +1,5 @@
-import Foundation
 import Entity
+import Foundation
 
 extension User {
     public init() {
