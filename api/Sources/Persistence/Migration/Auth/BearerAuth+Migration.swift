@@ -1,28 +1,24 @@
 import Fluent
 
-extension FirebaseUser {
+extension BearerAuth {
     struct Migration: AsyncMigration {
         
-        private let schema = "firebase_users"
+        private let schema = "bearer_authes"
         
         func prepare(on database: Database) async throws {
             try await database.schema(schema)
                 .id()
                 .field("user_id", .uuid, .required, .references("users", "id"))
-                .field("email_verified", .bool)
-                .field("email", .string)
-                .field("picture", .string)
-                .field("uid", .string, .required)
-                .field("provider_id", .string, .required)
+                .field("token", .string)
                 .field("created_at", .datetime, .required)
                 .field("updated_at", .datetime, .required)
                 .unique(on: "user_id")
-                .unique(on: "uid")
                 .create()
         }
         
         func revert(on database: Database) async throws {
             try await database.schema(schema).delete()
         }
+        
     }
 }

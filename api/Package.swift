@@ -11,6 +11,7 @@ let package = Package(
         .package(url: "https://github.com/vapor/vapor.git", from: "4.76.0"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
         .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
+        .package(url: "https://github.com/gh123man/firebase-admin-swift", from: "0.0.1"),
     ],
     targets: [
         .executableTarget(
@@ -19,7 +20,16 @@ let package = Package(
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
                 .product(name: "Vapor", package: "vapor"),
-                .target(name: "Persistence")
+                .product(name: "Firebase", package: "firebase-admin-swift"),
+                .target(name: "Provider"),
+                .target(name: "Entity"),
+                .target(name: "Usecase"),
+                .target(name: "Repository"),
+                .target(name: "Persistence"),
+                .target(name: "ServiceProtocol"),
+                .target(name: "ServiceAuth"),
+                .target(name: "ServiceApp"),
+                .target(name: "Presentation"),
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of
@@ -33,9 +43,30 @@ let package = Package(
             .product(name: "XCTVapor", package: "vapor"),
         ]),
         
-        .target(name: "ServiceAuth", dependencies: [
-            .target(name: "Usecase"),
+        .target(name: "Presentation", dependencies: [
+            .product(name: "Vapor", package: "vapor"),
             .target(name: "Entity"),
+            .target(name: "Usecase"),
+        ]),
+        
+        .target(name: "Provider", dependencies: [
+            .product(name: "Fluent", package: "fluent"),
+            .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
+            .product(name: "Vapor", package: "vapor"),
+            .product(name: "Firebase", package: "firebase-admin-swift"),
+            .target(name: "Entity"),
+            .target(name: "Usecase"),
+            .target(name: "Repository"),
+            .target(name: "Persistence"),
+            .target(name: "ServiceProtocol"),
+            .target(name: "ServiceAuth"),
+            .target(name: "ServiceApp"),
+        ]),
+        
+        .target(name: "ServiceAuth", dependencies: [
+            .product(name: "Firebase", package: "firebase-admin-swift"),
+            .target(name: "Entity"),
+            .target(name: "Usecase"),
             .target(name: "Repository"),
             .target(name: "ServiceProtocol"),
         ], path: "Sources/Service/Auth"),

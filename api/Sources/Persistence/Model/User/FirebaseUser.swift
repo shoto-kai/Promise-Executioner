@@ -19,32 +19,14 @@ final class FirebaseUser: Model {
     @Field(key: "email")
     var email: String?
     
-    @Field(key: "iss")
-    var iss: String
-    
-    @Field(key: "phone_number")
-    var phoneNumber: String?
-    
     @Field(key: "picture")
     var picture: String?
-    
-    @Field(key: "sub")
-    var sub: String
     
     @Field(key: "uid")
     var uid: String
     
-    @Field(key: "sign_in_provider")
-    var signInProvider: String
-    
-    @Field(key: "sign_in_second_factor")
-    var signInSecondFactor: String?
-    
-    @Field(key: "second_factor_identifier")
-    var secondFactorIdentifier: String?
-    
-    @Field(key: "tenant")
-    var tenant: String?
+    @Field(key: "provider_id")
+    var providerId: String?
     
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
@@ -57,31 +39,19 @@ final class FirebaseUser: Model {
     init(
         id: UUID? = nil,
         userID: User.IDValue,
-        emailVerified: Bool? = nil,
+        emailVerified: Bool?,
         email: String?,
-        iss: String,
-        phoneNumber: String? = nil,
-        picture: String? = nil,
-        sub: String,
+        picture: String?,
         uid: String,
-        signInProvider: String,
-        signInSecondFactor: String? = nil,
-        secondFactorIdentifier: String? = nil,
-        tenant: String? = nil
+        providerId: String?
     ) {
         self.id = id
         self.$user.id = userID
         self.emailVerified = emailVerified
         self.email = email
-        self.iss = iss
-        self.phoneNumber = phoneNumber
         self.picture = picture
-        self.sub = sub
         self.uid = uid
-        self.signInProvider = signInProvider
-        self.signInSecondFactor = signInSecondFactor
-        self.secondFactorIdentifier = secondFactorIdentifier
-        self.tenant = tenant
+        self.providerId = providerId
     }
 }
 
@@ -95,23 +65,11 @@ extension FirebaseUser {
                 user: userModel.toEntity,
                 emailVerified: emailVerified,
                 email: email,
-                firebase: detailEntity,
-                iss: iss,
-                phoneNumber: phoneNumber,
                 picture: picture,
-                sub: sub,
-                uid: uid
+                uid: uid,
+                providerId: providerId
             )
         }
-    }
-    
-    private var detailEntity: Firebase.User.Detail {
-        .init(
-            signInProvider: signInProvider,
-            signInSecondFactor: signInSecondFactor,
-            secondFactorIdentifier: secondFactorIdentifier,
-            tenant: tenant
-        )
     }
 }
 
@@ -121,15 +79,9 @@ extension Firebase.User {
             userID: user.id.value,
             emailVerified: emailVerified,
             email: email,
-            iss: iss,
-            phoneNumber: phoneNumber,
             picture: picture,
-            sub: sub,
             uid: uid,
-            signInProvider: firebase.signInProvider,
-            signInSecondFactor: firebase.signInSecondFactor,
-            secondFactorIdentifier: firebase.secondFactorIdentifier,
-            tenant: firebase.tenant
+            providerId: providerId
         )
     }
 }

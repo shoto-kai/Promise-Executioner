@@ -1,6 +1,6 @@
 extension Firebase {
     /// Firebaseの認証トークン
-    public struct Token {
+    public struct IDToken {
         
         public let value: String
         
