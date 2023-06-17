@@ -3,6 +3,7 @@ import { IonNavLink, IonItem } from "@ionic/react";
 import "./TaskCreateButton.css";
 
 import TaskCreate from "~/components/task/create/modal/TaskCreate";
+import { TaskCreateModalProps as Props } from "~/components/task/create/modal/TaskCreateModal.props";
 
 export default function TaskCreateButton({
   onClick,
@@ -12,9 +13,6 @@ export default function TaskCreateButton({
   props: Props;
 }) {
   return (
-    // <IonButton slot="fixed" shape="round" color="primary" onClick={onClick}>
-    //   作成
-    // </IonButton>
     <IonNavLink
       routerDirection="forward"
       component={() => <TaskCreate props={props} />}

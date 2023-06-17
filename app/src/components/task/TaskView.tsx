@@ -16,7 +16,6 @@ export default function TaskView({ props }: { props: Props }) {
         onClick={m.onOpenCreateTaskModal}
         props={m.taskCreateModalProps}
       />
-      {/* <TaskCreateModal props={m.taskCreateModalProps} /> */}
     </>
   );
 }
