@@ -18,6 +18,6 @@ export class TaskDetailViewModel {
   }
 
   readonly edit = () => {
-    console.log("編集")
+    console.log("編集");
   };
 }
