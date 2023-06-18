@@ -2,9 +2,9 @@ import Entity
 import Fluent
 import Foundation
 
-final class SendMessageToUserPenalty: Model {
+final class SendUserMessagePenalty: Model {
 
-    static let schema = "send_message_to_user_penalties"
+    static let schema = "send_user_message_penalties"
 
     @ID(key: .id)
     var id: UUID?
@@ -54,38 +54,43 @@ final class SendMessageToUserPenalty: Model {
     }
 }
 
-extension Entity.SendMessageToUserPenalty {
-
-    func toModel(
-        of taskID: Entity.AppTask.ID
-    ) -> Persistence.SendMessageToUserPenalty {
-        .init(
-            id: id.value,
-            taskID: taskID.value,
-            destinUserID: destine.id.value,
-            amount: amount,
-            note: note,
-            message: message,
-            executedAt: executedAt
-        )
+extension SendUserMessagePenalty {
+    var toEntity: Entity.Penalty {
+        get throws {
+            guard let destine = $destineUser.value else {
+                throw DBError.loadError
+            }
+            return try .sendUserMessage(
+                destine: destine.toEntity,
+                amount: .init(amount),
+                note: note,
+                message: message,
+                state: .init(executedAt)
+            )
+        }
     }
 }
 
-extension SendMessageToUserPenalty {
-    /// - with destineUser
-    var toEntity: Entity.SendMessageToUserPenalty {
-        get throws {
-            guard let destine = $destineUser.value else {
-                fatalError("宛先ユーザーを取得済みである必要がある")
-            }
-            return try .init(
-                id: .init(requireID()),
-                destine: try destine.toEntity,
-                amount: amount,
-                note: note,
-                message: message,
-                executedAt: executedAt
-            )
+extension Penalty {
+    func toSendUserMessagePenalties(of taskID: AppTask.IDValue) -> SendUserMessagePenalty? {
+        guard
+            case .sendUserMessage(
+                let destine,
+                let amount,
+                let note,
+                let message,
+                let state
+            ) = self
+        else {
+            return nil
         }
+        return .init(
+            taskID: taskID,
+            destinUserID: destine.id.value,
+            amount: amount.value,
+            note: note,
+            message: message,
+            executedAt: state.executedAt
+        )
     }
 }

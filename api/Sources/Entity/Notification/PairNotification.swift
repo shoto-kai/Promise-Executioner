@@ -16,7 +16,7 @@ public struct PairNotification: Hashable, Codable, Identifiable {
 
     public var noticedAt: Date
 
-    public var readAt: Date?
+    public var readState: NotificationReadState
 
     public init(
         id: ID,
@@ -25,7 +25,7 @@ public struct PairNotification: Hashable, Codable, Identifiable {
         kind: NotificationKind,
         title: String,
         noticedAt: Date,
-        readAt: Date? = nil
+        readState: NotificationReadState
     ) {
         self.id = id
         self.from = from
@@ -33,18 +33,12 @@ public struct PairNotification: Hashable, Codable, Identifiable {
         self.kind = kind
         self.title = title
         self.noticedAt = noticedAt
-        self.readAt = readAt
+        self.readState = readState
     }
 }
 
 extension PairNotification: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.noticedAt < rhs.noticedAt
-    }
-}
-
-extension PairNotification {
-    public var isRead: Bool {
-        readAt != nil
     }
 }

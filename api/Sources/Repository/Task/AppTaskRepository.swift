@@ -5,11 +5,6 @@ public protocol AllTaskTakeable {
     func takeAll(of: User.ID) async throws -> [AppTask]
 }
 
-/// ユーザーの未完了のタスクを取得する
-public protocol IncompleteTaskTakeable {
-    func takeIncomplete(of: User.ID) async throws -> [AppTask]
-}
-
 /// タスクを探す
 public protocol TaskFindable {
     func find(_ id: AppTask.ID) async throws -> AppTask?
@@ -22,10 +17,10 @@ public protocol TaskCreatable {
 
 /// タスクを更新する
 public protocol TaskUpdatable {
-    func update(_ task: AppTask) async throws
+    func update(_ task: AppTask, of: User.ID) async throws
 }
 
 /// タスクを削除する
 public protocol TaskDeletable {
-    func delete(_ task: AppTask) async throws
+    func delete(_ taskID: AppTask.ID) async throws
 }

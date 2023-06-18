@@ -1,6 +1,6 @@
 import Fluent
 
-extension SendMessageToUserPenalty {
+extension SendUserMessagePenalty {
     struct Migration: AsyncMigration {
 
         private let schema = "send_message_to_user_penalties"

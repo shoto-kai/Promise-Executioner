@@ -15,9 +15,6 @@ final class PairNotification: Model {
     @Parent(key: "to_user_id")
     var to: User
 
-    @Enum(key: "kind")
-    var kind: NotificationKind
-
     @Field(key: "title")
     var title: String
 
@@ -39,7 +36,6 @@ final class PairNotification: Model {
         id: UUID? = nil,
         fromUserID: User.IDValue,
         toUserID: User.IDValue,
-        kind: NotificationKind,
         title: String,
         noticedAt: Date,
         readAt: Date? = nil
@@ -47,7 +43,6 @@ final class PairNotification: Model {
         self.id = id
         self.$from.id = fromUserID
         self.$to.id = toUserID
-        self.kind = kind
         self.title = title
         self.noticedAt = noticedAt
         self.readAt = readAt
@@ -60,10 +55,9 @@ extension Entity.PairNotification {
             id: id.value,
             fromUserID: from.id.value,
             toUserID: to.id.value,
-            kind: kind,
             title: title,
             noticedAt: noticedAt,
-            readAt: readAt
+            readAt: readState.readAt
         )
     }
 }

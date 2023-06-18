@@ -13,5 +13,5 @@ public protocol PairNotificationCreatable {
 
 /// ユーザー間通知のreadを更新する
 public protocol PairNotificationReadAtUpdatable {
-    func update(_ readAt: Date) async throws
+    func update(_ readAt: Date?, of: PairNotification.ID) async throws
 }

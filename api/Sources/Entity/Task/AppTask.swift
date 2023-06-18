@@ -12,23 +12,23 @@ public struct AppTask: Hashable, Codable {
 
     public var state: State
 
-    public var conditions: Conditions
+    public var restriction: Restriction
 
-    public var penalties: Penalties
+    public var penalties: [Penalty]
 
     public init(
         id: ID,
         title: String,
         note: String,
         state: State,
-        conditions: Conditions,
-        penalties: Penalties
+        restriction: Restriction,
+        penalties: [Penalty]
     ) {
         self.id = id
         self.title = title
         self.note = note
         self.state = state
-        self.conditions = conditions
+        self.restriction = restriction
         self.penalties = penalties
     }
 }

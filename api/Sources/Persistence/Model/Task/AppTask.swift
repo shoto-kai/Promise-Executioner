@@ -48,11 +48,26 @@ final class AppTask: Model {
         self.failedAt = failedAt
     }
 
+    // Notification Kind
     @Children(for: \.$task)
-    var sendMessageToUserPenalties: [SendMessageToUserPenalty]
+    var giftPairNotificationKinds: [GiftPairNotificationKind]
 
     @Children(for: \.$task)
-    var pushConditions: [PushCondition]
+    var penaltyPairNotificationKinds: [PenaltyPairNotificationKind]
+
+    @Children(for: \.$task)
+    var signPairNotificationKinds: [SignPairNotificationKind]
+
+    @Children(for: \.$task)
+    var terminatePairNotificationKind: [TerminatePairNotificationKind]
+
+    // Penalty
+    @Children(for: \.$task)
+    var sendUserMessagePenalties: [SendUserMessagePenalty]
+
+    // Restriction
+    @OptionalChild(for: \.$task)
+    var pushRestriction: PushRestriction?
 }
 
 extension Entity.AppTask {
@@ -69,24 +84,21 @@ extension Entity.AppTask {
 }
 
 extension AppTask {
-    /// - with sendMessageToUserPenalties
-    /// - with pushConditions
     var toEntity: Entity.AppTask {
         get throws {
             guard
-                let pushes = $pushConditions.value,
-                let sends = $sendMessageToUserPenalties.value
+                let restriction = $pushRestriction.value.flatMap({ $0 }),
+                let sendUserMessagePenalties = $sendUserMessagePenalties.value
             else {
-                fatalError("ロード不足")
+                throw DBError.loadError
             }
-
             return try .init(
                 id: .init(requireID()),
                 title: title,
                 note: note,
                 state: .init(completedAt, failedAt),
-                conditions: .init(pushes: pushes.map { try $0.toEntity }),
-                penalties: .init(sendMessageToUser: sends.map { try $0.toEntity })
+                restriction: restriction.toEntity,
+                penalties: sendUserMessagePenalties.map({ try $0.toEntity })
             )
         }
     }
