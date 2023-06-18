@@ -13,34 +13,25 @@ extension Persistence.FirebaseUser {
                 user: User.Seeder.entities[0],
                 emailVerified: true,
                 email: "alice@example.com",
-                firebase: .init(signInProvider: "email"),
-                iss: "Firebase",
-                phoneNumber: "+1234567890",
                 picture: "https://example.com/picture/alice",
-                sub: "alice_sub",
-                uid: "alice_uid"
+                uid: "alice_uid",
+                providerId: "email"
             ),
             .init(
                 user: User.Seeder.entities[1],
                 emailVerified: true,
                 email: "bob@example.com",
-                firebase: .init(signInProvider: "email"),
-                iss: "Firebase",
-                phoneNumber: "+0987654321",
                 picture: "https://example.com/picture/bob",
-                sub: "bob_sub",
-                uid: "bob_uid"
+                uid: "bob_uid",
+                providerId: nil
             ),
             .init(
                 user: User.Seeder.entities[2],
                 emailVerified: false,
                 email: "cancy@example.com",
-                firebase: .init(signInProvider: "email"),
-                iss: "Firebase",
-                phoneNumber: "+1122334455",
                 picture: "https://example.com/picture/cancy",
-                sub: "cancy_sub",
-                uid: "cancy_uid"
+                uid: "cancy_uid",
+                providerId: nil
             ),
         ]
 

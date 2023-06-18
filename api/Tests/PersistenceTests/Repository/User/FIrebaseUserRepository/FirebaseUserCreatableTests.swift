@@ -21,12 +21,9 @@ final class FirebaseUserCreatableTests: XCTestCase {
             user: .init(id: .init(UUID()), name: .init("test"), displayName: "Test"),
             emailVerified: true,
             email: "test@example.com",
-            firebase: .init(signInProvider: "email"),
-            iss: "Firebase",
-            phoneNumber: "+1234567890",
             picture: "https://example.com/picture/test",
-            sub: "test_sub",
-            uid: "test_uid"
+            uid: "test_uid",
+            providerId: nil
         )
 
         try await creatable.create(expected)

@@ -13,7 +13,7 @@ extension FirebaseUser {
                 .field("email", .string)
                 .field("picture", .string)
                 .field("uid", .string, .required)
-                .field("provider_id", .string, .required)
+                .field("provider_id", .string)
                 .field("created_at", .datetime, .required)
                 .field("updated_at", .datetime, .required)
                 .unique(on: "user_id")
