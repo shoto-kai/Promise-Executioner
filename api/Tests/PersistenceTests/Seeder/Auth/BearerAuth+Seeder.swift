@@ -6,7 +6,7 @@ import Foundation
 
 extension Persistence.BearerAuth {
     struct Seeder: Seedable {
-        
+
         static var models: [Persistence.BearerAuth] {
             [
                 .init(userID: users[0].id.value, token: "token1"),
@@ -16,11 +16,11 @@ extension Persistence.BearerAuth {
         private static var users: [Entity.User] {
             Persistence.User.Seeder.entities
         }
-        
+
         func seed(on db: Database) async throws {
             try await Self.models.create(on: db)
         }
-        
+
         func refresh(on db: Database) async throws {
             try await BearerAuth.query(on: db).delete()
         }

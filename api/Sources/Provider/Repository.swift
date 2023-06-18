@@ -16,4 +16,16 @@ extension Request {
     public var bearerUserSaver: some BearerUserSavible {
         BearerAuthRepository(on: db)
     }
+
+    public var firebaseUserFinder: some FirebaseUserFindable {
+        FirebaseUserRepository(on: db)
+    }
+
+    public var firebaseUserCreator: some FirebaseUserCreatable {
+        FirebaseUserRepository(on: db)
+    }
+
+    public var firebaseUserDeleterByUserID: some FirebaseUserDeletableByUserID {
+        FirebaseUserRepository(on: db)
+    }
 }

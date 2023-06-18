@@ -13,9 +13,9 @@ final class BearerUserSavibleTests: XCTestCase {
         defer { app.shutdown() }
         try await configure(app)
         try await seed(on: app.db)
-        
+
         let repository = BearerAuthRepository(on: app.db)
-        
+
         try await repository.save(
             userID: Persistence.User.Seeder.entities[3].id,
             token: .init("token3")
@@ -25,15 +25,15 @@ final class BearerUserSavibleTests: XCTestCase {
         let actual = try await repository.find(.init("token3"))
         XCTAssertEqual(actual, expected)
     }
-    
+
     func testUpdate() async throws {
         let app = Application(.testing)
         defer { app.shutdown() }
         try await configure(app)
         try await seed(on: app.db)
-        
+
         let repository = BearerAuthRepository(on: app.db)
-        
+
         try await repository.save(
             userID: Persistence.User.Seeder.entities[0].id,
             token: .init("token3")
