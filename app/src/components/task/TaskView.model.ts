@@ -26,6 +26,7 @@ export class TaskViewModel {
 
   readonly onOpenCreateTaskModal = () => {
     this.setState(this.state.createTaskModalOpened);
+    console.log("test");
   };
 
   private onCloseCreateTaskModal() {

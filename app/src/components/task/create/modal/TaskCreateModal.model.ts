@@ -22,8 +22,12 @@ export class TaskCreateModalModel {
   }
 
   /** 作成処理 */
-  readonly onCreate = () => this.props.onCreate(this.state.task);
+  readonly onCreate = () => {
+    console.log("作成");
+  };
 
   /** キャルセル処理 */
-  readonly onCancel = () => this.props.onCancel();
+  readonly onCancel = () => {
+    console.log("キャンセル");
+  };
 }
