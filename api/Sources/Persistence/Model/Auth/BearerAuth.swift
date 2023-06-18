@@ -22,7 +22,7 @@ final class BearerAuth: Model {
 
     init() {}
 
-    init(id: UUID? = nil, userID: User.IDValue, token: String) async throws {
+    init(id: UUID? = nil, userID: User.IDValue, token: String) {
         self.id = id
         self.$user.id = userID
         self.token = token

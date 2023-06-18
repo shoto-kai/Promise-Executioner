@@ -5,6 +5,7 @@ import Fluent
 let seeders: [Seedable] = [
     User.Seeder(),
     FirebaseUser.Seeder(),
+    BearerAuth.Seeder(),
 ]
 
 func seed(on db: Database) async throws {
