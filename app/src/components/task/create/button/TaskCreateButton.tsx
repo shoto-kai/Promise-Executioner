@@ -1,6 +1,5 @@
 import { IonNavLink, IonItem } from "@ionic/react";
 
-import "./TaskCreateButton.css";
 
 import TaskCreate from "~/components/task/create/modal/TaskCreate";
 import { TaskCreateModalProps as Props } from "~/components/task/create/modal/TaskCreateModal.props";
