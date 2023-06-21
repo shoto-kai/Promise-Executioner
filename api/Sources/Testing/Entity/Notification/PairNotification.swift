@@ -7,9 +7,10 @@ extension PairNotification {
             id: .init(.init()),
             from: .init(),
             to: .init(),
-            kind: .gift,
+            kind: .gift(task: .init()),
             title: "",
-            noticedAt: Date(timeIntervalSince1970: 0)
+            noticedAt: .init(at: 0),
+            readState: .unread
         )
     }
 }

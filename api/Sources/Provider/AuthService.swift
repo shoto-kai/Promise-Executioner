@@ -17,7 +17,7 @@ extension Request {
     }
 
     public var bearerTokenAuthenticator: some BearerTokenAuthenticable {
-        BearerTokenAuthenticator(userFinderByBearerToken)
+        BearerTokenAuthenticator(finder: userFinderByBearerToken, deleter: oldBearerAuthDeleter)
     }
 
     public var sessionAuthenticator: some SessionAuthenticable {

@@ -5,16 +5,26 @@ import Repository
 import ServiceProtocol
 import Usecase
 
-public struct BearerTokenAuthenticator<T: UserFindableByBearerToken>: BearerTokenAuthenticable {
+public let bearerTokenExpireryMinutes = 60 * 24 /*[分]*/
 
-    var repository: T
+public struct BearerTokenAuthenticator<
+    UFBBT: UserFindableByBearerToken,
+    OBAD: OldBearerAuthDeletable
+>: BearerTokenAuthenticable {
 
-    public init(_ repository: T) {
-        self.repository = repository
+    var finder: UFBBT
+    var deleter: OBAD
+    
+    public init(finder: UFBBT, deleter: OBAD) {
+        self.finder = finder
+        self.deleter = deleter
     }
 
-    public func authenticate(token: BearerAuth.Token) async throws -> User? {
-        try await repository.find(token)
+    public func authenticate(
+        token: BearerAuth.Token,
+        now: Date
+    ) async throws -> User? {
+        try await deleter.deleteBearerAuth(before: now)
+        return try await finder.find(token)
     }
-
 }

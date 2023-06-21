@@ -47,6 +47,18 @@ final class PairNotification: Model {
         self.noticedAt = noticedAt
         self.readAt = readAt
     }
+    
+    @OptionalChild(for: \.$notification)
+    var gift: GiftPairNotificationKind?
+    
+    @OptionalChild(for: \.$notification)
+    var penalty: PenaltyPairNotificationKind?
+    
+    @OptionalChild(for: \.$notification)
+    var sign: SignPairNotificationKind?
+    
+    @OptionalChild(for: \.$notification)
+    var terminate: TerminatePairNotificationKind?
 }
 
 extension Entity.PairNotification {
@@ -78,8 +90,26 @@ extension PairNotification {
                 kind: kind,
                 title: title,
                 noticedAt: noticedAt,
-                readAt: readAt
+                readState: .init(at: readAt)
             )
+        }
+    }
+    
+    private var kind: NotificationKind {
+        get throws {
+            if let giftKind = try $gift.value.flatMap({ try $0?.toEntity }) {
+                return giftKind
+            }
+            if let penaltyKind = try $penalty.value.flatMap({ try $0?.toEntity }) {
+                return penaltyKind
+            }
+            if let signKind = try $sign.value.flatMap({ try $0?.toEntity }) {
+                return signKind
+            }
+            if let terminateKind = try $terminate.value.flatMap({ try $0?.toEntity }) {
+                return terminateKind
+            }
+            throw DBError.loadError
         }
     }
 }

@@ -7,8 +7,8 @@ extension AppTask {
             title: "",
             note: "",
             state: .incomplete,
-            conditions: .init(),
-            penalties: .init()
+            restriction: .push(deadline: .init(at: 3)),
+            penalties: []
         )
     }
 }
