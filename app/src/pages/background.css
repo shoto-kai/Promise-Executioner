@@ -1,3 +1,4 @@
 ion-content::part(background) {
-  background-image: url(../../public/background.jpg); /* 背景画像指定 */
+  /* background-image: url(../../public/background.jpg); 背景画像指定 */
+  background-image: url(../../public/background.jpg.png); /* 背景画像指定 */
 }
