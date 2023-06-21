@@ -8,6 +8,7 @@ import {
 import TaskView from "~/components/task/TaskView";
 import { FC } from "react";
 import { TaskPageModel as Model } from "~/pages/TaskPage.model";
+import "./background.css";
 
 const TaskPage: FC = () => {
   const m = new Model();
