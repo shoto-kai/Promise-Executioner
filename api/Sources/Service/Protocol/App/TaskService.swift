@@ -1,15 +1,15 @@
 import Entity
 
-public protocol TaskFetchable {
-    func fetch(_ id: AppTask.ID) async throws -> AppTask?
+public protocol TaskFindable {
+    func find(_ id: AppTask.ID) async throws -> AppTask?
 }
 
-public protocol PersonalTaskAllFetchable {
-    func fetch(of: User) async throws -> [AppTask]
+public protocol AllUserTaskTakeable {
+    func takeAll(of: User.ID) async throws -> [AppTask]
 }
 
 public protocol TaskCreatable {
-    func create(task: AppTask, of: User) async throws
+    func create(task: AppTask, of: User.ID) async throws
 }
 
 public protocol TaskUpdatable {

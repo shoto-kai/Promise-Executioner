@@ -19,4 +19,6 @@ func routes(_ app: Application) throws {
     let api = app.grouped("api")
         .grouped(BearerAuthMiddleware())
         .grouped(User.guardMiddleware())
+    
+    try api.register(collection: TaskController())
 }

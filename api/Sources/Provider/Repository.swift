@@ -5,31 +5,59 @@ import Vapor
 
 extension Request {
 
-    public var userFinder: some UserFindable {
+    var userFinder: some UserFindable {
+        UserRepository(on: db)
+    }
+    
+    var userFinderByUsername: some UserFindableByName {
         UserRepository(on: db)
     }
 
-    public var userFinderByBearerToken: some UserFindableByBearerToken {
+    var userFinderByBearerToken: some UserFindableByBearerToken {
         BearerAuthRepository(on: db)
     }
 
-    public var bearerUserSaver: some BearerUserSavible {
+    var bearerUserSaver: some BearerUserSavible {
         BearerAuthRepository(on: db)
     }
     
-    public var oldBearerAuthDeleter: some OldBearerAuthDeletable {
+    var oldBearerAuthDeleter: some OldBearerAuthDeletable {
         BearerAuthRepository(on: db)
     }
 
-    public var firebaseUserFinder: some FirebaseUserFindable {
+    var firebaseUserFinder: some FirebaseUserFindable {
         FirebaseUserRepository(on: db)
     }
 
-    public var firebaseUserCreator: some FirebaseUserCreatable {
+    var firebaseUserCreator: some FirebaseUserCreatable {
         FirebaseUserRepository(on: db)
     }
 
-    public var firebaseUserDeleterByUserID: some FirebaseUserDeletableByUserID {
+    var firebaseUserDeleterByUserID: some FirebaseUserDeletableByUserID {
         FirebaseUserRepository(on: db)
+    }
+    
+    var allTaskTaker: some AllTaskTakeable {
+        AppTaskRepository(on: db)
+    }
+    
+    var allUserTaskTaker: some AllUserTaskTakeable {
+        AppTaskRepository(on: db)
+    }
+    
+    var taskFinder: some TaskFindable {
+        AppTaskRepository(on: db)
+    }
+    
+    var taskCreator: some TaskCreatable {
+        AppTaskRepository(on: db)
+    }
+    
+    var taskUpdator: some TaskUpdatable {
+        AppTaskRepository(on: db)
+    }
+    
+    var taskDeleter: some TaskDeletable {
+        AppTaskRepository(on: db)
     }
 }
