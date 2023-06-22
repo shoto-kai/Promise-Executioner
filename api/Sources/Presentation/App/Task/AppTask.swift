@@ -1,20 +1,20 @@
-import Vapor
 import Entity
+import Vapor
 
 public struct AppTask: Content, Hashable {
-    
+
     var id: UUID
-    
+
     var title: String
-    
+
     var note: String
-    
+
     var state: State
-    
+
     var pushRestriction: PushRestriction?
-    
+
     var sendUserMessagePenalties: [SendUserMessagePenalty]
-    
+
 }
 
 extension AppTask {
@@ -41,7 +41,8 @@ extension Entity.AppTask {
             title: title,
             note: note,
             state: state.toContent,
-            sendUserMessagePenalties: penalties.compactMap { $0.toSendUserMessageContent
+            sendUserMessagePenalties: penalties.compactMap {
+                $0.toSendUserMessageContent
             }
         )
     }

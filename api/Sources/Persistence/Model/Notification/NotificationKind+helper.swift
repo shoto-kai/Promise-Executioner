@@ -8,7 +8,7 @@ extension Entity.NotificationReadState {
         }
         return at
     }
-    
+
     init(at date: Date?) {
         if let date {
             self = .read(at: date)

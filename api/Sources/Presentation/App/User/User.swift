@@ -4,9 +4,9 @@ import Vapor
 public struct User: Hashable, Content {
 
     public var id: UUID
-    
+
     public var name: String
-    
+
     public var displayName: String
 
     init(id: UUID, name: String, displayName: String) {

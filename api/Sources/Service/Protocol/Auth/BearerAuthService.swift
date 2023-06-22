@@ -1,5 +1,5 @@
-import Foundation
 import Entity
+import Foundation
 import Usecase
 
 /// Bearerトークンで認証する

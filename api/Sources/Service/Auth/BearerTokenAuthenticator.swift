@@ -14,7 +14,7 @@ public struct BearerTokenAuthenticator<
 
     var finder: UFBBT
     var deleter: OBAD
-    
+
     public init(finder: UFBBT, deleter: OBAD) {
         self.finder = finder
         self.deleter = deleter

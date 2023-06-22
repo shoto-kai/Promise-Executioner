@@ -47,16 +47,16 @@ final class PairNotification: Model {
         self.noticedAt = noticedAt
         self.readAt = readAt
     }
-    
+
     @OptionalChild(for: \.$notification)
     var gift: GiftPairNotificationKind?
-    
+
     @OptionalChild(for: \.$notification)
     var penalty: PenaltyPairNotificationKind?
-    
+
     @OptionalChild(for: \.$notification)
     var sign: SignPairNotificationKind?
-    
+
     @OptionalChild(for: \.$notification)
     var terminate: TerminatePairNotificationKind?
 }
@@ -94,7 +94,7 @@ extension PairNotification {
             )
         }
     }
-    
+
     private var kind: NotificationKind {
         get throws {
             if let giftKind = try $gift.value.flatMap({ try $0?.toEntity }) {

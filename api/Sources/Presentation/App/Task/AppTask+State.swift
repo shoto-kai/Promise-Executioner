@@ -1,5 +1,5 @@
-import Vapor
 import Entity
+import Vapor
 
 extension AppTask {
     public enum State: String, Content, Hashable {

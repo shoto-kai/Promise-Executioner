@@ -1,5 +1,5 @@
-import Vapor
 import Entity
+import Vapor
 
 public struct PushRestriction: Content, Hashable {
     var deadline: Date?

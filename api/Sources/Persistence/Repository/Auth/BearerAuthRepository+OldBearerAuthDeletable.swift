@@ -1,6 +1,6 @@
-import Foundation
 import Entity
 import Fluent
+import Foundation
 import Repository
 import Usecase
 
