@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dcc161c-069e-45b5-a24c-c8bd7aa52c2d" name="Changes" comment="Create CD">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/app-delivery.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/app-delivery.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4dcc161c-069e-45b5-a24c-c8bd7aa52c2d" name="Changes" comment="Create CD" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,6 +174,7 @@
       <workItem from="1683114382127" duration="101000" />
       <workItem from="1683114520075" duration="302000" />
       <workItem from="1683476896623" duration="1562000" />
+      <workItem from="1687451238901" duration="560000" />
     </task>
     <task id="LOCAL-00001" summary="ペナルティ一覧の実装">
       <created>1683114352918</created>

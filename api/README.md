@@ -55,6 +55,8 @@ erDiagram
         uuid user_id FK
         string title
         string note
+        datetime completed_at
+        datetime failed_at
     }
     users ||--o{ tasks: "所有"
     
@@ -85,4 +87,15 @@ erDiagram
     }
 
     push_button_conditions ||--o| push_button_condition_deadline_restrictions: "所有"
+
+    pair_notifications {
+        uuid id PK
+        uuid from_user_id FK
+        uuid to_user_id FK
+        string kind
+        string title
+        datetime noticed_at
+        datetime read_at
+    }
+    users ||--o{ pair_notifications: "所有"
 ```

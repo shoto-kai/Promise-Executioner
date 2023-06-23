@@ -6,7 +6,7 @@ extension UserRepository: UserUpdatable {
         guard let old = try await User.find(user.id.value, on: db) else {
             throw DBError.notFound
         }
-        let new = User(user)
+        let new = user.toModel
         new.createdAt = old.createdAt
         new._$idExists = true
         try await new.update(on: db)

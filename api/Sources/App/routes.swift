@@ -1,3 +1,4 @@
+import Entity
 import Fluent
 import Vapor
 
@@ -10,5 +11,14 @@ func routes(_ app: Application) throws {
         "Hello, world!"
     }
 
-    try app.register(collection: TodoController())
+    try app.group("auth") { auth in
+        try auth.register(collection: FirebaseAuthController())
+        try auth.register(collection: SessionAuthController())
+    }
+
+    let api = app.grouped("api")
+        .grouped(BearerAuthMiddleware())
+        .grouped(User.guardMiddleware())
+
+    try api.register(collection: TaskController())
 }

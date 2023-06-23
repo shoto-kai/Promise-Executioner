@@ -5,6 +5,11 @@ public protocol UserFindable {
     func find(_ id: User.ID) async throws -> User?
 }
 
+// ユーザーを名前で取得できる
+public protocol UserFindableByName {
+    func find(_ name: User.Name) async throws -> User?
+}
+
 /// 全てのユーザーを取得できる
 public protocol AllUserTakeable {
     func takeAll() async throws -> [User]

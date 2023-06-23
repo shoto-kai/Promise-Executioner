@@ -2,6 +2,11 @@ import Entity
 
 /// ユーザーの全てのタスクを取得する
 public protocol AllTaskTakeable {
+    func takeAll() async throws -> [AppTask]
+}
+
+/// ユーザーの全てのタスクを取得する
+public protocol AllUserTaskTakeable {
     func takeAll(of: User.ID) async throws -> [AppTask]
 }
 
@@ -22,5 +27,5 @@ public protocol TaskUpdatable {
 
 /// タスクを削除する
 public protocol TaskDeletable {
-    func delete(_ task: AppTask) async throws
+    func delete(_ taskID: AppTask.ID) async throws
 }

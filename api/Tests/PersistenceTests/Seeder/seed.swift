@@ -1,10 +1,11 @@
-@testable import Persistence
 import Fluent
+
+@testable import Persistence
 
 let seeders: [Seedable] = [
     User.Seeder(),
-    Friend.Seeder(),
-    AppNotification.Seeder(),
+    FirebaseUser.Seeder(),
+    BearerAuth.Seeder(),
 ]
 
 func seed(on db: Database) async throws {

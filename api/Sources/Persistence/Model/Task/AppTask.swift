@@ -1,73 +1,104 @@
-import Foundation
-import Fluent
 import Entity
+import Fluent
+import Foundation
 
 final class AppTask: Model {
-    
+
     static let schema = "tasks"
-    
+
     @ID(key: .id)
     var id: UUID?
-    
+
     @Parent(key: "user_id")
     var user: User
-    
+
     @Field(key: "title")
     var title: String
-    
+
     @Field(key: "note")
     var note: String
-    
+
+    @Field(key: "completed_at")
+    var completedAt: Date?
+
+    @Field(key: "failed_at")
+    var failedAt: Date?
+
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
-    
+
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
-    
-    init() { }
-    
-    init(id: UUID? = nil, userID: User.IDValue, title: String, note: String) {
+
+    init() {}
+
+    init(
+        id: UUID? = nil,
+        userID: User.IDValue,
+        title: String,
+        note: String,
+        completedAt: Date?,
+        failedAt: Date?
+    ) {
         self.id = id
         self.$user.id = userID
         self.title = title
         self.note = note
+        self.completedAt = completedAt
+        self.failedAt = failedAt
     }
-    
+
+    // Notification Kind
     @Children(for: \.$task)
-    var dateLimitRestrictions: [DateLimitRestriction]
-    
+    var giftPairNotificationKinds: [GiftPairNotificationKind]
+
     @Children(for: \.$task)
-    var sendUserPenalties: [SendUserPenalty]
+    var penaltyPairNotificationKinds: [PenaltyPairNotificationKind]
+
+    @Children(for: \.$task)
+    var signPairNotificationKinds: [SignPairNotificationKind]
+
+    @Children(for: \.$task)
+    var terminatePairNotificationKind: [TerminatePairNotificationKind]
+
+    // Penalty
+    @Children(for: \.$task)
+    var sendUserMessagePenalties: [SendUserMessagePenalty]
+
+    // Restriction
+    @OptionalChild(for: \.$task)
+    var pushRestriction: PushRestriction?
 }
 
-extension AppTask {
-    convenience init(_ entity: Entity.AppTask, of userID: Entity.User.ID) {
-        self.init(
-            id: entity.id.value,
+extension Entity.AppTask {
+    func toModel(of userID: Entity.User.ID) -> Persistence.AppTask {
+        .init(
+            id: id.value,
             userID: userID.value,
-            title: entity.title,
-            note: entity.note
+            title: title,
+            note: note,
+            completedAt: state.completedAt,
+            failedAt: state.failedAt
         )
     }
 }
 
 extension AppTask {
-    
-    /// with
-    /// - dateLimitRestrictions
-    /// - sendUserPenalties
     var toEntity: Entity.AppTask {
         get throws {
-            try .init(
+            guard
+                let restriction = $pushRestriction.value.flatMap({ $0 }),
+                let sendUserMessagePenalties = $sendUserMessagePenalties.value
+            else {
+                throw DBError.loadError
+            }
+            return try .init(
                 id: .init(requireID()),
                 title: title,
                 note: note,
-                restrictions: .init(
-                    dateLimitRestrictions: dateLimitRestrictions.map { try $0.toEntity }
-                ),
-                penalties: .init(
-                    sendUserPenalties: sendUserPenalties.map { try $0.toEntity }
-                )
+                state: .init(completedAt, failedAt),
+                restriction: restriction.toEntity,
+                penalties: sendUserMessagePenalties.map({ try $0.toEntity })
             )
         }
     }

@@ -1,48 +1,41 @@
-import Foundation
-import Fluent
 import Entity
+import Fluent
+import Foundation
 
 final class User: Model {
-    
+
     static let schema = "users"
-    
+
     @ID(key: .id)
     var id: UUID?
-    
+
     @Field(key: "name")
     var name: String
-    
+
+    @Field(key: "display_name")
+    var displayName: String
+
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
-    
+
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
-    
-    init() { }
-    
-    init(id: UUID? = nil, name: String) {
+
+    init() {}
+
+    init(id: UUID? = nil, name: String, displayName: String) {
         self.id = id
         self.name = name
+        self.displayName = displayName
     }
-    
-    @Siblings(through: Friend.self, from: \.$user, to: \.$friend)
-    var friends: [User]
-    
-    @Children(for: \.$user)
-    var notifications: [AppNotification]
-    
-    @Children(for: \.$user)
-    var tasks: [AppTask]
-    
-    @Children(for: \.$destinationUser)
-    var sendUserPenalties: [SendUserPenalty]
 }
 
-extension User {
-    convenience init(_ entity: Entity.User) {
-        self.init(
-            id: entity.id.value,
-            name: entity.name
+extension Entity.User {
+    var toModel: Persistence.User {
+        .init(
+            id: id.value,
+            name: name.value,
+            displayName: displayName
         )
     }
 }
@@ -50,7 +43,12 @@ extension User {
 extension User {
     var toEntity: Entity.User {
         get throws {
-            try .init(id: .init(requireID()), name: name)
+            let name = try Entity.User.Name(name)
+            return try .init(
+                id: .init(requireID()),
+                name: name,
+                displayName: displayName
+            )
         }
     }
 }
