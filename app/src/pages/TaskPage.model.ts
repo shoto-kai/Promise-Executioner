@@ -10,7 +10,7 @@ export class TaskPageModel {
       "タスク1の備考",
       1000,
       AppTaskState.incomplete,
-      new TaskLimitDate(new Date("2023-05-20T16:00:00+09:00"))
+      new TaskLimitDate(new Date("2023-06-24T17:30:00+09:00"))
     ),
     new AppTask(
       "2",
@@ -18,7 +18,7 @@ export class TaskPageModel {
       "タスク2の備考",
       2000,
       AppTaskState.incomplete,
-      new TaskLimitDate(new Date("2023-05-20T20:00:00+09:00"))
+      new TaskLimitDate(new Date("2023-06-24T20:00:00+09:00"))
     ),
     new AppTask(
       "3",
@@ -26,7 +26,7 @@ export class TaskPageModel {
       "タスク3の備考",
       3000,
       AppTaskState.incomplete,
-      new TaskLimitDate(new Date("2023-05-21T15:00:00+09:00"))
+      new TaskLimitDate(new Date("2023-06-25T15:00:00+09:00"))
     ),
   ];
 
