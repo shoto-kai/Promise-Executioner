@@ -1,7 +1,7 @@
 final class SendUserMessageCase: PenaltyCase {
 
     private let destine: User
-    private let amount: Penalty.Amount
+    private let _amount: Penalty.Amount
     private let note: String
     private let message: String
     private let _state: Penalty.State
@@ -14,7 +14,7 @@ final class SendUserMessageCase: PenaltyCase {
         state: Penalty.State
     ) {
         self.destine = destine
-        self.amount = amount
+        self._amount = amount
         self.note = note
         self.message = message
         self._state = state
@@ -22,5 +22,9 @@ final class SendUserMessageCase: PenaltyCase {
 
     override var state: Penalty.State {
         _state
+    }
+    
+    override var amount: Penalty.Amount {
+        _amount
     }
 }

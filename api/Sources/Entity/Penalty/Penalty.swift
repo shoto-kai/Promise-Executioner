@@ -12,10 +12,14 @@ extension Penalty {
     public var state: State {
         each.state
     }
+    
+    public var amount: Amount {
+        each.amount
+    }
 }
 
 extension Penalty {
-    private var each: PenaltyCase {
+    private var each: some PenaltyCase {
         switch self {
         case .sendUserMessage(
             let destine,

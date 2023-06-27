@@ -1,5 +1,9 @@
 class PenaltyCase {
     var state: Penalty.State {
-        .unexecuted
+        fatalError()
+    }
+    
+    var amount: Penalty.Amount {
+        fatalError()
     }
 }

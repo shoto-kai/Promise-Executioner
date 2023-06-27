@@ -3,7 +3,7 @@ import XCTest
 
 @testable import Entity
 
-public final class UserNameTests: XCTestCase {
+final class UserNameTests: XCTestCase {
 
     func test半角小文字英数字ハイフンで初期化可能() throws {
         _ = try User.Name("alice-hello-34-world")

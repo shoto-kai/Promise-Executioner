@@ -6,7 +6,7 @@ extension AppTask {
             id: .init(.init()),
             title: "",
             note: "",
-            state: .incomplete,
+            state: .init(),
             restriction: .push(deadline: .init(at: 3)),
             penalties: []
         )

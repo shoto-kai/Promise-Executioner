@@ -12,6 +12,6 @@ final class PushRestrictionCase: RestrictionCase {
         guard let deadline else {
             return false
         }
-        return deadline > now
+        return deadline < now
     }
 }

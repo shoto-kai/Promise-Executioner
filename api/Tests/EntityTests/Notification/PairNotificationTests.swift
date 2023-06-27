@@ -1,36 +1,35 @@
-//import Testing
-//import XCTest
-//
-//@testable import Entity
-//
-//public final class PairNotificationTests: XCTestCase {
-//
-//    func test通知日時の昇順でソートできる() {
-//        var notifications = (1...3).map { _ in
-//            PairNotification.init()
-//        }
-//        notifications[0].noticedAt = .init(at: 3)
-//        notifications[1].noticedAt = .init(at: 2)
-//        notifications[2].noticedAt = .init(at: 1)
-//
-//        var expected = notifications
-//        expected[0] = notifications[2]
-//        expected[2] = notifications[0]
-//
-//        let actual = notifications.sorted()
-//
-//        XCTAssertEqual(actual, expected)
-//    }
-//
-//    func test既読判定() {
-//        var notification = PairNotification()
-//        notification.readAt = .init(at: 4)
-//        XCTAssertTrue(notification.isRead)
-//    }
-//
-//    func test未読判定() {
-//        var notification = PairNotification()
-//        notification.readAt = nil
-//        XCTAssertFalse(notification.isRead)
-//    }
-//}
+import Testing
+import XCTest
+
+@testable import Entity
+
+public final class PairNotificationTests: XCTestCase {
+    
+    func test_sort時に通知時刻でソートされる() {
+        var notification1 = PairNotification()
+        notification1.noticedAt = .init(at: 1)
+        
+        
+        var notification2 = PairNotification()
+        notification2.noticedAt = .init(at: 2)
+        
+        
+        var notification3 = PairNotification()
+        notification3.noticedAt = .init(at: 3)
+        
+        let notifications = [
+            notification3,
+            notification1,
+            notification2,
+        ]
+        
+        let expected = [
+            notification1,
+            notification2,
+            notification3,
+        ]
+        let actual = notifications.sorted()
+        
+        XCTAssertEqual(actual, expected)
+    }
+}
