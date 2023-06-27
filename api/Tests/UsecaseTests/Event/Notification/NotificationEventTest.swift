@@ -7,11 +7,26 @@ import Testing
 final class NotificationEventTest: XCTestCase {
     
     func test並び替えするとat順に並ぶ() {
-        let event1: NotificationEvent = .createSign(event: .init(id: .init(.init()), task: .init(), at: .init(at: 1)))
-        let event2: NotificationEvent = .updateSign(event: .init(id: .init(.init()), task: .init(), at: .init(at: 2)))
-        let event3: NotificationEvent = .deleteSign(event: .init(id: .init(.init()), taskID: .init(.init()), at: .init(at: 3)))
-        let event4: NotificationEvent = .breakRestriction(event: .init(id: .init(.init()), task: .init(), at: .init(at: 4)))
-        let event5: NotificationEvent = .accomplishRestriction(event: .init(id: .init(.init()), task: .init(), at: .init(at: 5)))
+        
+        var createEvent = AppTaskCreateEvent()
+        createEvent.at = .init(at: 1)
+        let event1: NotificationEvent = .createSign(event: createEvent)
+        
+        var updateEvent = AppTaskUpdateEvent()
+        updateEvent.at = .init(at: 2)
+        let event2: NotificationEvent = .updateSign(event: updateEvent)
+        
+        var deleteEvent = AppTaskDeleteEvent()
+        deleteEvent.at = .init(at: 3)
+        let event3: NotificationEvent = .deleteSign(event: deleteEvent)
+        
+        var breakEvent = BreakRestrictionEvent()
+        breakEvent.at = .init(at: 4)
+        let event4: NotificationEvent = .breakRestriction(event: breakEvent)
+        
+        var accomplishEvent = AccomplishRestrictionEvent()
+        accomplishEvent.at = .init(at: 5)
+        let event5: NotificationEvent = .accomplishRestriction(event: accomplishEvent)
         
         let events = [
             event2,

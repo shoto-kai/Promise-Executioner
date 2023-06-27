@@ -11,28 +11,42 @@ final class AppTaskChangeEventsAggregateTasksTest: XCTestCase {
         var taskA = AppTask()
         taskA.title = "First"
         
-        let createA = AppTaskCreateEvent(id: .init(.init()), task: taskA, at: .init(at: 1))
+        var createA = AppTaskCreateEvent()
+        createA.task = taskA
+        createA.at = .init(at: 1)
         
         taskA.title = "Second"
-        let updateA1 = AppTaskUpdateEvent(id: .init(.init()), task: taskA, at: .init(at: 2))
+        var updateA1 = AppTaskUpdateEvent()
+        updateA1.task = taskA
+        updateA1.at = .init(at: 2)
         
         taskA.title = "Third"
-        let updateA2 = AppTaskUpdateEvent(id: .init(.init()), task: taskA, at: .init(at: 3))
+        var updateA2 = AppTaskUpdateEvent()
+        updateA2.task = taskA
+        updateA2.at = .init(at: 3)
         
         var taskB = AppTask()
         taskB.title = "1番目"
         
-        let createB = AppTaskCreateEvent(id: .init(.init()), task: taskB, at: .init(at: 2))
+        var createB = AppTaskCreateEvent()
+        createB.task = taskB
+        createB.at = .init(at: 2)
         
         taskB.title = "2番目"
-        let updateB = AppTaskUpdateEvent(id: .init(.init()), task: taskB, at: .init(at: 3))
+        var updateB = AppTaskUpdateEvent()
+        updateB.task = taskB
+        updateB.at = .init(at: 3)
         
         var taskC = AppTask()
         taskC.title = "One"
         
-        let createC = AppTaskCreateEvent(id: .init(.init()), task: taskC, at: .init(at: 3))
+        var createC = AppTaskCreateEvent()
+        createC.task = taskC
+        createC.at = .init(at: 3)
         
-        let deleteC = AppTaskDeleteEvent(id: .init(.init()), taskID: taskC.id, at: .init(at: 4))
+        var deleteC = AppTaskDeleteEvent()
+        deleteC.taskID = taskC.id
+        deleteC.at = .init(at: 4)
         
         let events: [AppTaskChangeEvent] = [
             .delete(event: deleteC),
