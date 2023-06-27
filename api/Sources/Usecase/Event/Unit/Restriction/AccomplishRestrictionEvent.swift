@@ -1,8 +1,8 @@
 import Foundation
 import Entity
 
-/// タスク作成イベント
-public struct AppTaskCreateEvent: Hashable, Codable {
+/// 制約を達成するイベント
+public struct AccomplishRestrictionEvent: Hashable, Codable {
     
     public typealias ID = Identifier<Self>
     
