@@ -1,5 +1,5 @@
-import Foundation
 import Entity
+import Foundation
 
 public enum NotificationEvent: Hashable, Codable, Comparable {
     case createSign(event: AppTaskCreateEvent)
@@ -7,11 +7,11 @@ public enum NotificationEvent: Hashable, Codable, Comparable {
     case deleteSign(event: AppTaskDeleteEvent)
     case breakRestriction(event: BreakRestrictionEvent)
     case accomplishRestriction(event: AccomplishRestrictionEvent)
-    
+
     public static func < (lhs: NotificationEvent, rhs: NotificationEvent) -> Bool {
         lhs.at < rhs.at
     }
-    
+
     private var at: Date {
         switch self {
         case .createSign(let event):
@@ -26,5 +26,5 @@ public enum NotificationEvent: Hashable, Codable, Comparable {
             return event.at
         }
     }
-    
+
 }

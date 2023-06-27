@@ -23,7 +23,7 @@ final class SendUserMessageCase: PenaltyCase {
     override var state: Penalty.State {
         _state
     }
-    
+
     override var amount: Penalty.Amount {
         _amount
     }

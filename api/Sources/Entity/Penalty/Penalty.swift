@@ -12,7 +12,7 @@ extension Penalty {
     public var state: State {
         each.state
     }
-    
+
     public var amount: Amount {
         each.amount
     }
