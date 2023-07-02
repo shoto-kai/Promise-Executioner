@@ -10,7 +10,7 @@ public struct FindTaskService<T: Repository.TaskFindable>: ServiceProtocol.TaskF
         self.finder = finder
     }
 
-    public func find(_ id: AppTask.ID) async throws -> AppTask? {
+    public func find(_ id: AppPromise.ID) async throws -> AppPromise? {
         try await finder.find(id)
     }
 }

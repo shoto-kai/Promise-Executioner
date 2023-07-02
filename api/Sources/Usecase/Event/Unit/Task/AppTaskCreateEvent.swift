@@ -11,12 +11,12 @@ public struct AppTaskCreateEvent: Hashable, Codable {
     public var user: User
 
     /// 対象タスク
-    public var task: AppTask
+    public var task: AppPromise
 
     /// 発生日時
     public var at: Date
 
-    public init(id: ID, user: User, task: AppTask, at: Date) {
+    public init(id: ID, user: User, task: AppPromise, at: Date) {
         self.id = id
         self.user = user
         self.task = task

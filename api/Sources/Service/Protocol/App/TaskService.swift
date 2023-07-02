@@ -1,21 +1,22 @@
 import Entity
+import Foundation
 
 public protocol TaskFindable {
-    func find(_ id: AppTask.ID) async throws -> AppTask?
+    func find(_ id: AppPromise.ID) async throws -> AppPromise?
 }
 
 public protocol AllUserTaskTakeable {
-    func takeAll(of: User.ID) async throws -> [AppTask]
+    func takeAll(of: User.ID) async throws -> [AppPromise]
 }
 
 public protocol TaskCreatable {
-    func create(task: AppTask, of: User.ID) async throws
+    func create(task: AppPromise, of: User, at: Date) async throws
 }
 
 public protocol TaskUpdatable {
-    func update(task: AppTask) async throws
+    func update(task: AppPromise) async throws
 }
 
 public protocol TaskDeletable {
-    func delete(_ id: AppTask.ID) async throws
+    func delete(_ id: AppPromise.ID) async throws
 }

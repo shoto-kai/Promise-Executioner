@@ -9,12 +9,12 @@ public struct AccomplishRestrictionEvent: Hashable, Codable {
     public var id: ID
 
     /// 対象タスク
-    public var task: AppTask
+    public var task: AppPromise
 
     /// 発生日時
     public var at: Date
 
-    public init(id: ID, task: AppTask, at: Date) {
+    public init(id: ID, task: AppPromise, at: Date) {
         self.id = id
         self.task = task
         self.at = at

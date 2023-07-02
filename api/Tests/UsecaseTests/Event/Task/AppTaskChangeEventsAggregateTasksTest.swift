@@ -8,7 +8,7 @@ final class AppTaskChangeEventsAggregateTasksTest: XCTestCase {
 
     func test集約できる() {
 
-        var taskA = AppTask()
+        var taskA = AppPromise()
         taskA.title = "First"
 
         var createA = AppTaskCreateEvent()
@@ -25,7 +25,7 @@ final class AppTaskChangeEventsAggregateTasksTest: XCTestCase {
         updateA2.task = taskA
         updateA2.at = .init(at: 3)
 
-        var taskB = AppTask()
+        var taskB = AppPromise()
         taskB.title = "1番目"
 
         var createB = AppTaskCreateEvent()
@@ -37,7 +37,7 @@ final class AppTaskChangeEventsAggregateTasksTest: XCTestCase {
         updateB.task = taskB
         updateB.at = .init(at: 3)
 
-        var taskC = AppTask()
+        var taskC = AppPromise()
         taskC.title = "One"
 
         var createC = AppTaskCreateEvent()
@@ -58,7 +58,7 @@ final class AppTaskChangeEventsAggregateTasksTest: XCTestCase {
             .create(event: createA),
         ]
 
-        let expected: Set<AppTask> = [taskA, taskB]
+        let expected: Set<AppPromise> = [taskA, taskB]
         let actual = Set(events.aggregateTasks())
         XCTAssertEqual(actual, expected)
     }

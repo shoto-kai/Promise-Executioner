@@ -13,5 +13,5 @@ public protocol AppTaskCreateEventTakeableByUser {
 
 /// タスク作成イベントをタスクIDの配列で取得する
 public protocol AppTaskCreateEventTakeableByTaskIDs {
-    func takeAll(ids: [AppTask.ID]) async throws -> [AppTaskCreateEvent]
+    func takeAll(ids: [AppPromise.ID]) async throws -> [AppTaskCreateEvent]
 }

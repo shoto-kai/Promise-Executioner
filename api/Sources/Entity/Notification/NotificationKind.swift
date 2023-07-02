@@ -1,6 +1,6 @@
 public enum NotificationKind: Hashable, Codable {
-    case gift(task: AppTask)
-    case penalty(task: AppTask)
-    case sign(task: AppTask)
-    case terminate(task: AppTask)
+    case gift(task: AppPromise)
+    case penalty(task: AppPromise)
+    case sign(task: AppPromise)
+    case terminate(task: AppPromise)
 }

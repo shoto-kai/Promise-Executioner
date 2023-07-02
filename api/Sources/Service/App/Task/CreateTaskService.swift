@@ -1,8 +1,12 @@
 import Entity
+import Foundation
 import Repository
 import ServiceProtocol
+import Usecase
 
-public struct CreateTaskService<T: Repository.TaskCreatable>: ServiceProtocol.TaskCreatable {
+public struct CreateTaskService<T: Repository.AppTaskCreateEventCreatable>: ServiceProtocol
+        .TaskCreatable
+{
 
     var creator: T
 
@@ -10,7 +14,17 @@ public struct CreateTaskService<T: Repository.TaskCreatable>: ServiceProtocol.Ta
         self.creator = creator
     }
 
-    public func create(task: AppTask, of: User.ID) async throws {
-        try await creator.create(task, of: of)
+    public func create(
+        task: AppPromise,
+        of user: User,
+        at now: Date
+    ) async throws {
+        let event = AppTaskCreateEvent(
+            id: .init(.init()),
+            user: user,
+            task: task,
+            at: now
+        )
+        try await creator.create(event)
     }
 }

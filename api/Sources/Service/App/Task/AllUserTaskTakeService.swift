@@ -12,7 +12,7 @@ public struct AllUserTaskService<T: Repository.AllUserTaskTakeable>: ServiceProt
         self.allTaskTaker = allTaskTakeable
     }
 
-    public func takeAll(of: User.ID) async throws -> [AppTask] {
+    public func takeAll(of: User.ID) async throws -> [AppPromise] {
         try await allTaskTaker.takeAll(of: of)
     }
 }

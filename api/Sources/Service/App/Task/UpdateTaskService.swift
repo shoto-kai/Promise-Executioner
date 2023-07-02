@@ -10,7 +10,7 @@ public struct UpdateTaskService<T: Repository.TaskUpdatable>: ServiceProtocol.Ta
         self.updator = updator
     }
 
-    public func update(task: AppTask) async throws {
+    public func update(task: AppPromise) async throws {
         try await self.updator.update(task)
     }
 }

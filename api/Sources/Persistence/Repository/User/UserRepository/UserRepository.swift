@@ -11,8 +11,4 @@ public struct UserRepository {
     var firebaseUserRepository: FirebaseUserRepository {
         .init(on: db)
     }
-
-    var taskRepository: AppTaskRepository {
-        .init(on: db)
-    }
 }

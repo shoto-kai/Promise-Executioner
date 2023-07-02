@@ -4,7 +4,7 @@ import Foundation
 extension [AppTaskChangeEvent] {
 
     /// イベントからタスクを導出する
-    public func aggregateTasks() -> [AppTask] {
+    public func aggregateTasks() -> [AppPromise] {
         sorted().reduce([]) { (tasks, changeEvent) in
             switch changeEvent {
             case .create(let event):
@@ -18,7 +18,7 @@ extension [AppTaskChangeEvent] {
     }
 }
 
-extension [AppTask] {
+extension [AppPromise] {
 
     fileprivate func create(event: AppTaskCreateEvent) -> Self {
         guard first(where: { $0.id == event.task.id }) == nil else {

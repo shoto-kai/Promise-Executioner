@@ -11,14 +11,14 @@ func routes(_ app: Application) throws {
         "Hello, world!"
     }
 
-    try app.group("auth") { auth in
-        try auth.register(collection: FirebaseAuthController())
-        try auth.register(collection: SessionAuthController())
-    }
+    //    try app.group("auth") { auth in
+    //        try auth.register(collection: FirebaseAuthController())
+    //        try auth.register(collection: SessionAuthController())
+    //    }
 
     let api = app.grouped("api")
-        .grouped(BearerAuthMiddleware())
-        .grouped(User.guardMiddleware())
+    //        .grouped(BearerAuthMiddleware())
+    //        .grouped(User.guardMiddleware())
 
-    try api.register(collection: TaskController())
+    //    try api.register(collection: TaskController())
 }

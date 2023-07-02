@@ -5,7 +5,7 @@ import XCTest
 
 final class AppTaskStateHelperTests: XCTestCase {
 
-    typealias State = Entity.AppTask.State
+    typealias State = Entity.AppPromise.State
 
     let completed: State = .completed(at: .init(at: 3))
     let failed: State = .failed(at: .init(at: 4))

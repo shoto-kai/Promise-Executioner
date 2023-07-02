@@ -10,7 +10,7 @@ public struct DeleteTaskService<T: Repository.TaskDeletable>: ServiceProtocol.Ta
         self.deletor = deletor
     }
 
-    public func delete(_ id: AppTask.ID) async throws {
+    public func delete(_ id: AppPromise.ID) async throws {
         try await deletor.delete(id)
     }
 }
