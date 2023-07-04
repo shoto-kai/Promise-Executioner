@@ -2,9 +2,9 @@ import Entity
 import Foundation
 
 public enum AppTaskChangeEvent: Hashable, Comparable {
-    case create(event: AppTaskCreateEvent)
-    case update(event: AppTaskUpdateEvent)
-    case delete(event: AppTaskDeleteEvent)
+    case create(event: AppPromise.CreateEvent)
+    case update(event: AppPromise.UpdateEvent)
+    case delete(event: AppPromise.DeleteEvent)
 
     public static func < (lhs: AppTaskChangeEvent, rhs: AppTaskChangeEvent) -> Bool {
         lhs.at < rhs.at

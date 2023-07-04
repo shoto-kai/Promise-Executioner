@@ -2,8 +2,6 @@ import Entity
 import Foundation
 
 extension [AppTaskChangeEvent] {
-
-    /// イベントからタスクを導出する
     public func aggregateTasks() -> [AppPromise] {
         sorted().reduce([]) { (tasks, changeEvent) in
             switch changeEvent {
@@ -20,23 +18,23 @@ extension [AppTaskChangeEvent] {
 
 extension [AppPromise] {
 
-    fileprivate func create(event: AppTaskCreateEvent) -> Self {
-        guard first(where: { $0.id == event.task.id }) == nil else {
+    fileprivate func create(event: AppPromise.CreateEvent) -> Self {
+        guard first(where: { $0.id == event.promise.id }) == nil else {
             return self
         }
-        return self + [event.task]
+        return self + [event.promise]
     }
 
-    fileprivate func update(event: AppTaskUpdateEvent) -> Self {
-        guard let index = firstIndex(where: { $0.id == event.task.id }) else {
+    fileprivate func update(event: AppPromise.UpdateEvent) -> Self {
+        guard let index = firstIndex(where: { $0.id == event.promise.id }) else {
             return self
         }
         var copy = self
-        copy[index] = event.task
+        copy[index] = event.promise
         return copy
     }
 
-    fileprivate func delete(event: AppTaskDeleteEvent) -> Self {
-        filter { $0.id != event.taskID }
+    fileprivate func delete(event: AppPromise.DeleteEvent) -> Self {
+        filter { $0.id != event.promiseID }
     }
 }

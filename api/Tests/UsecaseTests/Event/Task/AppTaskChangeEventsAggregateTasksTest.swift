@@ -8,44 +8,44 @@ final class AppTaskChangeEventsAggregateTasksTest: XCTestCase {
 
     func test集約できる() {
 
-        var taskA = AppPromise()
-        taskA.title = "First"
+        var promiseA = AppPromise()
+        promiseA.title = "First"
 
-        var createA = AppTaskCreateEvent()
-        createA.task = taskA
+        var createA = AppPromise.CreateEvent()
+        createA.promise = promiseA
         createA.at = .init(at: 1)
 
-        taskA.title = "Second"
-        var updateA1 = AppTaskUpdateEvent()
-        updateA1.task = taskA
+        promiseA.title = "Second"
+        var updateA1 = AppPromise.UpdateEvent()
+        updateA1.promise = promiseA
         updateA1.at = .init(at: 2)
 
-        taskA.title = "Third"
-        var updateA2 = AppTaskUpdateEvent()
-        updateA2.task = taskA
+        promiseA.title = "Third"
+        var updateA2 = AppPromise.UpdateEvent()
+        updateA2.promise = promiseA
         updateA2.at = .init(at: 3)
 
-        var taskB = AppPromise()
-        taskB.title = "1番目"
+        var promiseB = AppPromise()
+        promiseB.title = "1番目"
 
-        var createB = AppTaskCreateEvent()
-        createB.task = taskB
+        var createB = AppPromise.CreateEvent()
+        createB.promise = promiseB
         createB.at = .init(at: 2)
 
-        taskB.title = "2番目"
-        var updateB = AppTaskUpdateEvent()
-        updateB.task = taskB
+        promiseB.title = "2番目"
+        var updateB = AppPromise.UpdateEvent()
+        updateB.promise = promiseB
         updateB.at = .init(at: 3)
 
-        var taskC = AppPromise()
-        taskC.title = "One"
+        var promiseC = AppPromise()
+        promiseC.title = "One"
 
-        var createC = AppTaskCreateEvent()
-        createC.task = taskC
+        var createC = AppPromise.CreateEvent()
+        createC.promise = promiseC
         createC.at = .init(at: 3)
 
-        var deleteC = AppTaskDeleteEvent()
-        deleteC.taskID = taskC.id
+        var deleteC = AppPromise.DeleteEvent()
+        deleteC.promiseID = promiseC.id
         deleteC.at = .init(at: 4)
 
         let events: [AppTaskChangeEvent] = [
@@ -58,7 +58,7 @@ final class AppTaskChangeEventsAggregateTasksTest: XCTestCase {
             .create(event: createA),
         ]
 
-        let expected: Set<AppPromise> = [taskA, taskB]
+        let expected: Set<AppPromise> = [promiseA, promiseB]
         let actual = Set(events.aggregateTasks())
         XCTAssertEqual(actual, expected)
     }

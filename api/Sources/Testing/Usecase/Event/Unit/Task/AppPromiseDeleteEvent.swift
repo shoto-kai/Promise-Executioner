@@ -1,10 +1,11 @@
+import Entity
 import Usecase
 
-extension AppTaskDeleteEvent {
+extension AppPromise.DeleteEvent {
     public init() {
         self.init(
             id: .init(.init()),
-            taskID: .init(.init()),
+            promiseID: .init(.init()),
             at: .init()
         )
     }

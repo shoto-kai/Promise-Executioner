@@ -19,10 +19,10 @@ public struct CreateTaskService<T: Repository.AppTaskCreateEventCreatable>: Serv
         of user: User,
         at now: Date
     ) async throws {
-        let event = AppTaskCreateEvent(
+        let event = AppPromise.CreateEvent(
             id: .init(.init()),
             user: user,
-            task: task,
+            promise: task,
             at: now
         )
         try await creator.create(event)

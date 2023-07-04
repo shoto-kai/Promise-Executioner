@@ -8,23 +8,23 @@ final class NotificationEventTest: XCTestCase {
 
     func test並び替えするとat順に並ぶ() {
 
-        var createEvent = AppTaskCreateEvent()
+        var createEvent = AppPromise.CreateEvent()
         createEvent.at = .init(at: 1)
         let event1: NotificationEvent = .createSign(event: createEvent)
 
-        var updateEvent = AppTaskUpdateEvent()
+        var updateEvent = AppPromise.UpdateEvent()
         updateEvent.at = .init(at: 2)
         let event2: NotificationEvent = .updateSign(event: updateEvent)
 
-        var deleteEvent = AppTaskDeleteEvent()
+        var deleteEvent = AppPromise.DeleteEvent()
         deleteEvent.at = .init(at: 3)
         let event3: NotificationEvent = .deleteSign(event: deleteEvent)
 
-        var breakEvent = BreakRestrictionEvent()
+        var breakEvent = AppPromise.Task.BreakEvent()
         breakEvent.at = .init(at: 4)
         let event4: NotificationEvent = .breakRestriction(event: breakEvent)
 
-        var accomplishEvent = AccomplishRestrictionEvent()
+        var accomplishEvent = AppPromise.Task.AccomplishEvent()
         accomplishEvent.at = .init(at: 5)
         let event5: NotificationEvent = .accomplishRestriction(event: accomplishEvent)
 

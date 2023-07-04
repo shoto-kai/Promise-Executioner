@@ -2,11 +2,11 @@ import Entity
 import Foundation
 
 public enum NotificationEvent: Hashable, Codable, Comparable {
-    case createSign(event: AppTaskCreateEvent)
-    case updateSign(event: AppTaskUpdateEvent)
-    case deleteSign(event: AppTaskDeleteEvent)
-    case breakRestriction(event: BreakRestrictionEvent)
-    case accomplishRestriction(event: AccomplishRestrictionEvent)
+    case createSign(event: AppPromise.CreateEvent)
+    case updateSign(event: AppPromise.UpdateEvent)
+    case deleteSign(event: AppPromise.DeleteEvent)
+    case breakRestriction(event: AppPromise.Task.BreakEvent)
+    case accomplishRestriction(event: AppPromise.Task.AccomplishEvent)
 
     public static func < (lhs: NotificationEvent, rhs: NotificationEvent) -> Bool {
         lhs.at < rhs.at

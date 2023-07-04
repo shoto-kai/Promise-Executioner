@@ -1,11 +1,12 @@
+import Entity
 import Usecase
 
-extension AppTaskCreateEvent {
+extension AppPromise.CreateEvent {
     public init() {
         self.init(
             id: .init(.init()),
             user: .init(),
-            task: .init(),
+            promise: .init(),
             at: .init(at: 0)
         )
     }
