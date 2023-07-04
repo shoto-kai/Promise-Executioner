@@ -1,12 +1,12 @@
 import Entity
 import Usecase
 
-extension AppPromise.Task.BreakEvent {
+extension AppPromise.BreakEvent {
     public init() {
         self.init(
-            id: .init(.init()),
-            promiseID: .init(.init()),
-            task: .init(),
+            id: .init(),
+            user: .init(),
+            promiseID: .init(),
             at: .init(at: 0)
         )
     }

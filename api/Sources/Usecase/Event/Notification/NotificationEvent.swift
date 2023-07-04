@@ -5,8 +5,8 @@ public enum NotificationEvent: Hashable, Codable, Comparable {
     case createSign(event: AppPromise.CreateEvent)
     case updateSign(event: AppPromise.UpdateEvent)
     case deleteSign(event: AppPromise.DeleteEvent)
-    case breakRestriction(event: AppPromise.Task.BreakEvent)
-    case accomplishRestriction(event: AppPromise.Task.AccomplishEvent)
+    case breakPromise(event: AppPromise.BreakEvent)
+    case fulFillPromise(event: AppPromise.FulfillEvent)
 
     public static func < (lhs: NotificationEvent, rhs: NotificationEvent) -> Bool {
         lhs.at < rhs.at
@@ -20,9 +20,9 @@ public enum NotificationEvent: Hashable, Codable, Comparable {
             return event.at
         case .deleteSign(let event):
             return event.at
-        case .breakRestriction(let event):
+        case .breakPromise(let event):
             return event.at
-        case .accomplishRestriction(let event):
+        case .fulFillPromise(let event):
             return event.at
         }
     }

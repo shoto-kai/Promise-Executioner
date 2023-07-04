@@ -4,7 +4,7 @@ import Foundation
 extension PairNotification {
     public init() {
         self.init(
-            id: .init(.init()),
+            id: .init(),
             from: .init(),
             to: .init(),
             kind: .init(),

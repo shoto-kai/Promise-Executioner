@@ -1,5 +1,7 @@
+import Entity
 import Fluent
 import Foundation
+import Usecase
 
 final class BearerAuth: Model {
 
@@ -27,5 +29,27 @@ final class BearerAuth: Model {
         self.$user.id = userID
         self.token = token
     }
+}
 
+extension BearerAuth {
+    var toEntity: Usecase.BearerAuth {
+        get throws {
+            try .init(user: userEntity, token: .init(token))
+        }
+    }
+
+    private var userEntity: Entity.User {
+        get throws {
+            guard let user = $user.value else {
+                throw DBError.loadError
+            }
+            return try user.toEntity
+        }
+    }
+}
+
+extension Usecase.BearerAuth {
+    var toModel: BearerAuth {
+        .init(userID: user.id.value, token: token.value)
+    }
 }

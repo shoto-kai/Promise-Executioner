@@ -7,7 +7,7 @@ final class UserTests: XCTestCase {
 
     func testモデルとエンティティ間の変換() throws {
         let expected = try Entity.User(
-            id: .init(.init()),
+            id: .init(),
             name: .init("alice"),
             displayName: "Alice"
         )

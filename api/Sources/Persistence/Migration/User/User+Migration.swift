@@ -14,6 +14,7 @@ extension User {
                 .field("updated_at", .datetime, .required)
                 .unique(on: "name")
                 .create()
+            try await database.createIndex(schema: schema, columns: "display_name")
         }
 
         func revert(on database: Database) async throws {

@@ -2,6 +2,6 @@ import Entity
 
 extension PushTask.DeadlineRestriction {
     public init() {
-        self.init(id: .init(.init()), at: .init(at: 10))
+        self.init(.init(at: 10))
     }
 }

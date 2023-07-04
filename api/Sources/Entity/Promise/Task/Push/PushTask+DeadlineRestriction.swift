@@ -3,14 +3,9 @@ import Foundation
 extension PushTask {
     public struct DeadlineRestriction: Hashable, Codable {
 
-        public typealias ID = Identifier<Self>
-
-        public var id: ID
-
         public var at: Date
 
-        public init(id: ID, at: Date) {
-            self.id = id
+        public init(_ at: Date) {
             self.at = at
         }
 

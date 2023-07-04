@@ -1,12 +1,11 @@
 import Entity
 import Usecase
 
-extension AppPromise.Task.AccomplishEvent {
+extension AppPromise.FulfillEvent {
     public init() {
         self.init(
-            id: .init(.init()),
-            promiseID: .init(.init()),
-            task: .init(),
+            id: .init(),
+            promiseID: .init(),
             at: .init(at: 0)
         )
     }

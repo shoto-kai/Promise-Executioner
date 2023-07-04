@@ -20,13 +20,13 @@ final class NotificationEventTest: XCTestCase {
         deleteEvent.at = .init(at: 3)
         let event3: NotificationEvent = .deleteSign(event: deleteEvent)
 
-        var breakEvent = AppPromise.Task.BreakEvent()
+        var breakEvent = AppPromise.BreakEvent()
         breakEvent.at = .init(at: 4)
-        let event4: NotificationEvent = .breakRestriction(event: breakEvent)
+        let event4: NotificationEvent = .breakPromise(event: breakEvent)
 
-        var accomplishEvent = AppPromise.Task.AccomplishEvent()
+        var accomplishEvent = AppPromise.FulfillEvent()
         accomplishEvent.at = .init(at: 5)
-        let event5: NotificationEvent = .accomplishRestriction(event: accomplishEvent)
+        let event5: NotificationEvent = .fulFillPromise(event: accomplishEvent)
 
         let events = [
             event2,

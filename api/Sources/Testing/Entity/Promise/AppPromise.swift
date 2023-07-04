@@ -3,7 +3,7 @@ import Entity
 extension AppPromise {
     public init() {
         self.init(
-            id: .init(.init()),
+            id: .init(),
             title: "",
             note: "",
             state: .init(),

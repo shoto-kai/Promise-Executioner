@@ -16,7 +16,7 @@ extension AppPromise.PushTask {
         guard let deadline else {
             return nil
         }
-        return .init(id: .init(.init()), at: deadline)
+        return .init(deadline)
     }
 }
 
